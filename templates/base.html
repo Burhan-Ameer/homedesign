@@ -1,0 +1,464 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="../static/media/Home-design-interactive-_1_.svg"
+      type="image/svg+xml"
+    />
+    <title>Home Design Interactive Platform</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}" />
+  </head>
+  <body>
+    <!-- navbar -->
+    <div class="drawer flex flex-col">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content">
+        <div class="navbar bg-white shadow-xl my-2 rounded-md">
+          <div class="flex-1">
+            <div class="flex justify-center items-center px-3">
+              <!-- menu svg -->
+              <label
+                for="my-drawer"
+                class="active:bg-slate-300 rounded-full md:hidden drawer-button"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#5f6368"
+                >
+                  <path
+                    d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"
+                  />
+                </svg>
+              </label>
+
+              <!-- logo item -->
+              <a class="w-24 flex justify-center items-center">
+                <?xml version="1.0" standalone="no"?>
+                <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+                <svg
+                  version="1.0"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="100.000000pt"
+                  height="60.000000pt"
+                  viewBox="0 0 500.000000 500.000000"
+                  preserveAspectRatio="xMidYMid meet"
+                >
+                  <g
+                    transform="translate(0.000000,500.000000) scale(0.100000,-0.100000)"
+                    fill=""
+                    stroke="none"
+                  >
+                    <path
+                      d="M1988 3003 c-496 -496 -526 -530 -482 -547 9 -3 63 -6 120 -6 l104 0
+            0 -352 c0 -194 4 -359 8 -366 7 -10 167 -12 768 -10 l759 3 5 360 5 360 109 3
+            c109 3 136 11 136 40 0 8 -56 72 -125 142 l-125 126 0 164 c0 91 -4 171 -8
+            178 -6 9 -36 12 -113 10 l-104 -3 -3 -57 c-2 -32 -6 -58 -10 -58 -4 0 -122
+            115 -262 255 -140 140 -262 255 -270 255 -8 0 -239 -224 -512 -497z m1160
+            -480 c22 -81 25 -100 23 -120 -2 -20 -240 -18 -247 1 -4 12 19 117 41 184 3 8
+            29 12 84 12 l79 0 20 -77z m-448 -243 c56 -16 63 -24 68 -85 3 -41 8 -55 18
+            -51 21 8 82 -13 110 -39 26 -24 26 -26 14 -87 -16 -81 -47 -165 -71 -189 -23
+            -23 -49 -25 -49 -4 0 13 -41 15 -308 15 -170 0 -344 3 -386 7 -73 6 -77 5 -83
+            -15 -6 -25 -43 -30 -43 -7 0 8 -5 15 -11 15 -26 0 -77 217 -59 251 12 21 70
+            49 103 49 22 0 26 6 32 46 3 26 9 52 12 60 9 23 109 37 222 30 155 -10 152
+            -10 201 2 59 13 186 14 230 2z"
+                    />
+                    <path
+                      d="M2243 2013 c15 -2 37 -2 50 0 12 2 0 4 -28 4 -27 0 -38 -2 -22 -4z"
+                    />
+                    <path
+                      d="M2573 2013 c26 -2 67 -2 90 0 23 2 2 3 -48 3 -49 0 -68 -1 -42 -3z"
+                    />
+                    <path
+                      d="M2458 2003 c6 -2 18 -2 25 0 6 3 1 5 -13 5 -14 0 -19 -2 -12 -5z"
+                    />
+                    <path
+                      d="M2388 1903 c6 -2 18 -2 25 0 6 3 1 5 -13 5 -14 0 -19 -2 -12 -5z"
+                    />
+                    <path
+                      d="M2068 1893 c6 -2 18 -2 25 0 6 3 1 5 -13 5 -14 0 -19 -2 -12 -5z"
+                    />
+                    <path
+                      d="M2208 1893 c23 -2 59 -2 80 0 20 2 1 4 -43 4 -44 0 -61 -2 -37 -4z"
+                    />
+                    <path
+                      d="M2483 1893 c9 -2 23 -2 30 0 6 3 -1 5 -18 5 -16 0 -22 -2 -12 -5z"
+                    />
+                    <path
+                      d="M1732 1625 c-40 -18 -52 -48 -52 -131 0 -68 17 -117 45 -128 38 -14
+            94 -6 121 18 24 20 28 32 32 89 5 72 -10 132 -36 146 -34 18 -78 20 -110 6z
+            m75 -47 c16 -20 22 -70 16 -117 -5 -33 -12 -45 -31 -54 -21 -10 -27 -8 -44 13
+            -17 20 -19 36 -16 88 4 64 15 82 49 82 9 0 21 -6 26 -12z"
+                    />
+                    <path
+                      d="M2975 1629 c-38 -11 -55 -34 -55 -74 0 -45 18 -64 75 -78 43 -10 50
+            -16 53 -39 5 -44 -60 -50 -73 -7 -4 12 -16 19 -31 19 -18 0 -24 -5 -24 -23 0
+            -64 115 -93 165 -42 47 46 24 116 -42 130 -70 15 -91 38 -58 65 20 17 48 9 60
+            -18 7 -15 18 -22 38 -22 27 0 29 2 22 28 -13 54 -68 80 -130 61z"
+                    />
+                    <path
+                      d="M3303 1629 c-49 -14 -66 -55 -61 -147 3 -66 6 -77 31 -98 34 -29 110
+            -33 145 -8 19 13 22 24 22 75 l0 59 -45 0 c-41 0 -45 -2 -45 -25 0 -16 6 -25
+            15 -25 9 0 15 -9 15 -24 0 -27 -26 -41 -54 -30 -52 20 -45 172 7 182 23 5 47
+            -15 47 -39 0 -15 7 -19 31 -19 30 0 31 1 25 32 -12 60 -66 87 -133 67z"
+                    />
+                    <path
+                      d="M1450 1495 l0 -135 25 0 c22 0 24 4 27 58 l3 57 38 3 37 3 0 -60 0
+            -61 30 0 30 0 0 135 0 135 -30 0 -30 -1 -30 -55 l0 -55 -40 0 -40 0 0 55 c0
+            52 -1 55 -25 55 l-25 0 0 -135z"
+                    />
+                    <path
+                      d="M1920 1495 l0 -135 25 0 c25 0 25 1 26 83 0 45 2 78 4 72 2 -5 13
+            -43 25 -82 19 -68 23 -73 48 -73 26 0 29 4 46 73 11 39 22 75 25 79 3 4 4 -29
+            2 -72 l-3 -80 31 0 31 0 0 136 0 135 -42 -3 -42 -3 -23 -79 c-12 -43 -24 -80
+            -26 -82 -1 -2 -13 35 -26 82 l-23 84 -39 0 -39 0 0 -135z"
+                    />
+                    <path
+                      d="M2220 1495 l0 -135 86 0 c83 0 85 1 82 23 -3 19 -10 22 -61 25 l-58
+            3 3 32 c3 31 5 32 51 35 38 3 47 7 47 22 0 15 -9 19 -47 22 -46 3 -48 4 -48
+            33 0 30 1 30 58 33 49 3 57 6 57 22 0 18 -7 20 -85 20 l-85 0 0 -135z"
+                    />
+                    <path
+                      d="M2490 1495 l0 -137 71 4 c62 3 74 7 94 30 42 48 44 162 5 210 -15 19
+            -30 23 -94 26 l-76 4 0 -137z m128 68 c6 -9 12 -40 12 -69 0 -61 -17 -84 -61
+            -84 l-29 0 0 83 c0 46 3 87 7 91 11 11 56 -3 71 -21z"
+                    />
+                    <path
+                      d="M2720 1495 l0 -135 85 0 c84 0 85 0 85 25 0 24 -3 25 -55 25 l-55 0
+            0 35 c0 35 0 35 45 35 38 0 45 3 45 20 0 17 -7 20 -45 20 -45 0 -45 0 -45 35
+            l0 35 55 0 c48 0 55 2 55 20 0 18 -7 20 -85 20 l-85 0 0 -135z"
+                    />
+                    <path
+                      d="M3150 1495 l0 -135 25 0 25 0 0 135 0 135 -25 0 -25 0 0 -135z"
+                    />
+                    <path
+                      d="M3480 1495 l0 -135 25 0 c25 0 25 1 25 83 l0 82 44 -80 c39 -71 47
+            -80 75 -83 l31 -3 0 135 0 136 -31 0 -32 0 6 -80 c3 -44 4 -80 2 -80 -2 0 -23
+            36 -46 80 -37 72 -44 80 -70 80 l-29 0 0 -135z"
+                    />
+                    <path
+                      d="M2430 1160 c0 -64 3 -80 15 -80 12 0 15 16 15 80 0 64 -3 80 -15 80
+            -12 0 -15 -16 -15 -80z"
+                    />
+                    <path
+                      d="M2490 1160 c0 -63 3 -80 14 -80 11 0 16 14 18 48 l3 47 25 -47 c15
+            -31 31 -48 42 -48 16 0 18 10 18 80 0 63 -3 80 -14 80 -11 0 -16 -14 -18 -47
+            l-3 -48 -25 48 c-15 30 -31 47 -42 47 -16 0 -18 -10 -18 -80z"
+                    />
+                    <path
+                      d="M2620 1229 c0 -6 9 -13 20 -16 17 -5 20 -14 20 -69 0 -50 3 -64 15
+            -64 12 0 15 14 15 65 0 58 2 65 20 65 11 0 20 7 20 15 0 12 -13 15 -55 15 -33
+            0 -55 -4 -55 -11z"
+                    />
+                    <path
+                      d="M2750 1160 l0 -80 45 0 c33 0 45 4 45 15 0 10 -10 15 -30 15 -23 0
+            -30 4 -30 20 0 15 7 20 25 20 16 0 25 6 25 15 0 9 -9 15 -25 15 -16 0 -25 6
+            -25 15 0 10 10 15 30 15 20 0 30 5 30 15 0 11 -12 15 -45 15 l-45 0 0 -80z"
+                    />
+                    <path
+                      d="M2870 1160 c0 -64 3 -80 15 -80 10 0 15 10 15 30 0 17 4 30 9 30 5 0
+            14 -13 21 -30 7 -16 19 -30 27 -30 14 0 13 11 -4 56 -2 7 0 15 6 19 15 9 14
+            58 -1 73 -7 7 -29 12 -50 12 l-38 0 0 -80z m70 30 c0 -13 -7 -20 -20 -20 -13
+            0 -20 7 -20 20 0 13 7 20 20 20 13 0 20 -7 20 -20z"
+                    />
+                    <path
+                      d="M3025 1228 c-6 -19 -35 -135 -35 -142 0 -15 29 -4 35 14 3 11 15 20
+            25 20 9 0 20 -9 23 -20 3 -11 13 -20 22 -20 12 0 15 6 11 20 -3 11 -8 28 -10
+            38 -25 97 -27 102 -47 102 -11 0 -22 -6 -24 -12z m35 -69 c0 -10 -4 -19 -10
+            -19 -5 0 -10 12 -10 26 0 14 4 23 10 19 6 -3 10 -15 10 -26z"
+                    />
+                    <path
+                      d="M3140 1225 c-7 -8 -12 -37 -12 -65 0 -59 14 -80 53 -80 27 0 59 22
+            59 41 0 12 -27 12 -35 -1 -3 -5 -15 -10 -26 -10 -16 0 -19 7 -19 49 0 55 21
+            75 42 41 25 -39 49 -20 28 21 -13 23 -72 26 -90 4z"
+                    />
+                    <path
+                      d="M3250 1229 c0 -6 9 -13 20 -16 17 -5 20 -14 20 -69 0 -50 3 -64 15
+            -64 12 0 15 14 15 65 0 58 2 65 20 65 11 0 20 7 20 15 0 12 -13 15 -55 15 -33
+            0 -55 -4 -55 -11z"
+                    />
+                    <path
+                      d="M3380 1160 c0 -64 3 -80 15 -80 12 0 15 16 15 80 0 64 -3 80 -15 80
+            -12 0 -15 -16 -15 -80z"
+                    />
+                    <path
+                      d="M3430 1233 c0 -5 8 -39 18 -78 15 -57 22 -71 40 -73 17 -3 23 4 32
+            40 6 24 15 58 20 77 11 39 8 46 -14 38 -8 -3 -18 -26 -21 -52 -9 -58 -21 -65
+            -29 -17 -11 59 -16 72 -32 72 -8 0 -14 -3 -14 -7z"
+                    />
+                    <path
+                      d="M3570 1160 l0 -80 45 0 c33 0 45 4 45 15 0 10 -10 15 -30 15 -23 0
+            -30 4 -30 20 0 15 7 20 25 20 16 0 25 6 25 15 0 9 -9 15 -25 15 -16 0 -25 6
+            -25 15 0 10 10 15 30 15 20 0 30 5 30 15 0 11 -12 15 -45 15 l-45 0 0 -80z"
+                    />
+                  </g>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="flex gap-5">
+            <!-- centeral  items  -->
+            <div class="flex gap-3 sm:hidden md:flex md:gap-3">
+              <a href="" class="rounded-lg hover:bg-blue-50 p-3">Home</a>
+              <a href="" class="rounded-lg hover:bg-blue-50 p-3">Brands</a>
+              <a href="" class="rounded-lg hover:bg-blue-50 p-3">Collections</a>
+              <a href="" class="rounded-lg hover:bg-blue-50 p-3">Saved</a>
+            </div>
+
+            <!--search box  -->
+            <div
+              class="bg-blue-50 sm:bg-white md:bg-blue-50 p-2 rounded-lg flex justify-center items-center"
+            >
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder="search products"
+                class="bg-blue-50 w-full outline-black rounded-lg p-1 border-none sm:hidden sm:bg-none md:bg-blue-50 md:block"
+              />
+              <!-- search icon -->
+
+              <!-- Open the modal using ID.showModal() method -->
+              <button
+                class="sm:block md:hidden"
+                onclick="my_modal_1.showModal()"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#5f6368"
+                >
+                  <path
+                    d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
+                  />
+                </svg>
+              </button>
+              <dialog id="my_modal_1" class="modal">
+                <div class="modal-box">
+                  <div class="w-full">
+                    <input
+                      type="text"
+                      name=""
+                      placeholder="Search products"
+                      id=""
+                      class="w-full focus:outline-hidden border-none bg-base-100"
+                    />
+                    <div class="bg-white border-2 w-full"></div>
+                  </div>
+                  <p class="py-4">
+                    Press ESC key or click the button below to close
+                  </p>
+                  <div class="modal-action">
+                    <form method="dialog">
+                      <!-- if there is a button in form, it will close the modal -->
+                      <button class="btn">Close</button>
+                    </form>
+                  </div>
+                </div>
+              </dialog>
+            </div>
+            <div class="">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#5f6368"
+              >
+                <path
+                  d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="flex-none">
+            <div class="dropdown dropdown-end">
+              <div
+                tabindex="0"
+                role="button"
+                class="btn btn-ghost btn-circle avatar"
+              >
+                <div class="w-10 rounded-full">
+                  <img
+                    alt="Tailwind CSS Navbar component"
+                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  />
+                </div>
+              </div>
+              <!-- Dropdown Menu -->
+              <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                <li>
+                    <a href="" class="justify-between">
+                        Profile
+                        <span class="badge">New</span>
+                    </a>
+                </li>
+                <li><a href="" class="justify-between">Settings</a></li>
+                {% if request.user.is_authenticated %}
+                <li>
+                    <button class="justify-between w-full text-left" onclick="logout_modal.showModal()">
+                        Logout
+                    </button>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'login' %}" class="justify-between">Login</a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- mobile menu  -->
+
+        <!-- Page content here -->
+      </div>
+      <div class="drawer-side">
+        <label
+          for="my-drawer"
+          aria-label="close sidebar"
+          class="drawer-overlay"
+        ></label>
+        <ul
+          class="menu bg-base-200 text-base-content min-h-full w-52 p-2 pt-10 flex flex-col gap-y-3"
+        >
+          <!-- Sidebar content here -->
+          <li class=""><a class="p-4 hover:bg-base-100"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fffff"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg> Home </a></li>
+          <li class=""><a class="p-4 hover:bg-base-100"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fffff"><path d="M320-320h480v-480h-80v280l-100-60-100 60v-280H320v480Zm0 80q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm360-720h200-200Zm-200 0h480-480Z"/></svg> Collections</a></li>
+          <li class="">
+            <a class="p-4 hover:bg-base-100">
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                     height="24px" 
+                     viewBox="0 -960 960 960" 
+                     width="24px" 
+                     fill="#fffff">
+                    <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H160v400Zm160-40-92-92 92-92 56 56-36 36 36 36-56 56Zm320 0-56-56 36-36-36-36 56-56 92 92-92 92ZM160-640h640-640Z"/>
+                </svg> 
+                Brands
+            </a>
+        </li>
+          <li class=""><a class="p-4 hover:bg-base-100"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fffff"><path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z"/></svg> Saved</a></li>
+        </ul>
+      </div>
+
+      {% block content %}
+      <dialog id="my_modal_2" class="modal">
+        <div class="modal-box">
+          <h3 class="text-lg font-bold">Confirm Logout</h3>
+          <p class="py-4">Are you sure you want to log out?</p>
+          <div class="modal-action flex justify-end gap-3">
+            <!-- Cancel button -->
+            <form method="dialog">
+              <button class="btn btn-outline">Cancel</button>
+            </form>
+            <!-- Logout form -->
+            <form action="" method="POST" class="m-0">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-error">Logout</button>
+            </form>
+          </div>
+        </div>
+        <!-- Backdrop click to close -->
+        <form method="dialog" class="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
+      {% endblock content %}
+      <!-- footer -->
+      <footer
+        class="footer footer-center bg-base-200 text-base-content rounded p-10 relative bottom-0"
+      >
+        <nav class="grid grid-flow-col gap-4">
+          <a class="link link-hover">About us</a>
+          <a class="link link-hover">Contact</a>
+          <a class="link link-hover">Jobs</a>
+          <a class="link link-hover">Press kit</a>
+        </nav>
+        <nav>
+          <div class="grid grid-flow-col gap-4">
+            <a>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                class="fill-current"
+              >
+                <path
+                  d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+                ></path>
+              </svg>
+            </a>
+            <a>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                class="fill-current"
+              >
+                <path
+                  d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"
+                ></path>
+              </svg>
+            </a>
+            <a>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                class="fill-current"
+              >
+                <path
+                  d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </nav>
+        <aside>
+          <p>
+            Copyright © Home Design Interactive Platform - All right reserved
+          </p>
+        </aside>
+      </footer>
+    </div>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100,
+      });
+    </script>
+    <!-- Logout Modal -->
+    <dialog id="logout_modal" class="modal">
+      <div class="modal-box">
+        <h3 class="font-bold text-lg">Confirm Logout</h3>
+        <p class="py-4">Are you sure you want to logout?</p>
+        <div class="modal-action flex justify-end gap-3">
+            <form method="dialog">
+                <button class="btn btn-ghost">Cancel</button>
+            </form>
+            <form action="{% url 'logout' %}" method="POST" class="m-0">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-error">Logout</button>
+            </form>
+        </div>
+      </div>
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
+    </dialog>
+  </body>
+</html>

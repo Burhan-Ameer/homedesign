@@ -1,0 +1,394 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="" UTF-8 />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>admin_page</title>
+    <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}" />
+  </head>
+  <body class="bg-base-300">
+    <div class="drawer lg:drawer-open">
+      <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+
+      <div class="drawer-content flex flex-col">
+        <!-- Header -->
+        <div class="w-full navbar bg-base-200 shadow-lg">
+          <div class="flex-none lg:hidden">
+            <label for="my-drawer-2" class="btn btn-square btn-ghost">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </label>
+          </div>
+          <div class="flex-1 px-2 mx-2 text-sm font-bold">
+            <?xml version="1.0" standalone="no"?>
+            <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+            <svg
+              version="1.0"
+              xmlns="http://www.w3.org/2000/svg"
+              width="40.000000pt"
+              height="60.000000pt"
+              viewBox="0 0 500.000000 500.000000"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <g
+                transform="translate(0.000000,500.000000) scale(0.100000,-0.100000)"
+                fill=""
+                stroke="none"
+              >
+                <path
+                  d="M1988 3003 c-496 -496 -526 -530 -482 -547 9 -3 63 -6 120 -6 l104 0
+                0 -352 c0 -194 4 -359 8 -366 7 -10 167 -12 768 -10 l759 3 5 360 5 360 109 3
+                c109 3 136 11 136 40 0 8 -56 72 -125 142 l-125 126 0 164 c0 91 -4 171 -8
+                178 -6 9 -36 12 -113 10 l-104 -3 -3 -57 c-2 -32 -6 -58 -10 -58 -4 0 -122
+                115 -262 255 -140 140 -262 255 -270 255 -8 0 -239 -224 -512 -497z m1160
+                -480 c22 -81 25 -100 23 -120 -2 -20 -240 -18 -247 1 -4 12 19 117 41 184 3 8
+                29 12 84 12 l79 0 20 -77z m-448 -243 c56 -16 63 -24 68 -85 3 -41 8 -55 18
+                -51 21 8 82 -13 110 -39 26 -24 26 -26 14 -87 -16 -81 -47 -165 -71 -189 -23
+                -23 -49 -25 -49 -4 0 13 -41 15 -308 15 -170 0 -344 3 -386 7 -73 6 -77 5 -83
+                -15 -6 -25 -43 -30 -43 -7 0 8 -5 15 -11 15 -26 0 -77 217 -59 251 12 21 70
+                49 103 49 22 0 26 6 32 46 3 26 9 52 12 60 9 23 109 37 222 30 155 -10 152
+                -10 201 2 59 13 186 14 230 2z"
+                />
+                <path
+                  d="M2243 2013 c15 -2 37 -2 50 0 12 2 0 4 -28 4 -27 0 -38 -2 -22 -4z"
+                />
+                <path
+                  d="M2573 2013 c26 -2 67 -2 90 0 23 2 2 3 -48 3 -49 0 -68 -1 -42 -3z"
+                />
+                <path
+                  d="M2458 2003 c6 -2 18 -2 25 0 6 3 1 5 -13 5 -14 0 -19 -2 -12 -5z"
+                />
+                <path
+                  d="M2388 1903 c6 -2 18 -2 25 0 6 3 1 5 -13 5 -14 0 -19 -2 -12 -5z"
+                />
+                <path
+                  d="M2068 1893 c6 -2 18 -2 25 0 6 3 1 5 -13 5 -14 0 -19 -2 -12 -5z"
+                />
+                <path
+                  d="M2208 1893 c23 -2 59 -2 80 0 20 2 1 4 -43 4 -44 0 -61 -2 -37 -4z"
+                />
+                <path
+                  d="M2483 1893 c9 -2 23 -2 30 0 6 3 -1 5 -18 5 -16 0 -22 -2 -12 -5z"
+                />
+                <path
+                  d="M1732 1625 c-40 -18 -52 -48 -52 -131 0 -68 17 -117 45 -128 38 -14
+                94 -6 121 18 24 20 28 32 32 89 5 72 -10 132 -36 146 -34 18 -78 20 -110 6z
+                m75 -47 c16 -20 22 -70 16 -117 -5 -33 -12 -45 -31 -54 -21 -10 -27 -8 -44 13
+                -17 20 -19 36 -16 88 4 64 15 82 49 82 9 0 21 -6 26 -12z"
+                />
+                <path
+                  d="M2975 1629 c-38 -11 -55 -34 -55 -74 0 -45 18 -64 75 -78 43 -10 50
+                -16 53 -39 5 -44 -60 -50 -73 -7 -4 12 -16 19 -31 19 -18 0 -24 -5 -24 -23 0
+                -64 115 -93 165 -42 47 46 24 116 -42 130 -70 15 -91 38 -58 65 20 17 48 9 60
+                -18 7 -15 18 -22 38 -22 27 0 29 2 22 28 -13 54 -68 80 -130 61z"
+                />
+                <path
+                  d="M3303 1629 c-49 -14 -66 -55 -61 -147 3 -66 6 -77 31 -98 34 -29 110
+                -33 145 -8 19 13 22 24 22 75 l0 59 -45 0 c-41 0 -45 -2 -45 -25 0 -16 6 -25
+                15 -25 9 0 15 -9 15 -24 0 -27 -26 -41 -54 -30 -52 20 -45 172 7 182 23 5 47
+                -15 47 -39 0 -15 7 -19 31 -19 30 0 31 1 25 32 -12 60 -66 87 -133 67z"
+                />
+                <path
+                  d="M1450 1495 l0 -135 25 0 c22 0 24 4 27 58 l3 57 38 3 37 3 0 -60 0
+                -61 30 0 30 0 0 135 0 135 -30 0 -30 -1 -30 -55 l0 -55 -40 0 -40 0 0 55 c0
+                52 -1 55 -25 55 l-25 0 0 -135z"
+                />
+                <path
+                  d="M1920 1495 l0 -135 25 0 c25 0 25 1 26 83 0 45 2 78 4 72 2 -5 13
+                -43 25 -82 19 -68 23 -73 48 -73 26 0 29 4 46 73 11 39 22 75 25 79 3 4 4 -29
+                2 -72 l-3 -80 31 0 31 0 0 136 0 135 -42 -3 -42 -3 -23 -79 c-12 -43 -24 -80
+                -26 -82 -1 -2 -13 35 -26 82 l-23 84 -39 0 -39 0 0 -135z"
+                />
+                <path
+                  d="M2220 1495 l0 -135 86 0 c83 0 85 1 82 23 -3 19 -10 22 -61 25 l-58
+                3 3 32 c3 31 5 32 51 35 38 3 47 7 47 22 0 15 -9 19 -47 22 -46 3 -48 4 -48
+                33 0 30 1 30 58 33 49 3 57 6 57 22 0 18 -7 20 -85 20 l-85 0 0 -135z"
+                />
+                <path
+                  d="M2490 1495 l0 -137 71 4 c62 3 74 7 94 30 42 48 44 162 5 210 -15 19
+                -30 23 -94 26 l-76 4 0 -137z m128 68 c6 -9 12 -40 12 -69 0 -61 -17 -84 -61
+                -84 l-29 0 0 83 c0 46 3 87 7 91 11 11 56 -3 71 -21z"
+                />
+                <path
+                  d="M2720 1495 l0 -135 85 0 c84 0 85 0 85 25 0 24 -3 25 -55 25 l-55 0
+                0 35 c0 35 0 35 45 35 38 0 45 3 45 20 0 17 -7 20 -45 20 -45 0 -45 0 -45 35
+                l0 35 55 0 c48 0 55 2 55 20 0 18 -7 20 -85 20 l-85 0 0 -135z"
+                />
+                <path
+                  d="M3150 1495 l0 -135 25 0 25 0 0 135 0 135 -25 0 -25 0 0 -135z"
+                />
+                <path
+                  d="M3480 1495 l0 -135 25 0 c25 0 25 1 25 83 l0 82 44 -80 c39 -71 47
+                -80 75 -83 l31 -3 0 135 0 136 -31 0 -32 0 6 -80 c3 -44 4 -80 2 -80 -2 0 -23
+                36 -46 80 -37 72 -44 80 -70 80 l-29 0 0 -135z"
+                />
+                <path
+                  d="M2430 1160 c0 -64 3 -80 15 -80 12 0 15 16 15 80 0 64 -3 80 -15 80
+                -12 0 -15 -16 -15 -80z"
+                />
+                <path
+                  d="M2490 1160 c0 -63 3 -80 14 -80 11 0 16 14 18 48 l3 47 25 -47 c15
+                -31 31 -48 42 -48 16 0 18 10 18 80 0 63 -3 80 -14 80 -11 0 -16 -14 -18 -47
+                l-3 -48 -25 48 c-15 30 -31 47 -42 47 -16 0 -18 -10 -18 -80z"
+                />
+                <path
+                  d="M2620 1229 c0 -6 9 -13 20 -16 17 -5 20 -14 20 -69 0 -50 3 -64 15
+                -64 12 0 15 14 15 65 0 58 2 65 20 65 11 0 20 7 20 15 0 12 -13 15 -55 15 -33
+                0 -55 -4 -55 -11z"
+                />
+                <path
+                  d="M2750 1160 l0 -80 45 0 c33 0 45 4 45 15 0 10 -10 15 -30 15 -23 0
+                -30 4 -30 20 0 15 7 20 25 20 16 0 25 6 25 15 0 9 -9 15 -25 15 -16 0 -25 6
+                -25 15 0 10 10 15 30 15 20 0 30 5 30 15 0 11 -12 15 -45 15 l-45 0 0 -80z"
+                />
+                <path
+                  d="M2870 1160 c0 -64 3 -80 15 -80 10 0 15 10 15 30 0 17 4 30 9 30 5 0
+                14 -13 21 -30 7 -16 19 -30 27 -30 14 0 13 11 -4 56 -2 7 0 15 6 19 15 9 14
+                58 -1 73 -7 7 -29 12 -50 12 l-38 0 0 -80z m70 30 c0 -13 -7 -20 -20 -20 -13
+                0 -20 7 -20 20 0 13 7 20 20 20 13 0 20 -7 20 -20z"
+                />
+                <path
+                  d="M3025 1228 c-6 -19 -35 -135 -35 -142 0 -15 29 -4 35 14 3 11 15 20
+                25 20 9 0 20 -9 23 -20 3 -11 13 -20 22 -20 12 0 15 6 11 20 -3 11 -8 28 -10
+                38 -25 97 -27 102 -47 102 -11 0 -22 -6 -24 -12z m35 -69 c0 -10 -4 -19 -10
+                -19 -5 0 -10 12 -10 26 0 14 4 23 10 19 6 -3 10 -15 10 -26z"
+                />
+                <path
+                  d="M3140 1225 c-7 -8 -12 -37 -12 -65 0 -59 14 -80 53 -80 27 0 59 22
+                59 41 0 12 -27 12 -35 -1 -3 -5 -15 -10 -26 -10 -16 0 -19 7 -19 49 0 55 21
+                75 42 41 25 -39 49 -20 28 21 -13 23 -72 26 -90 4z"
+                />
+                <path
+                  d="M3250 1229 c0 -6 9 -13 20 -16 17 -5 20 -14 20 -69 0 -50 3 -64 15
+                -64 12 0 15 14 15 65 0 58 2 65 20 65 11 0 20 7 20 15 0 12 -13 15 -55 15 -33
+                0 -55 -4 -55 -11z"
+                />
+                <path
+                  d="M3380 1160 c0 -64 3 -80 15 -80 12 0 15 16 15 80 0 64 -3 80 -15 80
+                -12 0 -15 -16 -15 -80z"
+                />
+                <path
+                  d="M3430 1233 c0 -5 8 -39 18 -78 15 -57 22 -71 40 -73 17 -3 23 4 32
+                40 6 24 15 58 20 77 11 39 8 46 -14 38 -8 -3 -18 -26 -21 -52 -9 -58 -21 -65
+                -29 -17 -11 59 -16 72 -32 72 -8 0 -14 -3 -14 -7z"
+                />
+                <path
+                  d="M3570 1160 l0 -80 45 0 c33 0 45 4 45 15 0 10 -10 15 -30 15 -23 0
+                -30 4 -30 20 0 15 7 20 25 20 16 0 25 6 25 15 0 9 -9 15 -25 15 -16 0 -25 6
+                -25 15 0 10 10 15 30 15 20 0 30 5 30 15 0 11 -12 15 -45 15 l-45 0 0 -80z"
+                />
+              </g>
+            </svg>
+            Post Management
+          </div>
+          <div class="navbar-end">
+            <div class="dropdown dropdown-end">
+              <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                <div class="w-10 rounded-full">
+                  <img src="" alt="Profile" />
+                </div>
+              </label>
+              <ul
+                tabindex="0"
+                class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52"
+              >
+                <li>
+                  <a class="justify-between">
+                    Profile
+                    <span class="badge">New</span>
+                  </a>
+                </li>
+                {% if request.user.is_authenticated %}
+                <li>
+                  <button
+                    class="justify-between w-full text-left"
+                    onclick="my_modal_2.showModal()"
+                  >
+                    Logout
+                  </button>
+                </li>
+                {% else %}
+                <li>
+                  <a href="{% url 'login' %}" class="justify-between">Login</a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="w-full 3 p-2 flex justify-end items-center h-auto">
+          <button class="btn bg-base-100 mr-4">Add Post</button>
+        </div>
+  
+        <!-- Main Content -->
+      {% block admincontent %}
+      <div class="p-2">
+        <div class="overflow-x-auto rounded-lg shadow-xl">
+          <table class="table table-zebra w-full">
+            <thead>
+              <tr>
+                <th class="bg-base-200">Image</th>
+                <th class="bg-base-200">Product Name</th>
+
+                <th class="bg-base-200">Category</th>
+                <th class="bg-base-200">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for product in products %}
+              <tr class="hover:bg-base-200">
+                <td>
+                  <div class="avatar">
+                    <div class="w-16 h-16 rounded-lg">
+                      <img
+                        src="{{ product.image.url }}"
+                        alt="{{ product.name }}"
+                      />
+                    </div>
+                  </div>
+                </td>
+                <td class="font-medium">{{ product.name }}</td>
+                <td>{{ product.brand }}</td>
+                <td>{{ product.category }}</td>
+                <td>
+                  <div class="flex gap-2">
+                    <button class="btn btn-ghost btn-sm">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                        />
+                      </svg>
+                    </button>
+                    <button class="btn btn-ghost btn-sm text-error">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- logout form   -->
+      <dialog id="my_modal_2" class="modal">
+        <div class="modal-box">
+          <h3 class="text-lg font-bold">Confirm Logout</h3>
+          <p class="py-4">Are you sure you want to log out?</p>
+          <div class="modal-action flex justify-end gap-3">
+            <!-- Cancel button -->
+            <form method="dialog">
+              <button class="btn btn-outline">Cancel</button>
+            </form>
+            <!-- Logout form with proper URL -->
+            <form action="{% url 'logout' %}" method="POST" class="m-0">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-error">Logout</button>
+            </form>
+          </div>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
+      {% endblock admincontent %}
+      </div>
+
+      <!-- Sidebar -->
+      <div class="drawer-side z-40">
+        <label
+          for="my-drawer-2"
+          aria-label="close sidebar"
+          class="drawer-overlay"
+        ></label>
+        <ul
+          class="menu p-4 w-64 h-full min-h-full bg-base-200 text-base-content"
+        >
+          <div class="text-xl font-bold p-4">Admin Dashboard</div>
+          <li>
+            <a class="p-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#fffff"
+              >
+                <path
+                  d="M200-80q-33 0-56.5-23.5T120-160v-451q-18-11-29-28.5T80-680v-120q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v120q0 23-11 40.5T840-611v451q0 33-23.5 56.5T760-80H200Zm0-520v440h560v-440H200Zm-40-80h640v-120H160v120Zm200 280h240v-80H360v80Zm120 20Z"
+                />
+              </svg>
+              Products</a
+            >
+          </li>
+          <li>
+            <a class="p-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#fffff"
+              >
+                <path
+                  d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H160v400Zm160-40-92-92 92-92 56 56-36 36 36 36-56 56Zm320 0-56-56 36-36-36-36 56-56 92 92-92 92ZM160-640h640-640Z"
+                />
+              </svg>
+              Brands</a
+            >
+          </li>
+          <li>
+            <a class="p-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#fffff"
+              >
+                <path
+                  d="m260-520 220-360 220 360H260ZM700-80q-75 0-127.5-52.5T520-260q0-75 52.5-127.5T700-440q75 0 127.5 52.5T880-260q0 75-52.5 127.5T700-80Zm-580-20v-320h320v320H120Zm580-60q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29 71q0 42 29 71t71 29Zm-500-20h160v-160H200v160Zm202-420h156l-78-126-78 126Zm78 0ZM360-340Zm340 80Z"
+                />
+              </svg>
+              Categories</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
