@@ -65,4 +65,4 @@ def Register(request):
 def logout_page(request):
     logout(request)
     messages.success(request, "Logged out successfully")
-    return redirect('login')
+    return redirect('login')    
