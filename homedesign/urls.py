@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+from homebase import views as homeviews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,7 +27,11 @@ urlpatterns = [
     path('', include('homeusers.urls')),  # Include app URLs
     path("__reload__/", include("django_browser_reload.urls")), # For Tailwind reload
     #admin page
-    path("adminpage/",views.adminpage,name="adminpage") 
+    path("adminpage/",views.adminpage,name="adminpage"),
+    # create post url
+    path("createpost/",homeviews.createpost,name="createpost"),
+    path("aboutus/",views.aboutus,name="about")
+    
 ]
 
 # Add static/media URLs for development

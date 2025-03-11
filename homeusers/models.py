@@ -14,7 +14,7 @@ class CustomUser(AbstractUser):
         blank=True,
         default="profile_pics/default.png"
     )
-    
+    Bio=models.CharField(max_length=1000 ,null=True,blank=True)
     # Add related_name to resolve conflicts
     groups = models.ManyToManyField(
         'auth.Group',
@@ -31,16 +31,11 @@ class CustomUser(AbstractUser):
         help_text='Specific permissions for this user.',
         verbose_name='user permissions',
     )
-
-    def is_admin(self):
-        return self.role == "admin"
-    
     def is_user(self):
-        return self.role == "user"
-    
-    def __str__(self):
-        return f"{self.username} ({self.get_role_display()})"
-    
+        return self.role == "customer"
+
+    def is_Admin(self):
+        return self.role == "business"    
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="bg-gray-50">
+<!-- Hero Section -->
+<section class="  py-20 ">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center ">
+            <div class="space-y-6">
+                <h1 class="text-4xl md:text-5xl font-bold text-black">Transform Your Space with Interactive Design</h1>
+                <p class="text-lg ">Experience the future of home design with our innovative platform.</p>
+                <button class="btn bg-gray-900 text-white">Get Started</button>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="py-16 px-6 text-black bg-white  ">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center   mb-12">Our Core Values</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="p-6 bg-white flex justify-center items-center flex-col rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="text-4xl mb-4"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m422-232 207-248H469l29-227-185 267h139l-30 208ZM320-80l40-280H160l360-520h80l-40 320h240L400-80h-80Zm151-390Z"/></svg></div>
+                <h3 class="text-xl font-semibold mb-2">Creativity First</h3>
+                <p class="text-gray-600">Exploring limitless design possibilities through innovative technology and artistic vision.</p>
+            </div>
+            <div class="p-6 bg-white flex justify-center items-center flex-col rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="text-4xl mb-4"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-80q-26 0-47-12.5T400-126q-33 0-56.5-23.5T320-206v-142q-59-39-94.5-103T190-590q0-121 84.5-205.5T480-880q121 0 205.5 84.5T770-590q0 77-35.5 140T640-348v142q0 33-23.5 56.5T560-126q-12 21-33 33.5T480-80Zm-80-126h160v-36H400v36Zm0-76h160v-38H400v38Zm-8-118h58v-108l-88-88 42-42 76 76 76-76 42 42-88 88v108h58q54-26 88-76.5T690-590q0-88-61-149t-149-61q-88 0-149 61t-61 149q0 63 34 113.5t88 76.5Zm88-162Zm0-38Z"/></svg></div>
+                <h3 class="text-xl font-semibold mb-2">User-Centric Innovation</h3>
+                <p class="text-gray-600">Creating intuitive and immersive experiences that transform how you design your space.</p>
+            </div>
+            <div class="p-6 bg-white flex justify-center items-center flex-col rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="text-4xl mb-4"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m438-338 226-226-57-57-169 169-84-84-57 57 141 141Zm42 258q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z"/></svg></div>
+                <h3 class="text-xl font-semibold mb-2">Trust & Collaboration</h3>
+                <p class="text-gray-600">Building a vibrant community where inspiration and creativity flow freely.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="bg-gray-100 text-black py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12">Meet Our Team</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Team Member Card -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <img src="{% static 'media/peakpx.jpg' %}" alt="Team Member" class="w-full h-48 object-center object-cover">
+                <div class="p-6">
+                    <h3 class="font-bold text-xl mb-2">Burhan Ameer</h3>
+                    <p class="text-blue-600 mb-4">Lead Developer</p>
+                    <p class="text-gray-600">Passionate about creating beautiful and functional websites.</p>
+                </div>
+            </div>
+            <!-- card 2 atta -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <img src="{% static 'media/aattta pic.jpeg' %}" alt="Team Member" class="w-full h-48 object-center object-cover">
+                <div class="p-6">
+                    <h3 class="font-bold text-xl mb-2">Muhammad Atta</h3>
+                    <p class="text-blue-600 mb-4">Team Leader</p>
+                    <p class="text-gray-600">Passionate about creating beautiful and functional websites.</p>
+                </div>
+            </div>
+
+            <!-- card3 siknader -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <img src="{% static 'media/peakpx.jpg' %}" alt="Team Member" class="w-full h-48 object-center object-cover">
+                <div class="p-6">
+                    <h3 class="font-bold text-xl mb-2">Sikandar Sultan</h3>
+                    <p class="text-blue-600 mb-4">Developer</p>
+                    <p class="text-gray-600">Passionate about creating beautiful and functional websites.</p>
+                </div>
+            </div>
+            <!-- Add more team member cards as needed -->
+        </div>
+    </div>
+</section>
+
+</div>
+{% endblock %}

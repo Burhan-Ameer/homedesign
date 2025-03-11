@@ -30,6 +30,7 @@ ALLOWED_HOSTS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
+
     
 ]   
 # settings.py
@@ -47,7 +48,8 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'django_browser_reload',
-    'homeusers'
+    'homeusers',
+    "homebase"
 
 ]
 TAILWIND_APP_NAME = 'theme'

@@ -29,7 +29,7 @@
         <div class="w-full md:w-1/2 p-8 md:p-12">
             <div class="mb-8 flex justify-between items-center">
                 <a href="{% url 'login' %}" class="text-xl font-semibold text-gray-800 hover:text-base-100 transition-colors">Login</a>
-                <a href="{% url 'register' %}" class="text-gray-500 hover:text-base-100 transition-colors">Sign Up</a>
+      
             </div>
             {% if messages %}
    {% for message in messages %}
@@ -108,10 +108,15 @@
 
                 <button 
                     type="submit" 
-                    class="w-full btn bg-base-100"
+                    class="w-full btn bg-gray-900 text-white"
                 >
                     Sign In
                 </button>
+                <p>Don't have an Account   <a
+                    href="{% url 'register' %}"
+                    class="text-gray-500 hover:text-base-100 transition-colors"
+                    > Sign up</a
+                  ></p>
             </form>
         </div>
     </div>
