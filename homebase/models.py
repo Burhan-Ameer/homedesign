@@ -3,6 +3,13 @@ from homeusers.models import CustomUser
 from django.utils import timezone
 # Create your models here.
 class Products(models.Model):
+    Categories_choice=(
+    ("kitchen","kitchen"),
+    ("office","office"),
+    ("living room","living room"),
+    ("dining  room","dining room" )
+    )
+    categories=models.CharField( max_length=20,choices=Categories_choice,default="living room")
     admin=models.ForeignKey(CustomUser,on_delete=models.CASCADE,limit_choices_to={"role":"business"},null=True)
     name=models.CharField(max_length=1000,null=False,blank=False)
     description=models.TextField(blank=True,null=True)

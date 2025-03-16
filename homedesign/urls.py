@@ -30,7 +30,10 @@ urlpatterns = [
     path("adminpage/",views.adminpage,name="adminpage"),
     # create post url
     path("createpost/",homeviews.createpost,name="createpost"),
-    path("aboutus/",views.aboutus,name="about")
+    # about us page
+    path("aboutus/",views.aboutus,name="about"),
+    # Profile
+    path("admin_profile/",homeviews.Profile,name="profile")
     
 ]
 

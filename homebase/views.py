@@ -7,7 +7,7 @@ import os
 
 def is_jpeg(image):
     ext =os.path.splitext(image.name)[1].lower()
-    return ext in [".jpeg" ,".jpg"]#check if file extention is jpg and jpeg returns true if matched
+    return ext in [".jpeg" ,".jpg",".webp"]#check if file extention is jpg and jpeg returns true if matched
 
 
 
@@ -16,11 +16,15 @@ def createpost(request):
     if request.method == "POST":
         title = request.POST.get("title")
         content = request.POST.get("content")
-        categories = request.POST.get("categories") 
+        categories = request.POST.get("category") 
         image_1 = request.FILES.get("image1")
+    # just to check if the form is not empty
+        if not title or not content:
+            messages.error(request,"Title and Content are required ")
+            return render( request,"createpost.html")
 
         if image_1 and  not is_jpeg(image_1):
-            messages.error(request,"please upload only JPEG images")
+            messages.error(request,"please upload only JPEG,WEBP images")
             return render(request,"createpost.html")
         # saving the products information without bg removed
         product = Products(
@@ -28,6 +32,7 @@ def createpost(request):
                 name=title,
                 description=content,
                 image=image_1,
+                categories=categories
             )
         if image_1 :
             response = requests.post(
@@ -49,4 +54,8 @@ def createpost(request):
         product.save()
         messages.success(request, "Product Created Successfully!")
     return render(request, "createpost.html")   
-#  products views for admin panel 
+def deleteposts(request,pk):
+    product=Products.objects.get(id=pk)
+
+def Profile(request):
+    return render(request,"admin_profile.html")
