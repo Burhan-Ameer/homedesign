@@ -15,6 +15,11 @@ class CustomUser(AbstractUser):
         default="profile_pics/default.png"
     )
     Bio=models.CharField(max_length=1000 ,null=True,blank=True)
+    # the wesite name is for admin not the user 
+    website=models.CharField(max_length=300, null=True, blank=True)
+    # location of headquarter
+    location=models.CharField(max_length=300 ,null=True,blank=True)
+
     # Add related_name to resolve conflicts
     groups = models.ManyToManyField(
         'auth.Group',

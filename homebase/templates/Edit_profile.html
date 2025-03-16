@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/static/media/favicon.png" type="image/png">
+  <title>Edit Profile</title>
+  <!-- Tailwind CSS and DaisyUI CDN -->
+<link rel="stylesheet" href="{% static 'css/dist/styles.css' %}">
+</head>
+<body class="bg-gray-50">
+  <main class="container mx-auto py-10 ">
+    <h1 class="text-3xl font-bold mb-8 text-center">Edit Your Profile</h1>
+    
+    <div class="max-w-2xl mx-auto">
+      <form method="post" class="card bg-base-100 shadow-xl">
+    {% csrf_token %}
+        <!-- Header -->
+        <div class="card-body pb-0">
+          <h2 class="card-title text-xl">Personal Information</h2>
+          
+          <!-- Profile Picture Section -->
+          <div class="flex flex-col items-center space-y-4 py-4">
+            <div class="avatar">
+              <div class="w-32 h-32 rounded-full ring ring-gray-700 ring-opacity-20">
+                <img src="https://placehold.co/128x128" alt="Profile picture" />
+              </div>
+            </div>
+            <div>
+              <label class="btn btn-outline btn-neutral">
+                Change Profile Picture
+                <input type="file" name="profile_pic" class="hidden" accept="image/*" />
+              </label>
+            </div>
+          </div>
+
+          <!-- Email Field -->
+          <div class="form-control w-full">
+            <label class="label">
+              <span class="label-text flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Email
+              </span>
+            </label>
+            <input 
+            name="email"
+              type="email" 
+              placeholder="your.email@example.com" 
+              class="input input-bordered w-full focus:border-gray-700" 
+              required 
+            />
+          </div>
+
+          <!-- Website Field -->
+          <div class="form-control w-full">
+            <label class="label">
+              <span class="label-text flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                Website
+              </span>
+            </label>
+            <input 
+            name="website"
+              type="" 
+              placeholder="https://yourwebsite.com" 
+              class="input input-bordered w-full focus:border-gray-700" 
+            />
+          </div>
+
+          <!-- Location Field -->
+          <div class="form-control w-full">
+            <label class="label">
+              <span class="label-text flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                Location
+              </span>
+            </label>
+            <input 
+              type="text" 
+              name="location"
+              placeholder="City, Country,State" 
+              class="input input-bordered w-full focus:border-gray-700" 
+            />
+          </div>
+
+          <!-- Bio Field -->
+          <div class="form-control w-full">
+            <label class="label">
+              <span class="label-text">Bio</span>
+            </label>
+            <textarea 
+            name="bio"
+              class="textarea textarea-bordered h-24 focus:border-gray-700" 
+              placeholder="Tell us about yourself..."
+            ></textarea>
+          </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="card-actions justify-end p-6 ">
+          <button 
+            type="submit" 
+            class="btn btn-neutral bg-gray-900 hover:bg-gray-800 w-full"
+          >
+            Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

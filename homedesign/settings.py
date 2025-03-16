@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,18 +21,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-&&r8+$t4a3tip0@7hs)a=-7yd%wys)^g4m%f4^(@fvof@xdwlk'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-default-key-for-development')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = [
-
-]
+ALLOWED_HOSTS = ['*']  # Restrict this in production
 
 CSRF_TRUSTED_ORIGINS = [
-
-    
+    'http://127.0.0.1:8000',
+    'http://localhost:8000',
+    # Add your production domains here
 ]   
 # settings.py
 AUTH_USER_MODEL = 'homeusers.CustomUser'
@@ -92,12 +92,15 @@ WSGI_APPLICATION = 'homedesign.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# Database configuration - Use SQLite for development
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
 
 
 # Password validation

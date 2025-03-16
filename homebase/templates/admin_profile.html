@@ -3,11 +3,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link
+      rel="icon"
+      href="{% static 'media/favicon.png' %}"
+      type="image/png"
+    />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile Card</title>
+  <title>Profile</title>
   <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}" />
 </head>
-<body class="min-h-screen  flex items-center justify-center bg-gray-900 p-4">
+<body class="min-h-screen  flex items-center justify-center bg-white p-4">
   <div class="bg-white rounded-3xl shadow-lg max-w-md  mx-auto p-8">
     <!-- Profile Avatar -->
     <div class="flex justify-center mb-4">
@@ -33,7 +38,8 @@
         <span>{{request.user.email}}</span>
       </div>
       <p class="text-gray-600 max-w-sm mx-auto">
-        Senior Product Manager with 8+ years of experience in digital transformation and agile methodologies. Passionate about creating user-centric solutions.
+      
+        {{request.user.Bio}}
       </p>
     </div>
     
@@ -51,7 +57,7 @@
       <div class="text-center">
         <p class="text-xl font-bold text-gray-900">Website</p>
 
-        <p class="text-gray-600 text-sm">www.example.com</p>
+        <p class="text-gray-600 text-sm">{{request.user.website}}</p>
       </div>
     
       <div class="text-center">
@@ -64,9 +70,11 @@
     
     <!-- Action Buttons -->
     <div class="flex gap-4">
+     <a href="{% url 'edit_profile' %}">
       <button class="bg-gray-900 text-white py-2 px-4 rounded-full font-medium flex-1 hover:bg-gray-800 transition-colors">
         Edit Profile
       </button>
+     </a>
       <button class="border border-gray-300 text-gray-700 py-2 px-4 rounded-full font-medium flex-1 hover:bg-gray-50 transition-colors">
         Go Back
       </button>
