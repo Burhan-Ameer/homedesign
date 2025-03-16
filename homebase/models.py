@@ -26,3 +26,4 @@ class Products(models.Model):
 class Likes(models.Model):
     products=models.ForeignKey(Products,related_name="likes",on_delete=models.CASCADE)
     no_of_likes=models.PositiveIntegerField(default=0)
+    
