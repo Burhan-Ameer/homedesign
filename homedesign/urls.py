@@ -35,8 +35,12 @@ urlpatterns = [
     # admin Profile
     path("admin_profile/",homeviews.Profile,name="admin_profile"),
     # edit admin Profile
-    path("edit_profile/",homeviews.edit_profile,name="edit_profile")
+    path("edit_profile/",homeviews.edit_profile,name="edit_profile"),
 
+    # explore url in admin panel
+    path("explore/",homeviews.explore,name="explore"),
+    # detail of  product path
+    path("detailed_product/<int:pk>/",homeviews.product_detail,name="product_detailed") 
     
 ]
 

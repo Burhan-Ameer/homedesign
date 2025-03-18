@@ -15,6 +15,7 @@ class Products(models.Model):
     description=models.TextField(blank=True,null=True)
     image=models.ImageField(upload_to="product_images",blank=True,null=True
     ,default="default/default.jpg")
+    colors=models.CharField(max_length=400,blank=True,null=True)
     image_2d=models.ImageField(upload_to="2D_images",blank=True, null=True,default="default/default.png")
     created_date=models.DateTimeField(default=timezone.now)
     def __str__(self):

@@ -24,7 +24,13 @@
           <div class="flex flex-col items-center space-y-4 py-4">
             <div class="avatar">
               <div class="w-32 h-32 rounded-full ring ring-gray-700 ring-opacity-20">
+                {% if user.profile_pic %}
+                <img src="{{request.user.profile_pic.url}}" alt="Profile picture" />
+                
+                {%else%}
                 <img src="https://placehold.co/128x128" alt="Profile picture" />
+                {% endif %}
+
               </div>
             </div>
             <div>
@@ -49,6 +55,7 @@
               placeholder="your.email@example.com" 
               class="input input-bordered w-full focus:border-gray-700" 
               required 
+              value="{{request.user.email}}"
             />
           </div>
 
@@ -64,6 +71,7 @@
             name="website"
               type="" 
               placeholder="https://yourwebsite.com" 
+              value="{{request.user.website}}"
               class="input input-bordered w-full focus:border-gray-700" 
             />
           </div>
@@ -79,6 +87,7 @@
             <input 
               type="text" 
               name="location"
+              value="{{request.user.location}}"
               placeholder="City, Country,State" 
               class="input input-bordered w-full focus:border-gray-700" 
             />
@@ -90,10 +99,12 @@
               <span class="label-text">Bio</span>
             </label>
             <textarea 
-            name="bio"
+              name="bio"
               class="textarea textarea-bordered h-24 focus:border-gray-700" 
               placeholder="Tell us about yourself..."
-            ></textarea>
+            >
+          {{user.bio}}
+          </textarea>
           </div>
         </div>
         

@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="{% static 'media/favicon.png' %}"
+      type="image/png"
+    />
+    <title>DVIP-ADMIN</title>
+    <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}" />
+  </head>
+  <body class="bg-white px-3 h-screen">
+    
+ 
+  <div class="md:container text-black md:mx-auto md:px-4 py-8 bg-white">
+    <!-- Back to products link -->
+  
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Product Images Section -->
+      <div>
+        <div class="">
+         <a href="{% url 'adminpage' %}" class=" flex gap-2 p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg>
+            Back to Products
+          </a>
+        </div>
+        <!-- Main product image -->
+        <div class="card bg-product-bg rounded-lg mb-4 overflow-hidden">
+          <figure class="relative aspect-square w-full">
+            <!-- Main image - this will be replaced by JavaScript when thumbnails are clicked -->
+            <img 
+              id="main-product-image" 
+              src="{{product.image.url}}" 
+              alt="Modern Scandinavian Chair" 
+              class="object-contain w-full h-full"
+            >
+          </figure>
+        </div>
+        
+        <!-- Thumbnails -->
+        <div class="flex gap-2 overflow-x-auto pb-2">
+          <!-- Thumbnail 1 (active) -->
+          <button 
+            class="thumbnail-btn relative w-24 h-24 flex-shrink-0 border-2 border-primary rounded-md overflow-hidden" 
+            data-image="{{product.image.url}}"
+          >
+            <img 
+              src="{{product.image.url}}" 
+              alt="Thumbnail 1" 
+              class="object-cover w-full h-full"
+            >
+          </button>
+          
+          <!-- Thumbnail 2 -->
+          <button 
+            class="thumbnail-btn relative w-24 h-24 flex-shrink-0 border-2 border-base-300 rounded-md overflow-hidden" 
+            data-image="https://placehold.co/600x600/8ab0b0/333333?text=Side+View"
+          >
+            <img 
+              src="https://placehold.co/600x600/8ab0b0/333333?text=Side+View" 
+              alt="Thumbnail 2" 
+              class="object-cover w-full h-full"
+            >
+          </button>
+          
+          <!-- Thumbnail 3 -->
+          <button 
+            class="thumbnail-btn relative w-24 h-24 flex-shrink-0 border-2 border-base-300 rounded-md overflow-hidden" 
+            data-image="https://placehold.co/600x600/8ab0b0/333333?text=Back+View"
+          >
+            <img 
+              src="https://placehold.co/600x600/8ab0b0/333333?text=Back+View" 
+              alt="Thumbnail 3" 
+              class="object-cover w-full h-full"
+            >
+          </button>
+          
+          <!-- Thumbnail 4 -->
+          <button 
+            class="thumbnail-btn relative w-24 h-24 flex-shrink-0 border-2 border-base-300 rounded-md overflow-hidden" 
+            data-image="https://placehold.co/600x600/8ab0b0/333333?text=Detail+View"
+          >
+            <img 
+              src="https://placehold.co/600x600/8ab0b0/333333?text=Detail+View" 
+              alt="Thumbnail 4" 
+              class="object-cover w-full h-full"
+            >
+          </button>
+        </div>
+      </div>
+      
+      <!-- Product Info Section -->
+      <div>
+        <div class="mb-2">
+          <span class="badge badge-outline text-black text-xs font-medium py-1">New Arrival</span>
+        </div>
+        <h1 class="text-3xl font-bold mb-2 text-black">{{product.name}}</h1>
+        
+        <div class="flex items-center gap-2 mb-4">
+          <div class="flex items-center">
+            <i class="fas fa-heart text-accent-color"></i>
+            <span class="ml-1 text-sm font-medium text-black">2,483 likes</span>
+          </div>
+      
+        </div>
+        
+        <div class="divider"></div>
+        
+        <!-- Color Selection -->
+        <div class="mb-6">
+          <h3 class="text-sm font-medium mb-2">Color</h3>
+          <div class="flex gap-2">
+            <button class="w-8 h-8 rounded-full bg-black border-2 border-primary"></button>
+            <button class="w-8 h-8 rounded-full bg-gray-200 border-2 border-base-300"></button>
+            <button class="w-8 h-8 rounded-full bg-amber-700 border-2 border-base-300"></button>
+            <button class="w-8 h-8 rounded-full bg-blue-700 border-2 border-base-300"></button>
+          </div>
+        </div>
+        
+        <!-- Product Description -->
+        <div class="mb-6">
+          <p class="">
+            Elevate your space with our Modern Scandinavian Chair. Featuring a sleek black seat with ergonomic design and natural wooden legs, this chair combines comfort with timeless style. Perfect for dining rooms, home offices, or as an accent piece.
+          </p>
+        </div>
+        
+        <!-- Wishlist Button Only -->
+        <div class="flex flex-col sm:flex-row gap-4 mb-6">
+          <button class="btn btn-outline">
+            <i class="far fa-heart"></i> Add to Wishlist
+          </button>
+        </div>
+        
+        <!-- Additional Info -->
+        <div class="collapse collapse-arrow   border-2 text-black">
+          <input type="checkbox" id="accordion-1" class="hidden" />
+          <label for="accordion-1" class="collapse-title font-semibold cursor-pointer">Description</label>
+          <div class="collapse-content text-sm">
+            <p>{{product.description}}</p>
+          </div>
+        </div>   
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

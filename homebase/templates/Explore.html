@@ -1,0 +1,389 @@
+{% extends "adminpage.html" %}
+{% block admincontent %}
+  
+
+<body class="">
+
+
+  <!-- Main content -->
+  <main class=" ">
+    <div class="flex flex-col gap-6">
+      <!-- Page header -->
+      <div class="flex flex-col gap-1 mb-2">
+        <h2 class="text-2xl font-semibold">Browse Furniture</h2>
+        <p class="text-gray-500 text-sm">View furniture items from various brands</p>
+      </div>
+
+      <!-- Filters and search -->
+      <div class="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+        <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+          <div class="relative w-full ">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <i class="fas fa-search text-gray-400"></i>
+            </div>
+            <input type="search" id="search-input" class="input input-bordered w-full pl-3 bg-white" placeholder="Search furniture...">
+          </div>   </div>
+      </div>
+<div class=" flex  gap-4 justify-end">
+    <select id="brand-select" class="select select-bordered w-full sm:w-[100px]">
+        <option value="all">All Brands</option>
+        <option value="IKEA">IKEA</option>
+        <option value="Ashley">Ashley Furniture</option>
+        <option value="West Elm">West Elm</option>
+        <option value="Pottery Barn">Pottery Barn</option>
+        <option value="Restoration Hardware">Restoration Hardware</option>
+        <option value="Crate & Barrel">Crate & Barrel</option>
+      </select>
+    
+
+    <div class="  ">
+      <select id="category-select" class="select select-bordered w-full sm:w-[150px]">
+        <option value="all">All Categories</option>
+        <option value="Sofa">Sofas</option>
+        <option value="Table">Tables</option>
+        <option value="Chair">Chairs</option>
+        <option value="Bed">Beds</option>
+        <option value="Storage">Storage</option>
+      </select>
+</div>
+</div>
+      <!-- Brand filters - horizontal scrollable on mobile -->
+      
+
+      <!-- Products display - Grid View -->
+      <div id="grid-view" class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- Furniture Item 1 -->
+        <div class="card  shadow-sm border hover:shadow-md transition-shadow">
+          <figure class="relative">
+            <img src="https://via.placeholder.com/300" alt="MALM Bed Frame" class="w-full h-48 object-cover" />
+           
+          </figure>
+          <div class="card-body p-4">
+            <h3 class="card-title text-lg">MALM Bed Frame</h3>
+            <div class="flex flex-wrap gap-2 mt-1">
+              <span class="badge badge-outline">IKEA</span>
+              <span class="badge badge-outline">Bed</span>
+            </div>
+            <p class="mt-2 text-sm text-gray-600">Queen size, oak veneer</p>
+            <div class="flex justify-end items-center mt-2">
+           <button class="btn btn-sm">view product</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Furniture Item 2 -->
+        <div class="card  shadow-sm border hover:shadow-md transition-shadow">
+          <figure class="relative">
+            <img src="https://via.placeholder.com/300" alt="Timber Sofa" class="w-full h-48 object-cover" />
+            <div class="absolute top-2 right-2">
+              <span class="badge badge-primary">In Stock: 8</span>
+            </div>
+          </figure>
+          <div class="card-body p-4">
+            <h3 class="card-title text-lg">Timber Sofa</h3>
+            <div class="flex flex-wrap gap-2 mt-1">
+              <span class="badge badge-outline">West Elm</span>
+              <span class="badge badge-outline">Sofa</span>
+            </div>
+            <p class="mt-2 text-sm text-gray-600">3-seater, charcoal fabric</p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="font-bold">$1,299.00</p>
+              <button class="btn btn-sm btn-ghost">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Furniture Item 3 -->
+        <div class="card bg-base-100 shadow-sm border hover:shadow-md transition-shadow">
+          <figure class="relative">
+            <img src="https://via.placeholder.com/300" alt="Eames Lounge Chair" class="w-full h-48 object-cover" />
+            <div class="absolute top-2 right-2">
+              <span class="badge badge-error">In Stock: 2</span>
+            </div>
+          </figure>
+          <div class="card-body p-4">
+            <h3 class="card-title text-lg">Eames Lounge Chair</h3>
+            <div class="flex flex-wrap gap-2 mt-1">
+              <span class="badge badge-outline">Restoration Hardware</span>
+              <span class="badge badge-outline">Chair</span>
+            </div>
+            <p class="mt-2 text-sm text-gray-600">Black leather, walnut veneer</p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="font-bold">$4,995.00</p>
+              <button class="btn btn-sm btn-ghost">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Furniture Item 4 -->
+        <div class="card bg-base-100 shadow-sm border hover:shadow-md transition-shadow">
+          <figure class="relative">
+            <img src="https://via.placeholder.com/300" alt="Farmhouse Dining Table" class="w-full h-48 object-cover" />
+            <div class="absolute top-2 right-2">
+              <span class="badge badge-primary">In Stock: 12</span>
+            </div>
+          </figure>
+          <div class="card-body p-4">
+            <h3 class="card-title text-lg">Farmhouse Dining Table</h3>
+            <div class="flex flex-wrap gap-2 mt-1">
+              <span class="badge badge-outline">Pottery Barn</span>
+              <span class="badge badge-outline">Table</span>
+            </div>
+            <p class="mt-2 text-sm text-gray-600">Reclaimed pine, seats 8</p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="font-bold">$1,899.00</p>
+              <button class="btn btn-sm btn-ghost">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Furniture Item 5 -->
+        <div class="card bg-base-100 shadow-sm border hover:shadow-md transition-shadow">
+          <figure class="relative">
+            <img src="https://via.placeholder.com/300" alt="KALLAX Shelf Unit" class="w-full h-48 object-cover" />
+            <div class="absolute top-2 right-2">
+              <span class="badge badge-primary">In Stock: 23</span>
+            </div>
+          </figure>
+          <div class="card-body p-4">
+            <h3 class="card-title text-lg">KALLAX Shelf Unit</h3>
+            <div class="flex flex-wrap gap-2 mt-1">
+              <span class="badge badge-outline">IKEA</span>
+              <span class="badge badge-outline">Storage</span>
+            </div>
+            <p class="mt-2 text-sm text-gray-600">4x4 cube, white</p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="font-bold">$149.00</p>
+              <button class="btn btn-sm btn-ghost">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Furniture Item 6 -->
+        <div class="card bg-base-100 shadow-sm border hover:shadow-md transition-shadow">
+          <figure class="relative">
+            <img src="https://via.placeholder.com/300" alt="Porter Dresser" class="w-full h-48 object-cover" />
+            <div class="absolute top-2 right-2">
+              <span class="badge badge-primary">In Stock: 7</span>
+            </div>
+          </figure>
+          <div class="card-body p-4">
+            <h3 class="card-title text-lg">Porter Dresser</h3>
+            <div class="flex flex-wrap gap-2 mt-1">
+              <span class="badge badge-outline">Ashley</span>
+              <span class="badge badge-outline">Storage</span>
+            </div>
+            <p class="mt-2 text-sm text-gray-600">6-drawer, rustic brown</p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="font-bold">$799.00</p>
+              <button class="btn btn-sm btn-ghost">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Furniture Item 7 -->
+        <div class="card bg-base-100 shadow-sm border hover:shadow-md transition-shadow">
+          <figure class="relative">
+            <img src="https://via.placeholder.com/300" alt="Axel Leather Sofa" class="w-full h-48 object-cover" />
+            <div class="absolute top-2 right-2">
+              <span class="badge badge-primary">In Stock: 5</span>
+            </div>
+          </figure>
+          <div class="card-body p-4">
+            <h3 class="card-title text-lg">Axel Leather Sofa</h3>
+            <div class="flex flex-wrap gap-2 mt-1">
+              <span class="badge badge-outline">West Elm</span>
+              <span class="badge badge-outline">Sofa</span>
+            </div>
+            <p class="mt-2 text-sm text-gray-600">Saddle leather, 89"</p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="font-bold">$2,799.00</p>
+              <button class="btn btn-sm btn-ghost">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Furniture Item 8 -->
+        <div class="card bg-base-100 shadow-sm border hover:shadow-md transition-shadow">
+          <figure class="relative">
+            <img src="https://via.placeholder.com/300" alt="Linden Coffee Table" class="w-full h-48 object-cover" />
+            <div class="absolute top-2 right-2">
+              <span class="badge badge-primary">In Stock: 14</span>
+            </div>
+          </figure>
+          <div class="card-body p-4">
+            <h3 class="card-title text-lg">Linden Coffee Table</h3>
+            <div class="flex flex-wrap gap-2 mt-1">
+              <span class="badge badge-outline">Crate & Barrel</span>
+              <span class="badge badge-outline">Table</span>
+            </div>
+            <p class="mt-2 text-sm text-gray-600">Round, natural wood</p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="font-bold">$549.00</p>
+              <button class="btn btn-sm btn-ghost">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products display - List View (hidden by default) -->
+      <div id="list-view" class="hidden">
+        <div class="overflow-x-auto">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Furniture Item</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th class="text-right">Price</th>
+                <th class="text-right">Stock</th>
+                <th class="text-right">View</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Furniture Row 1 -->
+              <tr>
+                <td>
+                  <div class="flex items-center gap-3">
+                    <div class="avatar">
+                      <div class="mask mask-squircle w-12 h-12">
+                        <img src="https://via.placeholder.com/48" alt="MALM Bed Frame" />
+                      </div>
+                    </div>
+                    <div>
+                      <div class="font-bold">MALM Bed Frame</div>
+                      <div class="text-sm opacity-50">Queen size, oak veneer</div>
+                    </div>
+                  </div>
+                </td>
+                <td>IKEA</td>
+                <td>Bed</td>
+                <td class="text-right">$199.99</td>
+                <td class="text-right">
+                  <span class="badge badge-primary">15</span>
+                </td>
+                <td class="text-right">
+                  <button class="btn btn-ghost btn-xs">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </td>
+              </tr>
+              
+              <!-- Furniture Row 2 -->
+              <tr>
+                <td>
+                  <div class="flex items-center gap-3">
+                    <div class="avatar">
+                      <div class="mask mask-squircle w-12 h-12">
+                        <img src="https://via.placeholder.com/48" alt="Timber Sofa" />
+                      </div>
+                    </div>
+                    <div>
+                      <div class="font-bold">Timber Sofa</div>
+                      <div class="text-sm opacity-50">3-seater, charcoal fabric</div>
+                    </div>
+                  </div>
+                </td>
+                <td>West Elm</td>
+                <td>Sofa</td>
+                <td class="text-right">$1,299.00</td>
+                <td class="text-right">
+                  <span class="badge badge-primary">8</span>
+                </td>
+                <td class="text-right">
+                  <button class="btn btn-ghost btn-xs">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </td>
+              </tr>
+              
+              <!-- Furniture Row 3 -->
+              <tr>
+                <td>
+                  <div class="flex items-center gap-3">
+                    <div class="avatar">
+                      <div class="mask mask-squircle w-12 h-12">
+                        <img src="https://via.placeholder.com/48" alt="Eames Lounge Chair" />
+                      </div>
+                    </div>
+                    <div>
+                      <div class="font-bold">Eames Lounge Chair</div>
+                      <div class="text-sm opacity-50">Black leather, walnut veneer</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Restoration Hardware</td>
+                <td>Chair</td>
+                <td class="text-right">$4,995.00</td>
+                <td class="text-right">
+                  <span class="badge badge-error">2</span>
+                </td>
+                <td class="text-right">
+                  <button class="btn btn-ghost btn-xs">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </td>
+              </tr>
+              
+              <!-- Furniture Row 4 -->
+              <tr>
+                <td>
+                  <div class="flex items-center gap-3">
+                    <div class="avatar">
+                      <div class="mask mask-squircle w-12 h-12">
+                        <img src="https://via.placeholder.com/48" alt="Farmhouse Dining Table" />
+                      </div>
+                    </div>
+                    <div>
+                      <div class="font-bold">Farmhouse Dining Table</div>
+                      <div class="text-sm opacity-50">Reclaimed pine, seats 8</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Pottery Barn</td>
+                <td>Table</td>
+                <td class="text-right">$1,899.00</td>
+                <td class="text-right">
+                  <span class="badge badge-primary">12</span>
+                </td>
+                <td class="text-right">
+                  <button class="btn btn-ghost btn-xs">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </td>
+              </tr>
+              
+              <!-- Additional rows omitted for brevity -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="flex justify-center mt-6">
+        <div class="join">
+          <button class="join-item btn btn-sm">«</button>
+          <button class="join-item btn btn-sm btn-active">1</button>
+          <button class="join-item btn btn-sm">2</button>
+          <button class="join-item btn btn-sm">3</button>
+          <button class="join-item btn btn-sm">»</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  {% endblock admincontent %}
