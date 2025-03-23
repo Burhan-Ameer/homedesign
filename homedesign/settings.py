@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 import os
 from pathlib import Path
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -49,8 +52,9 @@ INSTALLED_APPS = [
     'theme',
     'django_browser_reload',
     'homeusers',
-    "homebase"
-
+    "homebase",
+    'cloudinary_storage',
+    'cloudinary',
 ]
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = [
@@ -151,3 +155,24 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Cloudinary configuration
+cloudinary.config(
+    cloud_name = 'dtxmll4xi',  # Your cloud name
+    api_key = '527782247238775',  # Your API key
+    api_secret = 'Qe5BCyjV5_-JJS2RAGH76dmejQs',  # Your API secret
+    secure = True
+)
+
+# Cloudinary storage settings
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dtxmll4xi',
+    'API_KEY': '527782247238775',
+    'API_SECRET': 'Qe5BCyjV5_-JJS2RAGH76dmejQs'
+}
+
+# Media configuration
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+MEDIA_URL = '/media/'
+
+# Optional: Add transformations if needed

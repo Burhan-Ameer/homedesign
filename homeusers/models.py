@@ -1,5 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+import cloudinary
+import cloudinary.uploader
+from cloudinary.models import CloudinaryField
+
+
 # Create your models here.
 
 class CustomUser(AbstractUser):
@@ -8,11 +13,9 @@ class CustomUser(AbstractUser):
         ("business", "Business Account")
     )
     role = models.CharField(max_length=20, choices=RoleChoices, default="customer")
-    profile_pic = models.ImageField(
-        upload_to="profile_pics/",
-        null=True,
-        blank=True,
-        default="profile_pics/default.png"
+    profile_pic =CloudinaryField(
+        "profile_Pic",
+        folder="profile_pics"
     )
     Bio=models.CharField(max_length=1000 ,null=True,blank=True)
     # the wesite name is for admin not the user 

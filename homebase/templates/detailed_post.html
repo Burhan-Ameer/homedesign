@@ -34,7 +34,7 @@
             <!-- Main image - this will be replaced by JavaScript when thumbnails are clicked -->
             <img 
               id="main-product-image" 
-              src="{{product.image.url}}" 
+              src="{{images.first.image.url}}" 
               alt="Modern Scandinavian Chair" 
               class="object-contain w-full h-full"
             >
@@ -44,52 +44,21 @@
         <!-- Thumbnails -->
         <div class="flex gap-2 overflow-x-auto pb-2">
           <!-- Thumbnail 1 (active) -->
-          <button 
-            class="thumbnail-btn relative w-24 h-24 flex-shrink-0 border-2 border-primary rounded-md overflow-hidden" 
-            data-image="{{product.image.url}}"
-          >
-            <img 
-              src="{{product.image.url}}" 
-              alt="Thumbnail 1" 
-              class="object-cover w-full h-full"
-            >
-          </button>
+           {% for image in  images %}
+           <button 
+           class="thumbnail-btn relative w-24 h-24 flex-shrink-0 border-2 border-primary rounded-md overflow-hidden" 
+           data-image="{{image.image.url}}"
+         >
+           <img 
+             src="{{image.image.url}}" 
+             alt="Thumbnail 1" 
+             class="object-cover w-full h-full"
+           >
+         </button>
+           {% endfor %}
+         
           
-          <!-- Thumbnail 2 -->
-          <button 
-            class="thumbnail-btn relative w-24 h-24 flex-shrink-0 border-2 border-base-300 rounded-md overflow-hidden" 
-            data-image="https://placehold.co/600x600/8ab0b0/333333?text=Side+View"
-          >
-            <img 
-              src="https://placehold.co/600x600/8ab0b0/333333?text=Side+View" 
-              alt="Thumbnail 2" 
-              class="object-cover w-full h-full"
-            >
-          </button>
           
-          <!-- Thumbnail 3 -->
-          <button 
-            class="thumbnail-btn relative w-24 h-24 flex-shrink-0 border-2 border-base-300 rounded-md overflow-hidden" 
-            data-image="https://placehold.co/600x600/8ab0b0/333333?text=Back+View"
-          >
-            <img 
-              src="https://placehold.co/600x600/8ab0b0/333333?text=Back+View" 
-              alt="Thumbnail 3" 
-              class="object-cover w-full h-full"
-            >
-          </button>
-          
-          <!-- Thumbnail 4 -->
-          <button 
-            class="thumbnail-btn relative w-24 h-24 flex-shrink-0 border-2 border-base-300 rounded-md overflow-hidden" 
-            data-image="https://placehold.co/600x600/8ab0b0/333333?text=Detail+View"
-          >
-            <img 
-              src="https://placehold.co/600x600/8ab0b0/333333?text=Detail+View" 
-              alt="Thumbnail 4" 
-              class="object-cover w-full h-full"
-            >
-          </button>
         </div>
       </div>
       
@@ -112,21 +81,19 @@
         
         <!-- Color Selection -->
         <div class="mb-6">
-          <h3 class="text-sm font-medium mb-2">Color</h3>
-          <div class="flex gap-2">
-            <button class="w-8 h-8 rounded-full bg-black border-2 border-primary"></button>
-            <button class="w-8 h-8 rounded-full bg-gray-200 border-2 border-base-300"></button>
-            <button class="w-8 h-8 rounded-full bg-amber-700 border-2 border-base-300"></button>
-            <button class="w-8 h-8 rounded-full bg-blue-700 border-2 border-base-300"></button>
-          </div>
-        </div>
-        
-        <!-- Product Description -->
-        <div class="mb-6">
-          <p class="">
-            Elevate your space with our Modern Scandinavian Chair. Featuring a sleek black seat with ergonomic design and natural wooden legs, this chair combines comfort with timeless style. Perfect for dining rooms, home offices, or as an accent piece.
-          </p>
-        </div>
+            <h3 class="text-sm font-medium mb-2">Color</h3>
+            <div class="flex gap-2">
+                {% for color in colors %}
+                <div 
+                    class="w-6 h-6 rounded-full border-2 border-gray-400"
+                    style="background-color: {{ color.color }}"
+                    title="{{ color.color }}"
+                ></div>
+                {% empty %}
+                <p class="text-sm text-gray-500">No colors available for this product.</p>
+                {% endfor %}
+            </div>  
+        </div>  
         
         <!-- Wishlist Button Only -->
         <div class="flex flex-col sm:flex-row gap-4 mb-6">

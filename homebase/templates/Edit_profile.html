@@ -14,7 +14,7 @@
     <h1 class="text-3xl font-bold mb-8 text-center">Edit Your Profile</h1>
     
     <div class="max-w-2xl mx-auto">
-      <form method="post" class="card bg-base-100 shadow-xl">
+      <form method="post" enctype="multipart/form-data" class="card bg-base-100 shadow-xl">
     {% csrf_token %}
         <!-- Header -->
         <div class="card-body pb-0">
@@ -25,7 +25,7 @@
             <div class="avatar">
               <div class="w-32 h-32 rounded-full ring ring-gray-700 ring-opacity-20">
                 {% if user.profile_pic %}
-                <img src="{{request.user.profile_pic.url}}" alt="Profile picture" />
+                <img src="{{ user.profile_pic.url }}" alt="Profile picture" />
                 
                 {%else%}
                 <img src="https://placehold.co/128x128" alt="Profile picture" />
@@ -38,6 +38,7 @@
                 Change Profile Picture
                 <input type="file" name="profile_pic" class="hidden" accept="image/*" />
               </label>
+              <span id="file-selected" class="block mt-2 text-sm text-gray-600"></span>
             </div>
           </div>
 
@@ -55,7 +56,7 @@
               placeholder="your.email@example.com" 
               class="input input-bordered w-full focus:border-gray-700" 
               required 
-              value="{{request.user.email}}"
+              value="{{ user.email }}"
             />
           </div>
 
@@ -98,13 +99,11 @@
             <label class="label">
               <span class="label-text">Bio</span>
             </label>
-            <textarea 
-              name="bio"
-              class="textarea textarea-bordered h-24 focus:border-gray-700" 
-              placeholder="Tell us about yourself..."
-            >
-          {{user.bio}}
-          </textarea>
+          <textarea 
+            name="bio"
+            class="textarea textarea-bordered h-24 focus:border-gray-700" 
+            placeholder="Tell us about yourself..."
+          >{{request.user.bio}}</textarea>
           </div>
         </div>
         
@@ -120,5 +119,6 @@
       </form>
     </div>
   </main>
+
 </body>
-</html>
+</html>       
