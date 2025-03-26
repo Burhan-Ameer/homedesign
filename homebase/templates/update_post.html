@@ -1,0 +1,135 @@
+{% extends 'adminpage.html' %}
+{% load static %}
+{% block admincontent %}
+<div class="p-3 md:p-6">
+    <div class="max-w-3xl mx-auto">
+        <h1 class="text-2xl md:text-xl text-black font-bold mb-4 md:mb-6">UPDATE POST</h1>
+        
+        <div class="border shadow-xl rounded-lg p-4 md:p-6 bg-white">
+            {% if messages %}
+                {% for message in messages %}
+                    <div role="alert" class="alert {% if message.tags == 'error' %}alert-error{% else %}alert-success{% endif %} mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" 
+                             class="h-6 w-6 shrink-0 stroke-current" 
+                             fill="none" 
+                             viewBox="0 0 24 24">
+                            {% if message.tags == 'error' %}
+                                <path stroke-linecap="round" 
+                                      stroke-linejoin="round" 
+                                      stroke-width="2"  
+                                      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            {% else %}
+                                <path stroke-linecap="round" 
+                                      stroke-linejoin="round" 
+                                      stroke-width="2" 
+                                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            {% endif %}
+                        </svg>
+                        <span>{{ message }}</span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST" enctype="multipart/form-data" novalidate>
+                {% csrf_token %}
+                
+                <!-- Title Input -->
+                <div class="mb-4 md:mb-6">
+                    <label for="title" class="block text-sm font-medium text-gray-700 mb-1">POST TITLE</label>
+                    <input 
+                        type="text" 
+                        id="title" 
+                        name="title" 
+                        required
+                        value="{{ product.name }}"
+                        class="w-full px-3 py-3 border rounded-md outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Enter post title"
+                    >
+                </div>
+
+                <!-- Description/Content Input -->
+                <div class="mb-4 md:mb-6">
+                    <label for="content" class="block text-sm font-medium text-gray-700 mb-1">DESCRIPTION</label>
+                    <textarea 
+                        id="content" 
+                        name="content" 
+                        required
+                        class="w-full px-3 py-3 border rounded-md outline-none focus:ring-2 focus:ring-blue-500 min-h-[150px]"
+                        placeholder="Enter description"
+                    >{{ product.description }}</textarea>
+                </div>
+
+                <!-- Category Select -->
+                <div class="mb-4 md:mb-6">
+                    <label for="category" class="block text-sm font-medium text-gray-700 mb-1">CATEGORY</label>
+                    <select 
+                        id="category" 
+                        name="category" 
+                        required
+                        class="w-full px-3 py-3 border rounded-md outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        <option value="" disabled>Select a category</option>
+                        <option value="kitchen" {% if product.categories == "kitchen" %}selected{% endif %}>Kitchen</option>
+                        <option value="office" {% if product.categories == "office" %}selected{% endif %}>Office</option>
+                        <option value="living room" {% if product.categories == "living room" %}selected{% endif %}>Living Room</option>
+                        <option value="dining room" {% if product.categories == "dining room" %}selected{% endif %}>Dining Room</option>
+                    </select>
+                </div>
+
+                <!-- Colors Input -->
+                <div class="mb-4 md:mb-6">
+                    <label for="colors" class="block text-sm font-medium text-gray-700 mb-1">COLORS (comma-separated)</label>
+                    <input 
+                        type="text" 
+                        id="colors" 
+                        name="colors" 
+                        class="w-full px-3 py-3 border rounded-md outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="E.g., red, blue, green"
+                        value="{% for color in product_colors %}{{ color.color }}{% if not forloop.last %}, {% endif %}{% endfor %}"
+                    >
+                </div>
+
+                <!-- Current Images -->
+                <div class="mb-4 md:mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">CURRENT IMAGES</label>
+                    <div class="flex flex-wrap gap-3">
+                        {% for image in product_images %}
+                        <div class="relative w-20 h-20 border rounded overflow-hidden">
+                            <img src="{{ image.image.url }}" alt="Product image" class="object-cover w-full h-full">
+                        </div>
+                        {% empty %}
+                        <p class="text-gray-500">No images available</p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Upload New Images -->
+                <div class="mb-4 md:mb-6">
+                    <label for="images" class="block text-sm font-medium text-gray-700 mb-1">UPLOAD NEW IMAGES</label>
+                    <input 
+                        type="file" 
+                        id="images" 
+                        name="images" 
+                        multiple
+                        class="file-input w-full file-input-primary bg-white" 
+                        accept="image/*"
+                    >
+                    <p class="text-xs text-gray-500 mt-1">Upload new images to add to this product.</p>
+                </div>
+
+                <!-- Submit Buttons -->
+                <div class="flex flex-col sm:flex-row justify-end gap-4">
+                    <a href="{% url 'adminpage' %}" class="btn btn-ghost">
+                        Cancel
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        Update Post
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</html>
+
+{% endblock %}

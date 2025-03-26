@@ -42,7 +42,9 @@ urlpatterns = [
     # explore url in admin panel
     path("explore/",homeviews.explore,name="explore"),
     # detail of  product path
-    path("detailed_product/<int:pk>/",homeviews.product_detail,name="product_detailed") 
+    path("detailed_product/<int:pk>/",homeviews.product_detail,name="product_detailed") ,
+    # update post 
+    path("updateposts/<int:pk>/",homeviews.update_post,name="update_post")
     
 ]
 
