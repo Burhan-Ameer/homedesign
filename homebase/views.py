@@ -5,12 +5,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from homebase.models import Products, images as Images  # Alias the images model as Images
 from django.core.files.base import ContentFile
 import io
-from django.core.files.uploadedfile import InMemoryUploadedFile
 from PIL import Image
-import mimetypes
 from homebase.models import Colors
 from django.core.paginator import Paginator
-
+from django.db.models import Q
 def createpost(request):
     if request.method == "POST":
         title = request.POST.get("title")
@@ -134,16 +132,34 @@ def edit_profile(request):
     return render(request, "Edit_profile.html", {"user": user})
 
 def explore(request):
-    product =Products.objects.all()
-    image=Images.objects.filter(product__in=product)
-    paginator=Paginator(product,10)
-    page_number=request.GET.get("page")
-    page_object=paginator.get_page(page_number)
-    context={
-        "products":page_object,
-        "images":image
+    # Get the search query from the request
+    query = request.GET.get("search", "")
+
+    # If a search query is provided, filter products based on the query
+    if query:
+        products = Products.objects.filter(
+            Q(name__icontains=query) | Q(description__icontains=query)  
+        ).order_by("name")  # Ensure consistent ordering
+    else:
+        # Otherwise, fetch all products for the logged-in admin
+        products = Products.objects.all().order_by("name")
+
+    # Add pagination
+    paginator = Paginator(products, 10)  # Show 10 products per page
+    page_number = request.GET.get("page")  # Get the current page number from the query string
+    page_object = paginator.get_page(page_number)  # Get the products for the current page
+
+    # Fetch images for the products on the current page
+    images = Images.objects.filter(product__in=page_object)
+
+    # Pass data to the template
+    context = {
+        "products": page_object,  # Paginated products
+        "images": images,         # Images for the current page's products
+        "query": query,           # Pass the search query to the template
     }
-    return render(request, "Explore.html",context)
+
+    return render(request, "Explore.html", context)
 
 def product_detail(request, pk):
     product = get_object_or_404(Products, pk=pk)
@@ -257,3 +273,5 @@ def update_post(request, pk):
         "product_images": product_images,
         "product_colors": product_colors
     })
+
+

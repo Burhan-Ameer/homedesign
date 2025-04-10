@@ -19,7 +19,7 @@
       <!-- Main Content -->
       <div class="drawer-content flex flex-col">
         <!-- Navbar -->
-        <div class="navbar  w-full bg-gray-50 ">
+        <div class="navbar  w-full bg-base-100 ">
         
           <div class="flex-none lg:hidden">
             <label for="my-drawer-2" class="btn btn-square btn-ghost">
@@ -85,20 +85,40 @@
 
         <!-- Page Content -->
         <div class="p-4 bg-white h-full">
-          {% block admincontent %}
+          {% block admincontent %}`
           
           <!-- Filters and search -->
           <div class="flex flex-col sm:flex-row gap-4 mb-8">
             <!-- Search Input -->
-            <div class="join flex-1">
-                <input class="input input-bordered join-item w-full" placeholder="Search products..."/>
-                <button class="btn  text-white border-0 join-item">
+            <div class="flex-1">
+              <form method="get" class="flex w-full">
+                <div class="relative flex-1 flex items-center">
+                    <!-- Search Icon -->
+                    <div class="absolute left-4 text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                    <input 
+                        type="text" 
+                        name="search" 
+                        value="{{query}}"
+                        placeholder="Search products..." 
+                        class="w-full pl-12 pr-4 py-3 rounded-l-xl border-2 border-r-0 border-gray-200 focus:border-blue-500 focus:ring-blue-500 transition-colors duration-200 outline-none"
+                    />
+                    <input type="hidden" name="filter" value="{{current_filter}}">
+                </div>
+                <button 
+                    type="submit" 
+                    class="px-6  text-white rounded-r-xl transition-colors duration-200 border-2 bg-base-100     flex items-center gap-2"
+                >
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                 </button>
+            </form>
             </div>
-            
+
             <!-- Filter Button -->
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-outline border-2 w-full sm:w-auto">
@@ -108,11 +128,10 @@
                     Filter
                 </div>
                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-52">
-                    <li><a>Price: Low to High</a></li>
-                    <li><a>Price: High to Low</a></li>
-                    <li><a>Newest First</a></li>
-                    <li><a>Popular</a></li>
-                    <li><a>Most Liked</a></li>
+                    <li><a href="?sort=price_low">Price: Low to High</a></li>
+                    <li><a href="?sort=price_high">Price: High to Low</a></li>
+                    <li><a href="?sort=newest">Newest First</a></li>
+                    <li><a href="?sort=popular">Most Popular</a></li>
                 </ul>
             </div>
         </div>
@@ -123,7 +142,7 @@
             <div class="w-full max-w-sm bg-white rounded-lg shadow-md overflow-hidden product-item" data-category="{{ product.categories }}">
               <!-- Image Container with fixed aspect ratio -->
               <div class="relative w-full pt-[75%]">
-                {% for image in images %}
+                {% for image in images %} 
                 {% if image.product.id == product.id %}
                 <img src="{{ image.image.url }}" alt="{{ product.name }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
                
@@ -213,7 +232,7 @@
       <!-- Sidebar -->
       <div class="drawer-side ">
         <label for="my-drawer-2" class="drawer-overlay"></label>
-        <ul class="menu p-4 w-64 shadow-inner min-h-full bg-gray-50   ">
+        <ul class="menu p-4 w-64 shadow-inner min-h-full bg-base-100  ">
           <li class="mb-4">
             <div  class="text-2xl p-4 font-bold hover:bg-base-100">
            

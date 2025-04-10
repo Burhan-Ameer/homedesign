@@ -1,0 +1,331 @@
+{% extends "base.html" %}
+
+{% block content %}
+  
+
+    <!-- Hero Section -->
+    <section class="py-12 bg-gradient-to-r from-gray-800 to-gray-900 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Choose the Perfect Plan for Your Needs</h1>
+            <p class="text-xl mb-8">Transform your space with our powerful furniture visualization platform</p>
+        </div>
+    </section>
+
+
+    <!-- Pricing Section -->
+    <section class="py-16 bg-gray-50 text-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Our Pricing Plans</h2>
+            
+            <div class="flex flex-col md:flex-row justify-center gap-8">
+                <!-- Basic Plan -->
+                <div class="pricing-card bg-white rounded-xl shadow-lg p-8 flex flex-col border border-gray-200 transition-all duration-300 w-full md:w-1/3">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Free</h3>
+                        <p class="text-gray-600">Perfect for individuals and small projects</p>
+                    </div>
+                    <div class="mb-8">
+                        <span class="text-5xl font-bold text-gray-800">$0</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <ul class="mb-8 space-y-4">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-900 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>5 room designs</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-900 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>50+ furniture items</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-900 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Basic color options</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Custom materials</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Export to high-res</span>
+                        </li>
+                    </ul>
+                    <button class="btn btn-outline  border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white">Get Started</button>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="pricing-card bg-white rounded-xl shadow-xl p-8 flex flex-col border-2 border-gray-900 transition-all duration-300 w-full md:w-1/3 relative">
+                    <div class="absolute top-0 right-0 bg-gray-900 text-white px-4 py-1 rounded-bl-lg rounded-tr-lg font-medium">
+                        Basic
+                    </div>
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold text-gray-800 rounded-tr-2xl  mb-2">Basic</h3>
+                        <p class="text-gray-600">Ideal for professionals and small businesses</p>
+                    </div>
+                    <div class="mb-8">
+                        <span class="text-5xl font-bold text-gray-800">$5</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <ul class="mb-8 space-y-4">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-900 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>20 room designs</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-900 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>200+ furniture items</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-900 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Advanced color options</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-900 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Custom materials</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Export to high-res</span>
+                        </li>
+                    </ul>
+                    <button class="btn text-white bg-gray-900 border-none hover:bg-gray-800 mt-auto">Get Started</button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="pricing-card bg-white rounded-xl shadow-lg p-8 flex flex-col border border-gray-200 transition-all duration-300 w-full md:w-1/3">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Pro</h3>
+                        <p class="text-gray-600">For large businesses and agencies</p>
+                    </div>
+                    <div class="mb-8">
+                        <span class="text-5xl font-bold text-gray-800">$20</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <ul class="mb-8 space-y-4">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-900 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Unlimited room designs</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-900 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>500+ furniture items</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-900 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Premium color options</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-900 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Custom materials</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-900 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Export to high-res</span>
+                        </li>
+                    </ul>
+                    <button class="btn btn-outline  mt-auto border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Comparison -->
+    <section class="py-16 bg-white text-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Feature Comparison</h2>
+            
+            <div class="overflow-x-auto">
+                <table class="table w-full">
+                    <thead>
+                        <tr>
+                            <th class="text-left">Feature</th>
+                            <th class="text-center">Basic</th>
+                            <th class="text-center">Pro</th>
+                            <th class="text-center">Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-medium">Room Designs</td>
+                            <td class="text-center">5</td>
+                            <td class="text-center">20</td>
+                            <td class="text-center">Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Furniture Items</td>
+                            <td class="text-center">50+</td>
+                            <td class="text-center">200+</td>
+                            <td class="text-center">500+</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Color Options</td>
+                            <td class="text-center">Basic</td>
+                            <td class="text-center">Advanced</td>
+                            <td class="text-center">Premium</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Custom Materials</td>
+                            <td class="text-center">
+                                <svg class="w-5 h-5 text-gray-400 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td class="text-center">
+                                <svg class="w-5 h-5 text-gray-900 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td class="text-center">
+                                <svg class="w-5 h-5 text-gray-900 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">High-Res Export</td>
+                            <td class="text-center">
+                                <svg class="w-5 h-5 text-gray-400 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td class="text-center">
+                                <svg class="w-5 h-5 text-gray-400 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td class="text-center">
+                                <svg class="w-5 h-5 text-gray-900 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Team Members</td>
+                            <td class="text-center">1</td>
+                            <td class="text-center">5</td>
+                            <td class="text-center">Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Priority Support</td>
+                            <td class="text-center">
+                                <svg class="w-5 h-5 text-gray-400 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td class="text-center">
+                                <svg class="w-5 h-5 text-gray-900 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td class="text-center">
+                                <svg class="w-5 h-5 text-gray-900 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+   <!-- FAQ Section -->
+<section class="py-16 bg-gray-50 text-gray-900">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+        
+        <div class="max-w-3xl mx-auto space-y-10 ">
+            <!-- Existing FAQs -->
+            <div class="collapse collapse-plus  mb-4 bg-white">
+                <input type="checkbox" id="faq-1" />
+                <label for="faq-1" class="collapse-title    font-medium  text-xl
+                ">How does the furniture visualization work?</label>
+                <div class="collapse-content text-sm">
+                    <p>Our platform uses Konva.js to create interactive 2D and 3D visualizations of furniture in your space. You can drag and drop items, rotate them, change colors and materials, and see exactly how your room will look before making any purchases.</p>
+                </div>
+            </div>
+
+           
+
+            <div class="collapse collapse-plus bg-white mb-4 rounded-lg">
+                <input type="checkbox" id="faq-3" />
+                <label for="faq-3" class="collapse-title text-xl font-medium">Is there a free trial available?</label>
+                <div class="collapse-content">
+                    <p>Yes, we offer a 14-day free trial on all plans. No credit card is required to start your trial. You'll have access to all features of your chosen plan during the trial period.</p>
+                </div>
+            </div>
+
+            <!-- New FAQs -->
+            <div class="collapse collapse-plus bg-white mb-4 rounded-lg">
+                <input type="checkbox" id="faq-4" />
+                <label for="faq-4" class="collapse-title text-xl font-medium">How do I create an account?</label>
+                <div class="collapse-content">
+                    <p>Click the "Sign Up" button in the top right corner and follow the registration process.</p>
+                </div>
+            </div>
+
+            <div class="collapse collapse-plus bg-white mb-4 rounded-lg">
+                <input type="checkbox" id="faq-5" />
+                <label for="faq-5" class="collapse-title text-xl font-medium">I forgot my password. What should I do?</label>
+                <div class="collapse-content">
+                    <p>Click on "Forgot Password" on the login page and follow the instructions sent to your email.</p>
+                </div>
+            </div>
+
+            <div class="collapse collapse-plus bg-white mb-4 rounded-lg">
+                <input type="checkbox" id="faq-6" />
+                <label for="faq-6" class="collapse-title text-xl font-medium">How do I update my profile information?</label>
+                <div class="collapse-content">
+                    <p>Go to "My Account" settings and select "Edit Profile" to make changes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-gray-800 to-gray-900 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-4">Ready to Transform Your Space?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Join thousands of satisfied customers who have revolutionized their interior design process with our platform.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button class="btn btn-lg bg-white text-gray-900 hover:bg-gray-100 border-none">Start Free Trial</button>
+                <button class="btn btn-lg btn-outline text-white hover:bg-gray-800 border-white">Schedule Demo</button>
+            </div>
+        </div>
+    </section>
+
+   
+
+ 
+    {% endblock content %}

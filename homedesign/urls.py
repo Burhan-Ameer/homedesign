@@ -20,7 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from . import views
 from homebase import views as homeviews
-
+from dvp_user_side import views as dusers
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),  # Homepage
@@ -44,8 +44,14 @@ urlpatterns = [
     # detail of  product path
     path("detailed_product/<int:pk>/",homeviews.product_detail,name="product_detailed") ,
     # update post 
-    path("updateposts/<int:pk>/",homeviews.update_post,name="update_post")
-    
+    path("updateposts/<int:pk>/",homeviews.update_post,name="update_post"),
+    # brands route 
+    path("brands/",dusers.brands,name="brands"),
+    # brand details route
+    path("brand_details/<str:username>/",dusers.brand_details,name="brand_details"),
+    # pricing page
+    path("pricing/",views.pricing,name="pricing")
+
 ]
 
 # Add static/media URLs for development

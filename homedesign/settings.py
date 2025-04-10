@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "homebase",
     'cloudinary_storage',
     'cloudinary',
+    'dvp_user_side'
 ]
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = [

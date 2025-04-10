@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 from homebase.models import Products,images as Images ,Colors
 from django.core.paginator import Paginator
+from django.db.models import Q
 
 # Custom decorators 
 def is_customer(user):
@@ -21,25 +22,37 @@ def home(request):
 @login_required(login_url='login')
 @user_passes_test(is_business, login_url='login')
 def adminpage(request):
-    # Fetch products for the logged-in admin
-    products = Products.objects.filter(admin=request.user)
-    images = Images.objects.filter(product__in=products)
-    total_posts = products.count()
+    # Get the search query from the request
+    query = request.GET.get("search", "")
+
+    # If a search query is provided, filter products based on the query
+    if query:
+        products = Products.objects.filter(
+            Q(name__icontains=query) | Q(description__icontains=query),
+            admin=request.user
+        ).order_by("name")  # Ensure consistent ordering
+    else:
+        # Otherwise, fetch all products for the logged-in admin
+        products = Products.objects.filter(admin=request.user).order_by("name")
 
     # Add pagination
     paginator = Paginator(products, 10)  # Show 10 products per page
-    page_number = request.GET.get('page')  # Get the current page number from the query string
-    page_obj = paginator.get_page(page_number)  # Get the products for the current page
+    page_number = request.GET.get("page")  # Get the current page number from the query string
+    page_object = paginator.get_page(page_number)  # Get the products for the current page
 
-    # Pass the paginated products to the template
+    # Fetch images for the products on the current page
+    images = Images.objects.filter(product__in=page_object)
+
+    # Pass data to the template
     context = {
-        "products": page_obj,  # Use the paginated products
-        "total_products": total_posts,
-        "images": images,
+        "products": page_object,
+        "images": images,           
+        "query": query,  # Pass the search query to the template
     }
     return render(request, "adminpage.html", context)
 
-def CreatePost(request):
-    return render(request,"createpost.html")
+
 def aboutus(request):
     return render(request,"Aboutus.html")
+def pricing(request):
+    return render(request,"pricing.html")

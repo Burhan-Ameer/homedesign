@@ -1,139 +1,208 @@
-{% extends "base.html" %} {% block content %}
-<!-- container -->
-<div class="w-full h-auto md:h-96 flex flex-col md:flex-row bg-white">
-  <!-- hero section -->
-  <div
-    class="w-full md:w-1/2 h-64 md:h-full flex flex-col sm:justify-center sm:items-center md:items-center"
-  >
-    <!--1st div introductory lines -->
-    
-    <div
-    data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000"
-  >
-  <p
-  class="text-3xl md:text-4xl p-2 text-black font-bold text-center md:text-left space-y-10"
->
-  Discover Premium Furniture Catalogs
-</p>
-<p class="p-2 text-gray-400 text-center md:text-left" data-aos="fade-up" data-aos-delay="400">
-  Explore exclusive collections from world-renowned furniture brands.
-</p>
-  </div>
-   
-    <!-- BUTTONS GROUP -->
-    <div class="p-3 sm:text-left" data-aos="fade-up" data-aos-delay="600">
-      <button class="btn">Browse Categories</button>
-      <button class="btn bg-white">Views Brands</button>
-    </div>
-  </div>
-  <!-- 2nd div image -->
-  <div class="w-full md:w-1/2 h-64 md:h-full flex justify-center items-center">
-    <img
-      class="w-full h-full object-cover"
-      src="../static/media/bg-iamge.jpg"
-      alt="Furniture Image"
-    />
-  </div>
+{% extends 'base.html' %}
+{% load static %}
 
-</div>
-<div class="  ">
-<section class=" bg-gray-50 w-full">
-  <div class="container mx-auto  p-2">
-    <h2 class="text-2xl font-bold mb-8 text-center md:text-left p-4">Featured Brands</h2>
-    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-3">
-      <!-- Brand 1 -->
-      <div class="bg-white p-6 rounded-lg shadow-md text-center">
-        <div class="bg-gray-100 p-4 rounded-lg mb-4 flex items-center justify-center">
-          <img src="/placeholder.svg?height=80&width=120" alt="Modern Luxe Logo" class="h-12" />
+{% block content %}
+<!-- Hero Section -->
+<section class="py-16 gradient-bg text-white">
+    <div class="container mx-auto px-4 space-y-11">
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Visualize Furniture in Your Space Before You Buy</h1>
+                <p class="text-xl mb-8">See exactly how new furniture will look in your home, office, or any room with our advanced visualization tool.</p>
+                <div class="flex space-x-4">
+                    <button class="btn bg-white hover:text-white hover:border-2 hover:border-white  text-black  btn-lg">Try Demo</button>
+                    <button class="btn btn-outline btn-lg border-white text-white hover:bg-white hover:text-black">Learn More</button>
+                </div>
+            </div>
+            <div class="md:w-1/2">
+                <div class="bg-white p-4 rounded-lg shadow-lg">
+                    <img src="../static/media/bg-iamge.jpg" alt="Furniture Visualization Demo" class="w-full rounded">
+                </div>
+            </div>
         </div>
-        <h3 class="font-semibold mb-1">Modern Luxe</h3>
-        <p class="text-sm text-gray-500">150+ Products</p>
-      </div>
-      
-      <!-- Brand 2 -->
-      <div class="bg-white p-6 rounded-lg shadow-md text-center">
-        <div class="bg-gray-100 p-4 rounded-lg mb-4 flex items-center justify-center">
-          <img src="/placeholder.svg?height=80&width=120" alt="Artisan Craft Logo" class="h-12" />
-        </div>
-        <h3 class="font-semibold mb-1">Artisan Craft</h3>
-        <p class="text-sm text-gray-500">200+ Products</p>
-      </div>
-      
-      <!-- Brand 3 -->
-      <div class="bg-white p-6 rounded-lg shadow-md text-center">
-        <div class="bg-gray-100 p-4 rounded-lg mb-4 flex items-center justify-center">
-          <img src="/placeholder.svg?height=80&width=120" alt="Nordic Style Logo" class="h-12" />
-        </div>
-        <h3 class="font-semibold mb-1">Nordic Style</h3>
-        <p class="text-sm text-gray-500">180+ Products</p>
-      </div>
-      
-      <!-- Brand 4 -->
-      <div class="bg-white p-6 rounded-lg shadow-md text-center">
-        <div class="bg-gray-100 p-4 rounded-lg mb-4 flex items-center justify-center">
-          <img src="/placeholder.svg?height=80&width=120" alt="Classic Elite Logo" class="h-12" />
-        </div>
-        <h3 class="font-semibold mb-1">Classic Elite</h3>
-        <p class="text-sm text-gray-500">120+ Products</p>
-      </div>
     </div>
-  </div>
 </section>
 
-<!-- product section -->
-<section class="p-3 bg-white">
-      <div class="sm:mx-4 ">
-        <div class="flex  justify-between items-center mb-8">
-          <h2 class="text-2xl font-bold p-4">Latest Products</h2>
-          <div class="tabs mt-4 md:mt-0">
-            <a class="tab tab-bordered tab-active">All</a>
-            <a class="tab tab-bordered">Living Room</a>
-            <a class="tab tab-bordered">Bedroom</a>
-          </div>
-        </div>
-        
-        <!-- Product Grid -->
-        <div class="grid  sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          <!-- Product Card 1 -->
-          <div class="card bg-white shadow-lg hover:shadow-xl transition-shadow">
-            <figure class="relative">
-              <img src="https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg" alt="Dining Set" class="w-full h-64 object-cover">
-              <button class="absolute top-3 right-3 btn btn-circle btn-sm bg-white hover:bg-gray-100">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-              </button>
-            </figure>
-            <div class="card-body p-4">
-              <div class="flex justify-between items-start">
-                <div>
-                  <h3 class="card-title text-lg">Modern Dining Set</h3>
-                  <span class="badge badge-ghost">Modern Luxe</span>
+<!-- Features Section -->
+<section id="features" class="py-20 bg-white text-white">
+    <div class="container mx-auto px-4 ">
+        <h2 class="text-3xl font-bold  text-gray-900 text-center mb-16">Why Choose DVP?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body items-center text-center">
+                    <h3 class="card-title text-xl">Realistic Visualization</h3>
+                    <p>See furniture in your actual space with accurate sizing and perspective.</p>
                 </div>
-              </div>
-              <p class="text-sm mt-2 text-gray-600">Elegant dining table with 6 chairs</p>
-              <div class="flex items-center text-sm text-gray-500 mt-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-                1.8k views
-              </div>
-              <div class="card-actions justify-end mt-2">
-                <a href="#" class="btn btn-ghost btn-sm">View Details</a>
-              </div>
             </div>
-          </div>
+            <div class="card bg-base-100 shadow-xl">
+               
+                <div class="card-body items-center text-center">
+                    <h3 class="card-title text-xl">Easy to Use</h3>
+                    <p>Simple drag-and-drop interface makes it easy to try different furniture options.</p>
+                </div>
+            </div>
+            <div class="card bg-base-100 shadow-xl">
+               
+                <div class="card-body items-center text-center">
+                    <h3 class="card-title text-xl">Huge Catalog</h3>
+                    <p>Thousands of furniture items from top brands available to visualize.</p>
+                </div>
+            </div>
         </div>
-      </div>
-    </section>
-  </div>
-    <!-- Repeat the card structure for more products -->
+    </div>
+</section>
 
-  </div>
-</div>
+<!-- How It Works Section -->
+<section id="how-it-works" class="py-20 bg-gray-100 text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-gray-900 text-center mb-16">Our Simple Process</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body items-center text-center">
+                    <div class="bg-white  rounded-full text-gray-900 w-16 h-16 flex items-center justify-center text-2xl font-bold mb-4">1</div>
+                    <h3 class="card-title">Capture Your Space</h3>
+                    <p>Take a photo of your room or upload an existing image</p>
+                </div>
+            </div>
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body items-center text-center">
+                    <div class="bg-white  rounded-full w-16 h-16 text-gray-900 flex items-center justify-center text-2xl font-bold mb-4">2</div>
+                    <h3 class="card-title">Select Furniture</h3>
+                    <p>Browse our extensive catalog of high-quality furniture pieces</p>
+                </div>
+            </div>
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body items-center text-center">
+                    <div class="bg-white  text-gray-900 rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mb-4">3</div>
+                    <h3 class="card-title">Visualize</h3>
+                    <p>See furniture in your space with our advanced visualization technology</p>
+                </div>
+            </div>
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body items-center text-center">
+                    <div class="bg-white text-gray-900  rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mb-4">4</div>
+                    <h3 class="card-title">Purchase with Confidence</h3>
+                    <p>Buy the perfect furniture knowing exactly how it will look</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-12">
+            <a href="#" class="btn btn-primary btn-lg">Start Now</a>
+        </div>
+    </div>
+</section>
 
-<!-- Replace logout menu item and modal -->
+<section id="showcase" class="py-20 bg-white text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-16 text-gray-900">See It In Action</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="card bg-base-100 shadow-xl">
+                <figure>
+                    <img src="https://plus.unsplash.com/premium_photo-1661777938520-110b62a5537f?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"class="md:w-[100%] md:h-[500px]" alt="Living Room Visualization" />
+                </figure>
+                <div class="card-body">
+                    <h3 class="card-title">Living Room Transformation</h3>
+                    <p>See how a new sofa and coffee table can transform this living room.</p>
+                </div>
+            </div>
+            <div class="card bg-base-100 shadow-xl">
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"  class="md:w-[100%] md:h-[500px]" alt="Home Office Visualization" />
+                </figure>
+                <div class="card-body">
+                    <h3 class="card-title">Home Office Setup</h3>
+                    <p>Visualize the perfect home office with desk, chair, and storage options.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<!-- CTA Section -->
+<section class="py-20 gradient-bg text-white">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-6">Ready to Transform Your Space?</h2>
+        <p class="text-xl mb-8 max-w-2xl mx-auto">Start visualizing furniture in your space today and make confident buying decisions.</p>
+        <a href="#" class="btn btn-lg bg-white text-gray-900 hover:bg-gray-200 shadow-lg transition-all duration-300 transform hover:-translate-y-1">Get Started for Free</a>
+        <p class="mt-4 text-sm opacity-90">No credit card required.</p>
+    </div>
+</section>
 
- {% endblock content %}
+<!-- Testimonials -->
+<section class="py-20 bg-white text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-gray-900 text-center mb-16">What Our Users Say</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <div class="flex items-center mb-4">
+                        <div class="avatar mr-4">
+                            <div class="w-12 rounded-full">
+                                <img src="{% static 'images/user1.jpg' %}" alt="User Avatar" />
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Sarah Johnson</h3>
+                            <p class="text-sm text-gray-500">Interior Designer</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-2">
+                        {% for i in "12345" %}
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        {% endfor %}
+                    </div>
+                    <p>"DVP has completely transformed how I present design concepts to my clients. The visualization tool is incredibly accurate and easy to use."</p>
+                </div>
+            </div>
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <div class="flex items-center mb-4">
+                        <div class="avatar mr-4">
+                            <div class="w-12 rounded-full">
+                                <img src="{% static 'images/user2.jpg' %}" alt="User Avatar" />
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Michael Chen</h3>
+                            <p class="text-sm text-gray-500">Home Owner</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-2">
+                        {% for i in "12345" %}
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        {% endfor %}
+                    </div>
+                    <p>"I was hesitant about buying furniture online until I found DVP. Being able to see exactly how pieces would look in my home made all the difference."</p>
+                </div>
+            </div>
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <div class="flex items-center mb-4">
+                        <div class="avatar mr-4">
+                            <div class="w-12 rounded-full">
+                                <img src="{% static 'images/user3.jpg' %}" alt="User Avatar" />
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Emily Rodriguez</h3>
+                            <p class="text-sm text-gray-500">Office Manager</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-2">
+                        {% for i in "1234" %}
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        {% endfor %}
+                    </div>
+                    <p>"We redesigned our entire office space using DVP. The ability to visualize different layouts before purchasing saved us thousands in potential mistakes."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

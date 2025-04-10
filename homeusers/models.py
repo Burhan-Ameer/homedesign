@@ -13,9 +13,12 @@ class CustomUser(AbstractUser):
         ("business", "Business Account")
     )
     role = models.CharField(max_length=20, choices=RoleChoices, default="customer")
-    profile_pic =CloudinaryField(
-        "profile_Pic",
-        folder="profile_pics"
+    profile_pic = CloudinaryField(
+        'image',
+        folder="profile_pics/",
+        default="profile_pics/crcmmzrp6a5il1tdx7al",
+        null=True,
+        blank=True
     )
     Bio=models.CharField(max_length=1000 ,null=True,blank=True)
     # the wesite name is for admin not the user 

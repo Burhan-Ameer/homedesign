@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+  
+
+<div class="bg-base-100 ">
+    <!-- Header -->
+  
+    <section class= "bg-white text-gray-900  py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold  mb-4">Discover Premium Furniture Brands</h2>
+            <p class="text-lg max-w-2xl mx-auto text-gray-700">Explore our curated collection of the world's finest furniture brands, each known for exceptional craftsmanship and timeless design.</p>
+            <div class="mt-8 flex w-full justify-center items-center">
+                
+                <form action="" method="get" class="flex">
+                    {% csrf_token %}
+                    <input type="text" name="search" placeholder="Search brands..." class="input input-bordered border-2 bg-white w-full max-w-xs" />
+                <button class="btn text-white ml-2">Search</button>
+            </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Filter -->
+    <section class="py-8 bg-white">
+        <div class="p-10">
+            <div class="flex flex-wrap justify-center  gap-2">
+                <button class="btn btn-sm ">All Brands</button>
+                <button class="btn btn-sm btn-outline">Luxury</button>
+                <button class="btn btn-sm btn-outline">Contemporary</button>
+                <button class="btn btn-sm btn-outline">Classic</button>
+                <button class="btn btn-sm btn-outline">Scandinavian</button>
+                <button class="btn btn-sm btn-outline">Minimalist</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Grid -->
+    <section class="py-12 bg-white">
+        <div class=" px-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Brand Card 1 -->
+                {% for brand in business_users  %}
+                <div class="card text-gray-900 shadow-xl hover:shadow-2xl transition-shadow">
+                    <figure class="px-6 pt-6 p-2 ">
+                        <img src="{{brand.profile_pic.url}}" alt="{{brand.username}}" class="rounded-xl h-40 border-2 border-gray-900  object-contain" />
+                    </figure>
+                    <div class="card-body">
+                        <h3 class="card-title text-gray-900 ">{{brand.username}}</h3>
+                        <p class="text-gray-600">{{brand.Bio}}</p>
+                        <div class="flex mt-2">
+                            <span class="badge badge-outline mr-2">Contemporary</span>
+                            <span class="badge badge-outline">Ergonomic</span>
+                        </div>
+                        <div class="card-actions justify-end mt-4">
+                            <a href="{% url 'brand_details' username=brand.username  %}" class="btn bg-gray-900 btn-sm">View Collections</a>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+    </section>
+
+
+
+   
+</div>
+{% endblock content %}

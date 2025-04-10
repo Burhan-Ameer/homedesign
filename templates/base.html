@@ -22,27 +22,25 @@
           <div class="flex-1">
             <div class="flex justify-center items-center px-3">
               <!-- menu svg -->
-              <label
+                <label
                 for="my-drawer"
-                class="active:bg-slate-300 rounded-full md:hidden drawer-button"  
-              >
+                class="active:bg-slate-300 rounded-lg p-3 transition-all duration-300 md:hidden drawer-button"
+                >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="24px"
-                  viewBox="0 -960 960 960"
+                  viewBox="0 0 24 24"
                   width="24px"
                   fill="#5f6368"
                 >
-                  <path
-                    d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"
-                  />
+                  <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
                 </svg>
-              </label>
+                </label>
               <!-- Logo with proper dimensions -->
               <div class="h-12  flex items-center justify-center">
-                <img 
-                  src="{% static 'media/fyp_logo4.png' %}" 
-                  class="h-10 object-contain" 
+                <img 0
+                  src="{% static 'media/DVP.png' %}" 
+                  class="h-16 object-contain" 
                   alt="Home Design Interactive Logo"
                 >
               </div>
@@ -50,11 +48,13 @@
           </div>
           <div class="flex gap-5">
             <!-- centeral  items  -->
-            <div class="flex gap-3 sm:hidden md:flex md:gap-3">
-              <a href="" class="rounded-lg hover:bg-gray-50 p-3">Home</a>
-              <a href="" class="rounded-lg hover:bg-gray-50 p-3">Brands</a>
+            <div class="flex gap-3  text-gray-900 sm:hidden md:flex md:gap-3">
+              <a href="{% url 'home' %}" class="rounded-lg hover:bg-gray-50 p-3">Home</a>
+              <a href="{% url 'brands' %}" class="rounded-lg hover:bg-gray-50 p-3">Brands</a>
               <a href="" class="rounded-lg hover:bg-gray-50 p-3">Collections</a>
               <a href="" class="rounded-lg hover:bg-gray-50 p-3">Saved</a>
+              <a href="" class="rounded-lg hover:bg-gray-50 p-3">Products</a>
+
             </div>
 
             <!--search box  -->
@@ -133,10 +133,17 @@
                 class="btn btn-ghost btn-circle avatar"
               >
                 <div class="w-10 rounded-full">
+                  {% if profile_pic %}
                   <img
-                    alt="Tailwind CSS Navbar component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                  />
+                  alt="Tailwind CSS Navbar component"
+                  src="{{request.user.profile_pic.url}}"
+                />
+                {% else %}
+                <img
+                alt="Tailwind CSS Navbar component"
+                src="../static/media/person.png"
+              />
+                  {% endif %}
                 </div>
               </div>
               <!-- Dropdown Menu -->
@@ -177,21 +184,21 @@
           class="menu bg-base-200 text-base-content min-h-full w-52 p-2 pt-10 flex flex-col gap-y-3"
         >
           <!-- Sidebar content here -->
-          <li class=""><a class="p-4 hover:bg-base-100"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fffff"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg> Home </a></li>
-          <li class=""><a class="p-4 hover:bg-base-100"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fffff"><path d="M320-320h480v-480h-80v280l-100-60-100 60v-280H320v480Zm0 80q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm360-720h200-200Zm-200 0h480-480Z"/></svg> Collections</a></li>
+          <li class=""><a href="{% url 'home' %}" class="p-4 hover:bg-base-100"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg> Home </a></li>
+          <li class=""><a href="" class="p-4 hover:bg-base-100"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M320-320h480v-480h-80v280l-100-60-100 60v-280H320v480Zm0 80q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm360-720h200-200Zm-200 0h480-480Z"/></svg> Collections</a></li>
           <li class="">
-            <a class="p-4 hover:bg-base-100">
+            <a href="{% url 'brands' %}" class="p-4 hover:bg-base-100">
                 <svg xmlns="http://www.w3.org/2000/svg" 
                      height="24px" 
                      viewBox="0 -960 960 960" 
                      width="24px" 
-                     fill="#fffff">
+                     fill="#ffff">
                     <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H160v400Zm160-40-92-92 92-92 56 56-36 36 36 36-56 56Zm320 0-56-56 36-36-36-36 56-56 92 92-92 92ZM160-640h640-640Z"/>
                 </svg> 
                 Brands
             </a>
         </li>
-          <li class=""><a class="p-4 hover:bg-base-100"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fffff"><path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z"/></svg> Saved</a></li>
+          <li class=""><a class="p-4 hover:bg-base-100"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z"/></svg> Saved</a></li>
         </ul>
       </div>
 
@@ -223,7 +230,7 @@
         class="footer footer-center bg-base-200 text-base-content rounded p-10 relative bottom-0"
       >
         <nav class="grid grid-flow-col gap-4">
-          <a class="link link-hover">About us</a>
+          <a href="{% url 'about' %}" class="link link-hover">About us</a>
           <a class="link link-hover">Contact</a>
           <a class="link link-hover">Jobs</a>
           <a class="link link-hover">Press kit</a>
@@ -273,7 +280,7 @@
         </nav>
         <aside>
           <p>
-            Copyright © Home Design Interactive Platform - All right reserved
+            Copyright © Design Visualisation Platform - All right reserved
           </p>
         </aside>
       </footer>

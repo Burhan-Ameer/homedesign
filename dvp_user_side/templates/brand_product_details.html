@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- Brand Info -->
+    <section class="container mx-auto px-6 py-1   text-gray-900">
+        <div class="bg-white rounded-xl shadow-elegant p-8 relative overflow-hidden">
+            <!-- Decorative elements -->
+            <div class="absolute top-0 right-0 w-40 h-40 bg-wood-light opacity-10 rounded-full -mr-20 -mt-20"></div>
+            <div class="absolute bottom-0 left-0 w-60 h-60 bg-wood-light opacity-10 rounded-full -ml-20 -mb-20"></div>
+            
+            <div class="flex flex-col md:flex-row items-center gap-8 relative z-10">
+                {% if business_user.profile_image %}
+                    <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-wood-light shadow-lg">
+                        <img src="{{ business_user.profile_image.url }}" alt="{{ business_user.username }}" 
+                             class="w-full h-full object-cover">
+                    </div>
+                {% endif %}
+                <div>
+                    <h2 class="font-playfair text-3xl md:text-4xl font-bold text-wood-dark mb-2">{{ business_user.username }}</h2>
+                    <div class="flex items-center gap-2 mb-3">
+                       
+                        <span class="text-gray-600">(4.8)</span>
+                    </div>
+                    <p class="text-gray-600 max-w-2xl">{{ business_user.description|default:"Crafting timeless furniture pieces that blend elegance with functionality. Each creation is meticulously designed to bring warmth and sophistication to your living spaces." }}</p>
+                    
+                    <div class="flex gap-4 mt-4">
+                        <a href="#" class="text-wood-medium hover:text-wood-dark transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-wood-medium hover:text-wood-dark transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-wood-medium hover:text-wood-dark transition-colors">
+                            <i class="fab fa-pinterest text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection Categories -->
+    <section class="container mx-auto px-6 mb-8">
+        <h3 class="font-playfair text-2xl font-semibold  mb-6">Browse Collections</h3>
+        <div class="flex flex-wrap gap-4 justify-center text-gray-900">
+            <a href="#" class="px-6 py-3 bg-white rounded-full shadow-elegant hover:bg-wood-light transition-colors">All Products</a>
+            <a href="#" class="px-6 py-3 bg-white rounded-full shadow-elegant hover:bg-wood-light transition-colors">Living Room</a>
+            <a href="#" class="px-6 py-3 bg-white rounded-full shadow-elegant hover:bg-wood-light transition-colors">Dining</a>
+            <a href="#" class="px-6 py-3 bg-white rounded-full shadow-elegant hover:bg-wood-light transition-colors">Bedroom</a>
+            <a href="#" class="px-6 py-3 bg-white rounded-full shadow-elegant hover:bg-wood-light transition-colors">Office</a>
+            <a href="#" class="px-6 py-3 bg-white rounded-full shadow-elegant hover:bg-wood-light transition-colors">Outdoor</a>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="container mx-auto px-2 py-8">
+        <h2 class="font-playfair text-3xl font-bold text-wood-dark mb-8 text-center">Exquisite Collection</h2>
+        
+        {% if products %}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                {% for product in products %}
+                <div class="product-card bg-white rounded-xl shadow-elegant overflow-hidden">
+                    <!-- Image Container -->
+                    <div class="h-72 overflow-hidden relative group">
+                        {% for image in images %}
+                        {% if image.product.id == product.id %}
+                        <img 
+                            loading="lazy"
+                            src="{{image.image.url}}" 
+                            alt="{{product.name}}" 
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />    
+                        {% endif %}
+                        {% endfor %}
+                        
+                        <!-- Overlay with quick actions -->
+                        <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="flex gap-3">
+                                
+                                <button class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-wood-dark hover:bg-wood-light transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                                    </svg>
+                                </button>
+                            </div>
+                               
+                            </div>
+                      
+                    </div>
+                    
+                    <!-- Card Content -->
+                    <div class="p-6 bg-white">
+                        <!-- Category -->
+                        <div class="text-xs font-medium text-wood-medium uppercase tracking-wider mb-2">
+                            {{ product.categories }}
+                        </div>
+                        
+                        <!-- Title -->
+                      <a href="{% url 'product_detailed' product.id %}">
+                        <h3 class="font-playfair text-xl font-bold text-wood-dark mb-2 leading-tight">
+                            {{ product.name }}
+                        </h3>
+                      </a>
+                        
+                        <!-- Description -->
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+                            {{ product.description }}
+                        </p>
+                        
+                        <div class="flex justify-between items-center">
+                            <!-- Likes -->
+                            <div class="flex items-center ">
+                                <i class="fas fa-heart"></i>
+                                <span class="text-sm text-gray-600 ml-1">{{ product.likes_count }}</span>
+                            </div>
+                            
+                            <!-- Price (assuming there's a price field) -->
+                          
+                        </div>
+                        
+                        <!-- Action Button -->
+                        <div class="mt-4">
+                            <a href="" class="block w-full py-3 text-center bg-gray-900 rounded-lg text-white transition-colors">
+                                Add To Collection
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Pagination -->
+            {% if products.has_other_pages %}
+                <div class="flex justify-center mt-12">
+                    <div class="flex space-x-2">
+                        {% if products.has_previous %}
+                            <a href="?page={{ products.previous_page_number }}" class="w-10 h-10 flex items-center justify-center rounded-full border border-wood-medium text-wood-dark hover:bg-wood-light transition-colors">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        {% endif %}
+                        
+                        {% for num in products.paginator.page_range %}
+                            {% if products.number == num %}
+                                <button class="w-10 h-10 flex items-center justify-center rounded-full bg-wood-dark text-white">
+                                    {{ num }}
+                                </button>
+                            {% else %}
+                                <a href="?page={{ num }}" class="w-10 h-10 flex items-center justify-center rounded-full border border-wood-medium text-wood-dark hover:bg-wood-light transition-colors">
+                                    {{ num }}
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if products.has_next %}
+                            <a href="?page={{ products.next_page_number }}" class="w-10 h-10 flex items-center justify-center rounded-full border border-wood-medium text-wood-dark hover:bg-wood-light transition-colors">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="text-center py-16 bg-white rounded-xl shadow-elegant">
+                <i class="fas fa-box-open text-5xl text-wood-medium mb-4"></i>
+                <h3 class="font-playfair text-2xl font-semibold text-wood-dark mb-2">No Products Available</h3>
+                <p class="text-gray-600">This collection is currently empty. Please check back later.</p>
+            </div>
+        {% endif %}
+    </section>
+
+   
+
+    {% endblock content %}
