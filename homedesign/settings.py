@@ -32,8 +32,8 @@ DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = ['*']  # Restrict this in production
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://127.0.0.1:8000',
-    'http://localhost:8000',
+    "https://8cb8-103-73-101-41.ngrok-free.app"
+
     # Add your production domains here
 ]   
 # settings.py

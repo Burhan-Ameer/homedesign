@@ -50,7 +50,13 @@ urlpatterns = [
     # brand details route
     path("brand_details/<str:username>/",dusers.brand_details,name="brand_details"),
     # pricing page
-    path("pricing/",views.pricing,name="pricing")
+    path("pricing/",views.pricing,name="pricing"),
+    # canvas page
+    path("canvas/",dusers.canvas,name="canvas"),
+    #   collection page
+    path("collections/",dusers.collections,name="collection"),
+    # addition to collections 
+    path("add_to_collection/<int:product_id>/",dusers.add_to_collection,name="add_to_collection"),
 
 ]
 

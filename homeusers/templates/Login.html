@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
 </head>
 <body class="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-100 to-gray-200">
     <div class="flex flex-col md:flex-row bg-white shadow-2xl rounded-2xl overflow-hidden w-full max-w-4xl mx-4">
@@ -31,29 +33,7 @@
                 <a href="{% url 'login' %}" class="text-xl font-semibold text-gray-800 hover:text-base-100 transition-colors">Login</a>
       
             </div>
-            {% if messages %}
-   {% for message in messages %}
-      <div role="alert" class="alert {% if message.tags == 'error' %}alert-error{% else %}alert-success{% endif %} mb-4">
-        <svg xmlns="http://www.w3.org/2000/svg" 
-             class="h-6 w-6 shrink-0 stroke-current" 
-             fill="none" 
-             viewBox="0 0 24 24">
-          {% if message.tags == 'error' %}
-          <path stroke-linecap="round" 
-                stroke-linejoin="round" 
-                stroke-width="2" 
-                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-          {% else %}
-          <path stroke-linecap="round" 
-                stroke-linejoin="round" 
-                stroke-width="2" 
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-          {% endif %}
-        </svg>
-        <span>{{ message }}</span>
-      </div>
-   {% endfor %}
-{% endif %}
+    
             <form class="space-y-6" method="POST" action="{% url 'login' %}">
                 {% csrf_token %}
                 
@@ -114,11 +94,34 @@
                 </button>
                 <p>Don't have an Account   <a
                     href="{% url 'register' %}"
-                    class="text-gray-500 hover:text-base-100 transition-colors"
+                    class="text-gray-900 hover:text-gray-700 transition-colors"
                     > Sign up</a
                   ></p>
             </form>
         </div>
     </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <script>
+        // Display Django messages with Toastify
+        document.addEventListener('DOMContentLoaded', function() {
+           "{% if messages %}"
+            "{% for message in messages %}"
+              Toastify({
+                text: "{{ message }}",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "center",
+                stopOnFocus: true,
+                style: {
+                  background: "{% if message.tags == 'success' %}linear-gradient(to right, #00b09b, #96c93d){% elif message.tags == 'error' %}linear-gradient(to right, #ff5f6d, #ffc371){% elif message.tags == 'warning' %}linear-gradient(to right, #f7b733, #fc4a1a){% elif message.tags == 'info' %}linear-gradient(to right, #2193b0, #6dd5ed){% else %}linear-gradient(to right, #00b09b, #96c93d){% endif %}",
+                },
+              }).showToast();
+            "{% endfor %}"
+          "{% endif %}"
+        });
+      </script>
+
 </body>
 </html>

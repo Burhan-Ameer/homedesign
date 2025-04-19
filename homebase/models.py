@@ -18,20 +18,14 @@ class Products(models.Model):
     name=models.CharField(max_length=1000,null=False,blank=False)
     description=models.TextField(blank=True,null=True)
     created_date=models.DateTimeField(default=timezone.now)
+    likes=models.ManyToManyField(CustomUser,related_name="likes",blank=True)
     def __str__(self):
         return self.name
     class  Meta:
         verbose_name = 'Product'
         verbose_name_plural = 'Products'
     # the number of like color images can be multiple thats why i need to create a many to many relationship between the products and the likes and the colors and the images
-class Likes(models.Model):
-    products=models.ForeignKey(Products,related_name="likes",on_delete=models.CASCADE)
-    no_of_likes=models.PositiveIntegerField(default=0)
-    class Meta:
-        verbose_name = 'Like'
-        verbose_name_plural = 'Likes'
-    def __str__(self):
-        return f"{self.products.name} likes {self.no_of_likes}"
+
 
 class Colors(models.Model):
     product=models.ForeignKey(Products,on_delete=models.CASCADE)

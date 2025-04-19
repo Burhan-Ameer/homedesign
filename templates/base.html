@@ -9,9 +9,11 @@
       href="{% static 'media/favicon.png' %}"
       type="image/png"
     />
-    <title>DVIP</title>
+    <title>DVP</title>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    
   </head>
   <body>
     <!-- navbar -->
@@ -51,7 +53,7 @@
             <div class="flex gap-3  text-gray-900 sm:hidden md:flex md:gap-3">
               <a href="{% url 'home' %}" class="rounded-lg hover:bg-gray-50 p-3">Home</a>
               <a href="{% url 'brands' %}" class="rounded-lg hover:bg-gray-50 p-3">Brands</a>
-              <a href="" class="rounded-lg hover:bg-gray-50 p-3">Collections</a>
+              <a href="{% url 'collection' %}" class="rounded-lg hover:bg-gray-50 p-3">Collections</a>
               <a href="" class="rounded-lg hover:bg-gray-50 p-3">Saved</a>
               <a href="" class="rounded-lg hover:bg-gray-50 p-3">Products</a>
 
@@ -95,7 +97,7 @@
                       name=""
                       placeholder="Search products"
                       id=""
-                      class="w-full focus:outline-hidden border-none bg-base-100"
+                      class="w-full focus:outline-hidden border-none bg-gray-900"
                     />
                     <div class="bg-white border-2 w-full"></div>
                   </div>
@@ -147,7 +149,7 @@
                 </div>
               </div>
               <!-- Dropdown Menu -->
-              <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+              <ul tabindex="0" class="menu menu-sm dropdown-content bg-gray-900 text-white rounded-box z-[1] mt-3 w-52 p-2 shadow">
                 <li>
                     <a href="" class="justify-between">
                         Profile
@@ -174,20 +176,20 @@
 
         <!-- Page content here -->
       </div>
-      <div class="drawer-side">
+      <div class="drawer-side z-20">
         <label
           for="my-drawer"
           aria-label="close sidebar"
           class="drawer-overlay"
         ></label>
         <ul
-          class="menu bg-base-200 text-base-content min-h-full w-52 p-2 pt-10 flex flex-col gap-y-3"
+          class="menu bg-gray-900   min-h-full w-52 p-2 pt-10 flex flex-col gap-y-3"
         >
           <!-- Sidebar content here -->
-          <li class=""><a href="{% url 'home' %}" class="p-4 hover:bg-base-100"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg> Home </a></li>
-          <li class=""><a href="" class="p-4 hover:bg-base-100"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M320-320h480v-480h-80v280l-100-60-100 60v-280H320v480Zm0 80q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm360-720h200-200Zm-200 0h480-480Z"/></svg> Collections</a></li>
-          <li class="">
-            <a href="{% url 'brands' %}" class="p-4 hover:bg-base-100">
+          <li class="text-white"><a href="{% url 'home' %}" class="p-4 hover:bg-gray-900"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg> Home </a></li>
+          <li class="text-white"><a href="{% url 'collection' %}" class="p-4 hover:bg-gray-900"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M320-320h480v-480h-80v280l-100-60-100 60v-280H320v480Zm0 80q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm360-720h200-200Zm-200 0h480-480Z"/></svg> Collections</a></li>
+          <li class="text-white">
+            <a href="{% url 'brands' %}" class="p-4 hover:bg-gray-900">
                 <svg xmlns="http://www.w3.org/2000/svg" 
                      height="24px" 
                      viewBox="0 -960 960 960" 
@@ -198,7 +200,7 @@
                 Brands
             </a>
         </li>
-          <li class=""><a class="p-4 hover:bg-base-100"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z"/></svg> Saved</a></li>
+          <li class="text-white"><a class="p-4 hover:bg-gray-900"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z"/></svg> Saved</a></li>
         </ul>
       </div>
 
@@ -227,7 +229,7 @@
       {% endblock content %}
       <!-- footer -->
       <footer
-        class="footer footer-center bg-base-200 text-base-content rounded p-10 relative bottom-0"
+        class="footer footer-center bg-gray-50  text-gray-900 rounded p-10 relative bottom-0"
       >
         <nav class="grid grid-flow-col gap-4">
           <a href="{% url 'about' %}" class="link link-hover">About us</a>
@@ -287,6 +289,9 @@
     </div>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
+      // toastify js  library
+
+      // Initialize AOS (Animate On Scroll) library
       AOS.init({
         duration: 1000,
         once: true,
@@ -312,5 +317,27 @@
         <button>close</button>
       </form>
     </dialog>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+      // Display Django messages with Toastify
+      document.addEventListener('DOMContentLoaded', function() {
+         "{% if messages %}"
+          "{% for message in messages %}"
+            Toastify({
+              text: "{{ message }}",
+              duration: 3000,
+              close: true,
+              gravity: "top",
+              position: "center",
+              stopOnFocus: true,
+              style: {
+             
+                background: "{% if message.tags == 'success' %}linear-gradient(to right, #00b09b, #96c93d){% elif message.tags == 'error' %}linear-gradient(to right, #ff5f6d, #ffc371){% elif message.tags == 'warning' %}linear-gradient(to right, #f7b733, #fc4a1a){% elif message.tags == 'info' %}linear-gradient(to right, #2193b0, #6dd5ed){% else %}linear-gradient(to right, #00b09b, #96c93d){% endif %}",
+              },
+            }).showToast();
+          "{% endfor %}"
+        "{% endif %}"
+      });
+    </script>
   </body>
 </html>

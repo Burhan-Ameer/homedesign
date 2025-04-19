@@ -19,8 +19,7 @@
       <!-- Main Content -->
       <div class="drawer-content flex flex-col">
         <!-- Navbar -->
-        <div class="navbar  w-full bg-base-100 ">
-        
+        <div class="navbar w-full shadow-xl border-b-2">
           <div class="flex-none lg:hidden">
             <label for="my-drawer-2" class="btn btn-square btn-ghost">
               <svg
@@ -37,18 +36,8 @@
                 ></path>
               </svg>
             </label>
-          
-            </div> 
-             <!-- <div class="h-14  flex items-center justify-center">
-              <img 
-                src="{% static 'media/fyp_logo4.png' %}" 
-                class="h-10 object-contain" 
-                alt="Home Design Interactive Logo"
-              >
-          </div> -->
-          <div class="flex-1">
-   
           </div>
+          <div class="flex-1"></div>
           <div class="flex gap-3">
             <button
               class="btn rounded-full bg-gray-900 border-2 border-white text-white"
@@ -87,51 +76,76 @@
         <div class="p-4 bg-white h-full">
           {% block admincontent %}`
           
-          <!-- Filters and search -->
+          <!-- Improved Filters and search -->
           <div class="flex flex-col sm:flex-row gap-4 mb-8">
-            <!-- Search Input -->
+            <!-- Improved Search Input -->
             <div class="flex-1">
-              <form method="get" class="flex w-full">
-                <div class="relative flex-1 flex items-center">
+              <form method="get" class="relative">
+                <div class="relative flex w-full shadow-sm rounded-full  overflow-hidden">
                     <!-- Search Icon -->
-                    <div class="absolute left-4 text-gray-400">
+                    <div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </div>
+                    
+                    <!-- Search Input -->
                     <input 
                         type="text" 
                         name="search" 
                         value="{{query}}"
-                        placeholder="Search products..." 
-                        class="w-full pl-12 pr-4 py-3 rounded-l-xl border-2 border-r-0 border-gray-200 focus:border-blue-500 focus:ring-blue-500 transition-colors duration-200 outline-none"
+                        placeholder="Search products by name, description..." 
+                        class="w-full pl-12 pr-20 py-3.5 border-2 border-gray-200 focus:border-gray-900 focus:ring-0 transition-colors duration-200 outline-none rounded-full"
                     />
                     <input type="hidden" name="filter" value="{{current_filter}}">
+                    
+                    <!-- Search Button -->
+                    <button 
+                        type="submit" 
+                        class="absolute right-2 top-1/2 transform -translate-y-1/2 px-4 py-1.5 bg-gray-900 text-white rounded-full transition-colors duration-200 hover:bg-gray-800 flex items-center gap-1"
+                    >
+                        <span>Search</span>
+                    </button>
                 </div>
-                <button 
-                    type="submit" 
-                    class="px-6  text-white rounded-r-xl transition-colors duration-200 border-2 bg-base-100     flex items-center gap-2"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                </button>
+                
+                <!-- Quick Filters -->
+               
             </form>
             </div>
 
             <!-- Filter Button -->
             <div class="dropdown dropdown-end">
-                <div tabindex="0" role="button" class="btn btn-outline border-2 w-full sm:w-auto">
+                <div tabindex="0" role="button" class="btn bg-gray-900 text-white hover:bg-gray-800 border-0 w-full sm:w-auto">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                     </svg>
-                    Filter
+                    Sort By
                 </div>
                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-52">
-                    <li><a href="?sort=price_low">Price: Low to High</a></li>
-                    <li><a href="?sort=price_high">Price: High to Low</a></li>
-                    <li><a href="?sort=newest">Newest First</a></li>
-                    <li><a href="?sort=popular">Most Popular</a></li>
+                    <li><a href="?sort=price_low" class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+                        </svg>
+                        Price: Low to High
+                    </a></li>
+                    <li><a href="?sort=price_high" class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4" />
+                        </svg>
+                        Price: High to Low
+                    </a></li>
+                    <li><a href="?sort=newest" class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Newest First
+                    </a></li>
+                    <li><a href="?sort=popular" class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
+                        Most Popular
+                    </a></li>
                 </ul>
             </div>
         </div>
@@ -173,46 +187,66 @@
               </div>
             </div>
             {% empty %}
-            <p>No products found.</p>
+            <div class="col-span-full text-center py-16">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p class="text-xl font-semibold text-gray-700">No products found.</p>
+              <p class="text-gray-500 mt-2">Try adjusting your search or filter to find what you're looking for.</p>
+            </div>
             {% endfor %}
           </div>
           <div class="flex justify-center mt-6">
-            <nav class="inline-flex rounded-md shadow-sm" aria-label="Pagination">
-                {% if products.has_previous %}
-                <a href="?page={{ products.previous_page_number }}" 
-                   class="px-4 py-2 border border-gray-300 text-gray-700 bg-white hover:bg-gray-100 rounded-l-md">
-                    Previous
-                </a>
-                {% else %}
-                <span class="px-4 py-2 border border-gray-300 text-gray-400 bg-gray-100 rounded-l-md cursor-not-allowed">
-                    Previous
-                </span>
-                {% endif %}
-        
-                {% for num in products.paginator.page_range %}
-                {% if products.number == num %}
-                <span class="px-4 py-2 border border-indigo-500 text-white bg-indigo-500">
-                    {{ num }}
-                </span>
-                {% else %}
-                <a href="?page={{ num }}" 
-                   class="px-4 py-2 border border-gray-300 text-gray-700 bg-white hover:bg-gray-100">
-                    {{ num }}
-                </a>
-                {% endif %}
-                {% endfor %}
-        
-                {% if products.has_next %}
-                <a href="?page={{ products.next_page_number }}" 
-                   class="px-4 py-2 border border-gray-300 text-gray-700 bg-white hover:bg-gray-100 rounded-r-md">
-                    Next
-                </a>
-                {% else %}
-                <span class="px-4 py-2 border border-gray-300 text-gray-400 bg-gray-100 rounded-r-md cursor-not-allowed">
-                    Next
-                </span>
-                {% endif %}
-            </nav>
+            {% if products.has_other_pages %}
+            <div class="flex justify-center mt-12">
+                <nav class="inline-flex items-center bg-white rounded-full shadow-md px-2 py-1.5" aria-label="Pagination">
+                    {% if products.has_previous %}
+                        <a href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}{% if request.GET.filter %}filter={{ request.GET.filter }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}page={{ products.previous_page_number }}" 
+                           class="w-10 h-10 flex items-center justify-center rounded-full text-gray-700 hover:bg-gray-100 transition-colors" 
+                           aria-label="Previous page">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </a>
+                    {% else %}
+                        <span class="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 cursor-not-allowed">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </span>
+                    {% endif %}
+                    
+                    {% for num in products.paginator.page_range %}
+                        {% if products.number == num %}
+                            <span class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-900 text-white font-medium">
+                                {{ num }}
+                            </span>
+                        {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+                            <a href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}{% if request.GET.filter %}filter={{ request.GET.filter }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}page={{ num }}" 
+                               class="w-10 h-10 flex items-center justify-center rounded-full text-gray-700 hover:bg-gray-100 transition-colors">
+                                {{ num }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% if products.has_next %}
+                        <a href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}{% if request.GET.filter %}filter={{ request.GET.filter }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}page={{ products.next_page_number }}" 
+                           class="w-10 h-10 flex items-center justify-center rounded-full text-gray-700 hover:bg-gray-100 transition-colors" 
+                           aria-label="Next page">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    {% else %}
+                        <span class="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 cursor-not-allowed">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    {% endif %}
+                </nav>
+            </div>
+        {% endif %}
           </div>
           <!-- Open the modal using ID.showModal() method -->
           <dialog id="my_modal_delete" class="modal">
@@ -232,7 +266,7 @@
       <!-- Sidebar -->
       <div class="drawer-side ">
         <label for="my-drawer-2" class="drawer-overlay"></label>
-        <ul class="menu p-4 w-64 shadow-inner min-h-full bg-base-100  ">
+        <ul class="menu p-4 w-64 shadow-inner min-h-full bg-gray-900 text-white ">
           <li class="mb-4">
             <div  class="text-2xl p-4 font-bold hover:bg-base-100">
            
@@ -240,7 +274,7 @@
             </div>
           </li>
           <li class="py-3">
-            <a href="{% url 'adminpage' %}" class="font-bold p-4">
+            <a href="{% url 'adminpage' %}" class="font-bold p-4 hover:bg-gray-50 hover:text-gray-900">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-5 w-5"
@@ -259,7 +293,7 @@
             </a>
           </li>
           <li class="py-3">
-            <a href="{% url 'explore' %}" class="p-4 text-base-content font-bold hover:bg-base-300">
+            <a href="{% url 'explore' %}" class="p-4  font-bold hover:bg-gray-50 hover:text-gray-900">
                 <svg 
                     class="w-5 h-5 stroke-current"
                     fill="none" 

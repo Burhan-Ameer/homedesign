@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<main class="min-h-screen bg-gray-50 py-12">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <div class="w-full lg:w-3/4 bg-white rounded-xl shadow-sm p-6 sm:p-8">
+        <div class="flex justify-between items-center mb-8 border-b pb-4">
+          <h1 class="text-2xl font-bold">My Collection (<span>{{ products|length }}</span>)</h1>
+          {% if products %}
+          <a href=""
+             class="text-sm text-gray-500 hover:text-gray-700">
+            <i class="fa-solid fa-trash-can mr-1"></i> Clear All
+          </a>
+          {% endif %}
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {% if products %}
+            {% for product in products %}
+            <div class="group relative bg-white rounded-lg border shadow-sm">
+              <figure class="relative">
+               
+                  {% if img %}
+                  <img src="{{ img.image.url }}"
+                       alt="{{ product.name }}"
+                       class="w-full h-56 object-cover"/>
+                  {% else %}
+                  <img src="https://placehold.co/300x200?text=No+Image"
+                       alt="{{ product.name }}"
+                       class="w-full h-56 object-cover"/>
+                  {% endif %}
+                
+                <div class="absolute top-2 left-2 badge bg-gray-900 text-white">Saved</div>
+                <a href=""
+                   class="absolute top-2 right-2 p-1.5 bg-white hover:text-red-500 rounded-full shadow-sm">
+                  <i class="fa-solid fa-xmark"></i>
+                </a>
+              </figure>
+
+              <div class="p-4">
+                <h2 class="font-semibold text-gray-900 mb-1 truncate">{{ product.name }}</h2>
+                <p class="font-bold text-gray-900 mb-3">${{ product.price|floatformat:2 }}</p>
+                <div class="flex justify-between items-center">
+                  {% for col in collections %}
+                    {% if col.product.id == product.id %}
+                      <span class="text-xs text-gray-500">Added {{ col.created_at|date:"M d, Y" }}</span>
+                      
+                    {% endif %}
+                  {% endfor %}
+                  <a href="{% url 'canvas' %}?product={{ product.id }}"
+                     class="inline-flex items-center px-3 py-1.5 bg-gray-900 text-white text-sm rounded">
+                    <i class="fa-solid fa-eye mr-1"></i> Visualize
+                  </a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          {% else %}
+            <div class="col-span-3 flex flex-col items-center py-16">
+              <i class="fa-solid fa-bookmark text-6xl text-gray-300 mb-4"></i>
+              <h2 class="text-xl font-semibold text-gray-700 mb-2">Your collection is empty</h2>
+              <p class="text-gray-500 mb-6">Save items to view them later</p>
+              <a href="{% url 'brands' %}" class="btn bg-gray-900 text-white">Browse Products</a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      {% if products %}
+      <div class="w-full lg:w-1/4">
+        <div class="bg-white p-6 rounded-xl shadow-sm border">
+          <h2 class="text-lg font-bold mb-4">Quick Actions</h2>
+          <a href="{% url 'canvas' %}" class="btn w-full mb-3">Try All Items</a>
+          <button id="share-collection" class="btn btn-outline w-full mb-3">Share Collection</button>
+          <a href="{% url 'canvas' %}" class="btn w-full mb-6">Design With These</a>
+
+          <div class="border-t pt-4">
+            <h3 class="font-medium text-gray-900 mb-2">Collection Stats</h3>
+            <div class="flex justify-between text-sm">
+              <span>Total Items:</span><span>{{ products|length }}</span>
+            </div>
+            <div class="flex justify-between text-sm mt-1">
+              <span>Total Value:</span><span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</main>
+
+<script>
+  document.getElementById('share-collection').addEventListener('click', ()=> {
+    navigator.clipboard.writeText(window.location.href)
+      .then(()=> Toastify({ text:"Link copied!", className:"toast-success" }).showToast());
+  });
+</script>
+{% endblock %}
