@@ -55,7 +55,7 @@
               <a href="{% url 'brands' %}" class="rounded-lg hover:bg-gray-50 p-3">Brands</a>
               <a href="{% url 'collection' %}" class="rounded-lg hover:bg-gray-50 p-3">Collections</a>
               <a href="" class="rounded-lg hover:bg-gray-50 p-3">Saved</a>
-              <a href="" class="rounded-lg hover:bg-gray-50 p-3">Products</a>
+              <a href="{% url 'products' %}" class="rounded-lg hover:bg-gray-50 p-3">Products</a>
 
             </div>
 
@@ -233,7 +233,7 @@
       >
         <nav class="grid grid-flow-col gap-4">
           <a href="{% url 'about' %}" class="link link-hover">About us</a>
-          <a class="link link-hover">Contact</a>
+          <a href="{% url 'feedback' %}"  class="link link-hover">Feedback</a>
           <a class="link link-hover">Jobs</a>
           <a class="link link-hover">Press kit</a>
         </nav>
