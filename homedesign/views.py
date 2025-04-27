@@ -56,3 +56,6 @@ def aboutus(request):
     return render(request,"Aboutus.html")
 def pricing(request):
     return render(request,"pricing.html")
+    
+def feedback(request):
+    return render(request,"feedback.html")
