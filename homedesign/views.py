@@ -1,3 +1,5 @@
+from django.utils        import timezone
+from dvp_user_side.models import Feedback
 from django.shortcuts import render, redirect
 from homeusers.models import CustomUser
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -57,5 +59,38 @@ def aboutus(request):
 def pricing(request):
     return render(request,"pricing.html")
     
+
+    
 def feedback(request):
-    return render(request,"feedback.html")
+    # Stats
+    stats = {
+        'resolved':    Feedback.objects.filter(status='resolved').count(),
+        'in_progress': Feedback.objects.filter(status='in_progress').count(),
+        'new_ideas':   Feedback.objects.filter(status='open', feedback_type='general').count(),
+    }
+    # History
+    history = Feedback.objects.filter(user=request.user).order_by('-created_at')
+
+    if request.method == 'POST':
+        ftype   = request.POST.get('feedback_type')
+        subject = request.POST.get('subject','').strip()
+        message = request.POST.get('message','').strip()
+
+        if not (ftype and subject and message):
+            messages.error(request, "Please fill in all required fields.")
+        else:
+            fb = Feedback(
+                user=request.user,
+                feedback_type=ftype,
+                subject=subject,
+                message=message,
+                created_at=timezone.now()
+            )
+            fb.save()
+            messages.success(request, "Thank you for your feedback!")
+            return redirect('feedback')
+
+    return render(request, "feedback.html", {
+        'stats':   stats,
+        'history': history,
+    })

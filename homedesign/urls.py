@@ -57,6 +57,13 @@ urlpatterns = [
     path("collections/",dusers.collections,name="collection"),
     # addition to collections 
     path("add_to_collection/<int:product_id>/",dusers.add_to_collection,name="add_to_collection"),
+    
+    path("products/",dusers.products,name="products"),
+    # feedback page
+    path("feedback/",views.feedback,name="feedback"),
+
+    path('collections/remove/<int:product_id>/', dusers.remove_from_collection, name='remove_collection_item'),
+    path('collections/clear/', dusers.clear_collection,name='clear_collection'),
 
 ]
 

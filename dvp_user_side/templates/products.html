@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="px-6 py-6">
+    <div class="max-w-3xl mx-auto relative">
+        <form action="" method="GET" class="relative">
+            <div class="relative flex items-center">
+                <!-- Search Icon -->
+                <div class="absolute left-4 text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+                
+                <!-- Search Input -->
+                <input 
+                    type="text" 
+                    name="search" 
+                    placeholder="Search for exquisite furniture pieces..." 
+                    value="{{ request.GET.search|default:'' }}"
+                    class="w-full pl-12 pr-24 py-4 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-wood-medium bg-white text-gray-900 shadow-sm transition-all duration-300 focus:shadow-md"
+                >
+                
+                <!-- Search Button (positioned inside the input) -->
+                <button type="submit" class="absolute right-2 top-1/2 transform -translate-y-1/2 px-6 py-2.5 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-colors duration-300 flex items-center justify-center shadow-sm">
+                    Search
+                </button>
+            </div>
+            
+            <!-- Optional: Quick filters -->
+           
+        </form>
+    </div>
+</section>
+
+<!-- Products Grid -->
+<section class="px-16 py-8">
+    <h2 class="font-playfair text-3xl font-bold text-wood-dark mb-8 text-center">Exquisite Collection</h2>
+    
+    {% if products %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {% for product in products %}
+            <div class="product-card bg-white rounded-xl shadow-md text-gray-900 overflow-hidden">
+                <!-- Image Container -->
+                <div class="h-72 overflow-hidden relative group">
+                    {% for image in images %}
+                    {% if image.product.id == product.id %}
+                    <img 
+                        loading="lazy"
+                        src="{{image.image.url}}" 
+                        alt="{{product.name}}" 
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />    
+                    {% endif %}
+                    {% endfor %}
+                    
+                    <!-- Overlay with quick actions -->
+                    <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="flex gap-3">
+                            <button class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-wood-dark hover:bg-wood-light transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card Content -->
+                <div class="p-4   bg-white">
+                    <!-- Category -->
+                    <div class="text-xs font-medium text-wood-medium uppercase tracking-wider mb-2">
+                        {{ product.categories }}
+                    </div>
+                    
+                    <!-- Title -->
+                    <a href="{% url 'product_detailed' product.id %}">
+                        <h3 class="font-playfair text-xl font-bold text-wood-dark mb-2 leading-tight line-clamp-2">
+                            {{ product.name }}
+                        </h3>
+                    </a>
+                    
+                    <!-- Description -->
+                    <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+                        {{ product.description }}
+                    </p>
+                    
+                    <div class="flex justify-between items-center">
+                        <!-- Likes -->
+                        <div class="flex items-center ">
+                            <i class="fas fa-heart"></i>
+                            <span class="text-sm text-gray-600 ml-1">{{ product.likes_count }}</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Button -->
+                    <div class="mt-4">
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'add_to_collection' product.id %}" 
+                               class="block w-full py-3 text-center bg-gray-900 hover:bg-gray-800 rounded-lg text-white transition-colors">
+                                <i class="fas fa-bookmark mr-2"></i> Add To Collection
+                            </a>
+                        {% else %}
+                            <a href="{% url 'login' %}?next={{ request.path }}" 
+                               class="block w-full py-3 text-center bg-gray-900 hover:bg-gray-800 rounded-lg text-white transition-colors">
+                                <i class="fas fa-sign-in-alt mr-2"></i> Login to Save
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Improved Pagination -->
+        {% if products.has_other_pages %}
+            <div class="flex justify-center mt-12">
+                <nav class="inline-flex items-center bg-white rounded-full shadow-md px-2 py-1.5" aria-label="Pagination">
+                    {% if products.has_previous %}
+                        <a href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}page={{ products.previous_page_number }}" 
+                           class="w-10 h-10 flex items-center justify-center rounded-full text-gray-700 hover:bg-gray-100 transition-colors" 
+                           aria-label="Previous page">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </a>
+                    {% else %}
+                        <span class="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 cursor-not-allowed">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </span>
+                    {% endif %}
+                    
+                    {% for num in products.paginator.page_range %}
+                        {% if products.number == num %}
+                            <span class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-900 text-white font-medium">
+                                {{ num }}
+                            </span>
+                        {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+                            <a href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}page={{ num }}" 
+                               class="w-10 h-10 flex items-center justify-center rounded-full text-gray-700 hover:bg-gray-100 transition-colors">
+                                {{ num }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% if products.has_next %}
+                        <a href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}page={{ products.next_page_number }}" 
+                           class="w-10 h-10 flex items-center justify-center rounded-full text-gray-700 hover:bg-gray-100 transition-colors" 
+                           aria-label="Next page">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    {% else %}
+                        <span class="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 cursor-not-allowed">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    {% endif %}
+                </nav>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="text-center py-16 bg-white rounded-xl shadow-elegant">
+            <i class="fas fa-box-open text-5xl text-wood-medium mb-4"></i>
+            <h3 class="font-playfair text-2xl font-semibold text-wood-dark mb-2">No Products Available</h3>
+            <p class="text-gray-600">This collection is currently empty. Please check back later.</p>
+        </div>
+    {% endif %}
+</section>
+{% endblock content %}

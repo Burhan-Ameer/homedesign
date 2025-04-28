@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-  
+
 
     <div class=" bg-white   py-12">
         <!-- Header -->
@@ -25,7 +25,7 @@
                          {% csrf_token %}
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Feedback Type</label>
-                            <div class="grid grid-cols-3 gap-3">
+                            <div class="grid grid-cols-3  gap-3">
                                 <label class="flex flex-col items-center justify-center p-4 border rounded-xl cursor-pointer hover:border-gray-900 hover:bg-gray-50 transition-all">
                                     <input type="radio" name="feedback_type" value="bug" class="hidden" required>
                                     <i class="fas fa-bug text-2xl mb-2 text-gray-900"></i>
@@ -68,22 +68,12 @@
                         
                         <!-- Product Selection -->
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Product (Optional)</label>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
-                                    <i class="fas fa-box"></i>
-                                </span>
-                                <select name="product" 
-                                    class="w-full pl-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900/20 focus:border-gray-900 appearance-none">
-                                    <option value="" selected>Select a product (optional)</option>
-                                    <option value="1">Modern Sofa</option>
-                                    <option value="2">Dining Table</option>
-                                    <option value="3">Designer Chair</option>
-                                </select>
-                                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                                    <i class="fas fa-chevron-down text-gray-400"></i>
-                                </div>
-                            </div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Product</label>
+                            <select name="product" class="block w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900/20 focus:border-gray-900">
+                                <option value="product_1">Product 1</option>
+                                <option value="product_2">Product 2</option>
+                                <option value="product_3">Product 3</option>
+                            </select>
                         </div>
                         
                         <!-- Submit Button -->
@@ -106,40 +96,40 @@
                         <h3 class="font-playfair text-xl font-bold ml-2 text-gray-900">Feedback Stats</h3>
                     </div>
                     
-                    <div class="bg-gray-50 rounded-xl p-4">
-                        <div class="mb-4 pb-4 border-b border-gray-200">
-                            <div class="flex justify-between items-center mb-2">
-                                <div class="flex items-center text-gray-800">
-                                    <i class="fas fa-check-circle mr-2"></i>
-                                    <span class="font-medium">Resolved</span>
-                                </div>
-                                <span class="text-2xl font-bold text-gray-900">25</span>
-                            </div>
-                            <p class="text-xs text-gray-500">↗︎ 14% more than last month</p>
-                        </div>
-                        
-                        <div class="mb-4 pb-4 border-b border-gray-200">
-                            <div class="flex justify-between items-center mb-2">
-                                <div class="flex items-center text-gray-800">
-                                    <i class="fas fa-spinner mr-2"></i>
-                                    <span class="font-medium">In Progress</span>
-                                </div>
-                                <span class="text-2xl font-bold text-gray-900">12</span>
-                            </div>
-                            <p class="text-xs text-gray-500">↘︎ 7% less than last month</p>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between items-center mb-2">
-                                <div class="flex items-center text-gray-800">
-                                    <i class="fas fa-lightbulb mr-2"></i>
-                                    <span class="font-medium">New Ideas</span>
-                                </div>
-                                <span class="text-2xl font-bold text-gray-900">38</span>
-                            </div>
-                            <p class="text-xs text-gray-500">↗︎ 21% more than last month</p>
-                        </div>
-                    </div>
+                    <!-- Stats -->
+<div class="bg-gray-50 rounded-xl p-4">
+  <div class="mb-4 pb-4 border-b border-gray-200">
+    <div class="flex justify-between items-center mb-2">
+      <div class="flex items-center text-gray-800">
+        <i class="fas fa-check-circle mr-2"></i>
+        <span class="font-medium">Resolved</span>
+      </div>
+      <span class="text-2xl font-bold text-gray-900">{{ stats.resolved }}</span>
+    </div>
+    <p class="text-xs text-gray-500">↗︎ …</p>
+  </div>
+  <div class="mb-4 pb-4 border-b border-gray-200">
+    <div class="flex justify-between items-center mb-2">
+      <div class="flex items-center text-gray-800">
+        <i class="fas fa-spinner mr-2"></i>
+        <span class="font-medium">In Progress</span>
+      </div>
+      <span class="text-2xl font-bold text-gray-900">{{ stats.in_progress }}</span>
+    </div>
+    <p class="text-xs text-gray-500">↘︎ …</p>
+  </div>
+  <div>
+    <div class="flex justify-between items-center mb-2">
+      <div class="flex items-center text-gray-800">
+        <i class="fas fa-lightbulb mr-2"></i>
+        <span class="font-medium">New Ideas</span>
+      </div>
+      <span class="text-2xl font-bold text-gray-900">{{ stats.new_ideas }}</span>
+    </div>
+    <p class="text-xs text-gray-500">↗︎ …</p>
+  </div>
+</div>
+
                 </div>
                 
                 <div class="form-card rounded-xl p-6 card-shadow">
@@ -190,78 +180,60 @@
                     </div>
                 </div>
                 
-                <div class="overflow-x-auto">
-                    <table class="w-full">
-                        <thead>
-                            <tr>
-                                <th class="py-3 px-4 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tl-lg">Type</th>
-                                <th class="py-3 px-4 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subject</th>
-                                <th class="py-3 px-4 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">Date</th>
-                                <th class="py-3 px-4 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                <th class="py-3 px-4 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tr-lg">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-200">
-                            <tr class="hover:bg-gray-50">
-                                <td class="py-4 px-4">
-                                    <div class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                        <i class="fas fa-bug mr-1"></i>
-                                        Bug
-                                    </div>
-                                </td>
-                                <td class="py-4 px-4 font-medium">Login page not working properly</td>
-                                <td class="py-4 px-4 hidden md:table-cell text-gray-500">April 15, 2023</td>
-                                <td class="py-4 px-4">
-                                    <div class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                        <i class="fas fa-spinner fa-spin-pulse mr-1"></i>
-                                        In Progress
-                                    </div>
-                                </td>
-                                <td class="py-4 px-4 text-right">
-                                    <a href="#feedback-detail-modal" class="text-gray-900 hover:text-gray-600 transition-colors">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="py-4 px-4">
-                                    <div class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                        <i class="fas fa-lightbulb mr-1"></i>
-                                        Feature
-                                    </div>
-                                </td>
-                                <td class="py-4 px-4 font-medium">Add dark mode support to dashboard</td>
-                                <td class="py-4 px-4 hidden md:table-cell text-gray-500">April 10, 2023</td>
-                                <td class="py-4 px-4">
-                                    <div class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                        <i class="fas fa-check-circle mr-1"></i>
-                                        Resolved
-                                    </div>
-                                </td>
-                                <td class="py-4 px-4 text-right">
-                                    <a href="#feedback-detail-modal" class="text-gray-900 hover:text-gray-600 transition-colors">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div class="flex justify-center mt-6">
-                    <nav class="inline-flex rounded-md shadow-sm">
-                        <a href="#" class="px-3 py-2 text-sm font-medium bg-white text-gray-500 rounded-l-md border border-gray-300 hover:bg-gray-50">
-                            <span class="sr-only">Previous</span>
-                            <i class="fas fa-chevron-left"></i>
-                        </a>
-                        <a href="#" class="px-3 py-2 text-sm font-medium bg-gray-900 text-white border border-gray-900">1</a>
-                        <a href="#" class="px-3 py-2 text-sm font-medium bg-white text-gray-700 border-t border-b border-r border-gray-300 hover:bg-gray-50">2</a>
-                        <a href="#" class="px-3 py-2 text-sm font-medium bg-white text-gray-500 rounded-r-md border-t border-b border-r border-gray-300 hover:bg-gray-50">
-                            <span class="sr-only">Next</span>
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-                    </nav>
-                </div>
+                <!-- History Table -->
+<div class="overflow-x-auto mt-8">
+  <table class="w-full">
+    <thead>
+      <tr>
+        <th class="py-3 px-4 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tl-lg">Type</th>
+        <th class="py-3 px-4 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subject</th>
+        <th class="py-3 px-4 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">Date</th>
+        <th class="py-3 px-4 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+        <th class="py-3 px-4 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tr-lg">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200">
+      {% for fb in history %}
+      <tr class="hover:bg-gray-50">
+        <td class="py-4 px-4">
+          <div class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+            {% if fb.feedback_type == "bug" %}
+              <i class="fas fa-bug mr-1"></i>Bug
+            {% elif fb.feedback_type == "feature" %}
+              <i class="fas fa-lightbulb mr-1"></i>Feature
+            {% else %}
+              <i class="fas fa-comment mr-1"></i>General
+            {% endif %}
+          </div>
+        </td>
+        <td class="py-4 px-4 font-medium">{{ fb.subject }}</td>
+        <td class="py-4 px-4 hidden md:table-cell text-gray-500">
+          {{ fb.created_at|date:"M d, Y" }}
+        </td>
+        <td class="py-4 px-4">
+          <div class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+            {% if fb.status == "in_progress" %}
+              <i class="fas fa-spinner fa-spin mr-1"></i>In Progress
+            {% elif fb.status == "resolved" %}
+              <i class="fas fa-check-circle mr-1"></i>Resolved
+            {% else %}
+              <i class="fas fa-clock mr-1"></i>Open
+            {% endif %}
+          </div>
+        </td>
+        <td class="py-4 px-4 text-right">
+          <a href="#feedback-detail-modal" class="text-gray-900 hover:text-gray-600">
+            <i class="fas fa-eye"></i>
+          </a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="5" class="py-4 px-4 text-center text-gray-500">No feedback yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
             </div>
         </div>
         
@@ -271,7 +243,7 @@
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="font-playfair font-bold text-2xl text-gray-900">Feedback Details</h3>
                     <div class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                        <i class="fas fa-spinner fa-spin-pulse mr-1"></i>
+                        <i class="fas fa-spinner fa-spin mr-1"></i>
                         In Progress
                     </div>
                 </div>
@@ -308,5 +280,5 @@
             </div>
         </div>
     </div>
-{% endblock content %}
+{% endblock %}
 
