@@ -1,5 +1,4 @@
-// Import Konva
-import Konva from 'konva';
+
 
 // Initialize Konva Stage
 const width = document.getElementById('canvas-container').clientWidth;

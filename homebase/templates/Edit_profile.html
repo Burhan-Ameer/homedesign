@@ -59,23 +59,25 @@
               value="{{ user.email }}"
             />
           </div>
-
+{% if request.user.is_business %}
+<div class="form-control w-full">
+  <label class="label">
+    <span class="label-text flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+      Website
+    </span>
+  </label>
+  <input 
+  name="website"
+    type="" 
+    placeholder="https://yourwebsite.com" 
+    value="{{request.user.website}}"
+    class="input input-bordered w-full focus:border-gray-700" 
+  />
+</div>
+{% endif %}
           <!-- Website Field -->
-          <div class="form-control w-full">
-            <label class="label">
-              <span class="label-text flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-                Website
-              </span>
-            </label>
-            <input 
-            name="website"
-              type="" 
-              placeholder="https://yourwebsite.com" 
-              value="{{request.user.website}}"
-              class="input input-bordered w-full focus:border-gray-700" 
-            />
-          </div>
+          
 
           <!-- Location Field -->
           <div class="form-control w-full">

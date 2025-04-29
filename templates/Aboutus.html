@@ -4,35 +4,41 @@
 {% block content %}
 <div class="bg-gray-50">
 <!-- Hero Section -->
-<section class="  py-20 ">
+<section class="py-20">
     <div class="max-w-6xl mx-auto px-6">
-        <div class="grid md:grid-cols-2 gap-12 items-center ">
-            <div class="space-y-6x">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6" data-aos="fade-right" data-aos-duration="1000">
                 <h1 class="text-4xl md:text-5xl font-bold text-black">Transform Your Space with Interactive Design</h1>
-                <p class="text-lg ">Experience the future of home design with our innovative platform.</p>
+                <p class="text-lg">Experience the future of home design with our innovative platform.</p>
                 <button class="btn bg-gray-900 text-white">Get Started</button>
             </div>
-            
+            <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
+                <!-- Add an image here if you wish -->
+                <img src="{% static 'media/about-hero.jpg' %}" alt="Interactive Design" class="rounded-lg shadow-xl" onerror="this.src='https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1400&auto=format&fit=crop'">
+            </div>
         </div>
     </div>
 </section>
 
 <!-- Values Section -->
-<section class="py-16 px-6 text-black bg-white  ">
+<section class="py-16 px-6 text-black bg-white">
     <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl font-bold text-center   mb-12">Our Core Values</h2>
+        <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up" data-aos-duration="800">Our Core Values</h2>
         <div class="grid md:grid-cols-3 gap-8">
-            <div class="p-6 bg-white flex justify-center items-center flex-col rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="p-6 bg-white flex justify-center items-center flex-col rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300" 
+                 data-aos="flip-up" data-aos-duration="800" data-aos-delay="100">
                 <div class="text-4xl mb-4"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m422-232 207-248H469l29-227-185 267h139l-30 208ZM320-80l40-280H160l360-520h80l-40 320h240L400-80h-80Zm151-390Z"/></svg></div>
                 <h3 class="text-xl font-semibold mb-2">Creativity First</h3>
                 <p class="text-gray-600">Exploring limitless design possibilities through innovative technology and artistic vision.</p>
             </div>
-            <div class="p-6 bg-white flex justify-center items-center flex-col rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="p-6 bg-white flex justify-center items-center flex-col rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300" 
+                 data-aos="flip-up" data-aos-duration="800" data-aos-delay="300">
                 <div class="text-4xl mb-4"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-80q-26 0-47-12.5T400-126q-33 0-56.5-23.5T320-206v-142q-59-39-94.5-103T190-590q0-121 84.5-205.5T480-880q121 0 205.5 84.5T770-590q0 77-35.5 140T640-348v142q0 33-23.5 56.5T560-126q-12 21-33 33.5T480-80Zm-80-126h160v-36H400v36Zm0-76h160v-38H400v38Zm-8-118h58v-108l-88-88 42-42 76 76 76-76 42 42-88 88v108h58q54-26 88-76.5T690-590q0-88-61-149t-149-61q-88 0-149 61t-61 149q0 63 34 113.5t88 76.5Zm88-162Zm0-38Z"/></svg></div>
                 <h3 class="text-xl font-semibold mb-2">User-Centric Innovation</h3>
                 <p class="text-gray-600">Creating intuitive and immersive experiences that transform how you design your space.</p>
             </div>
-            <div class="p-6 bg-white flex justify-center items-center flex-col rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="p-6 bg-white flex justify-center items-center flex-col rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300" 
+                 data-aos="flip-up" data-aos-duration="800" data-aos-delay="500">
                 <div class="text-4xl mb-4"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m438-338 226-226-57-57-169 169-84-84-57 57 141 141Zm42 258q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z"/></svg></div>
                 <h3 class="text-xl font-semibold mb-2">Trust & Collaboration</h3>
                 <p class="text-gray-600">Building a vibrant community where inspiration and creativity flow freely.</p>
@@ -44,12 +50,13 @@
 <!-- Team Section -->
 <section class="bg-gray-100 text-black py-20 px-6">
     <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-4">Meet Our Team</h2>
-        <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Our talented professionals combine technical expertise and creative vision to deliver exceptional design solutions.</p>
+        <h2 class="text-3xl font-bold text-center mb-4" data-aos="fade-up" data-aos-duration="800">Meet Our Team</h2>
+        <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">Our talented professionals combine technical expertise and creative vision to deliver exceptional design solutions.</p>
         
         <div class="grid md:grid-cols-3 gap-10">
             <!-- Team Member Card - Burhan -->
-            <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-center pt-8">
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-center pt-8" 
+                 data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
                 <div class="mx-auto mb-4">
                     <div class="w-40 h-40 rounded-full overflow-hidden ring-4 ring-blue-100 mx-auto shadow-md">
                         <img src="{% static 'media/burhanprof.jpg' %}" alt="Burhan Ameer" 
@@ -69,7 +76,8 @@
             </div>
             
             <!-- Team Member Card - Muhammad Atta -->
-            <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-center pt-8">
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-center pt-8" 
+                 data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
                 <div class="mx-auto mb-4">
                     <div class="w-40 h-40 rounded-full overflow-hidden ring-4 ring-blue-100 mx-auto shadow-md">
                         <img src="{% static 'media/aattta pic.jpeg' %}" alt="Muhammad Atta" 
@@ -89,7 +97,8 @@
             </div>
             
             <!-- Team Member Card - Muhammad Sikandar -->
-            <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-center pt-8">
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-center pt-8" 
+                 data-aos="zoom-in" data-aos-duration="800" data-aos-delay="500">
                 <div class="mx-auto mb-4">
                     <div class="w-40 h-40 rounded-full overflow-hidden ring-4 ring-blue-100 mx-auto shadow-md">
                         <img src="{% static 'media/peakpx.jpg' %}" alt="Muhammad Sikandar Sultan" 
@@ -111,5 +120,37 @@
     </div>
 </section>
 
+<!-- Add a Mission/Vision Section with AOS -->
+<section class="py-16 px-6 text-white bg-gray-900">
+    <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right" data-aos-duration="1000">
+                <h2 class="text-3xl font-bold mb-6">Our Mission</h2>
+                <p class="text-lg mb-6">To revolutionize home design by providing accessible, intuitive tools that empower everyone to visualize and create their perfect space.</p>
+                <p class="text-lg">We believe that everyone deserves to live in a space that inspires them, regardless of their design experience or budget.</p>
+            </div>
+            <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
+                <h2 class="text-3xl font-bold mb-6">Our Vision</h2>
+                <p class="text-lg mb-6">To become the leading platform for interactive home design, where technology and creativity meet to transform living spaces worldwide.</p>
+                <p class="text-lg">We envision a world where designing your dream space is as simple as a few clicks, making design accessible to all.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 </div>
+
+<!-- Make sure AOS is initialized in your base template or add it here -->
+<script>
+  // This will run once the page is fully loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    // If AOS is not initialized in your base template, uncomment the line below
+    // AOS.init({duration: 800, once: true});
+    
+    // If you need to refresh AOS (sometimes needed for dynamic content)
+    setTimeout(function() {
+      AOS.refresh();
+    }, 500);
+  });
+</script>
 {% endblock %}

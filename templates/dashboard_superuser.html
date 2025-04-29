@@ -1,0 +1,284 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="{% static 'media/favicon.png' %}"
+      type="image/png"
+    />
+    <title>DVP-SUPERUSER</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    
+  </head>
+<body class="font-poppins min-h-screen bg-gray-50">
+
+  <!-- Superuser Header -->
+  <!-- Navbar -->
+  <div class="navbar bg-white shadow-lg sticky top-0 z-50">
+    <div class="navbar-start">
+      <div class="dropdown">
+        <label tabindex="0" class="btn btn-ghost lg:hidden">
+          <i class="fas fa-bars"></i>
+        </label>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52">
+          <li><a class="active"><i class="fas fa-comments mr-2"></i>Feedback</a></li>
+          <li><a><i class="fas fa-chart-line mr-2"></i>Analytics</a></li>
+          <li><a><i class="fas fa-cog mr-2"></i>Settings</a></li>
+        </ul>
+      </div>
+      <a class="pl-6">
+        <img src="{% static 'media/DVP.png' %}" alt="Logo" class="w-40 " />
+      </a>
+    </div>
+   
+    <div class="navbar-end">
+      <div class="dropdown dropdown-end">
+        <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+          <div class="w-10 rounded-full">
+            <img src="https://i.pravatar.cc/150?img=68" alt="Admin Avatar" />
+          </div>
+        </label>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52">
+          <li><a><i class="fas fa-user mr-2"></i>Profile</a></li>
+          <li><a><i class="fas fa-bell mr-2"></i>Notifications</a></li>
+          <li><a><i class="fas fa-sign-out-alt mr-2"></i>Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mx-auto py-8 px-4 max-w-7xl">
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <!-- Total Feedback -->
+      <div class="card bg-white shadow-xl overflow-hidden">
+        <div class="card-body p-6">
+          <div class="flex items-center">
+            <div class="rounded-full p-3 bg-blue-900 mr-4">
+              <i class="fas fa-comments text-blue-400 text-xl"></i>
+            </div>
+            <div>
+              <h2 class="card-title text-lg text-gray-800">Total Feedback</h2>
+              <div class="text-3xl font-bold text-gray-900 mt-1">{{ stats.total }}</div>
+              <p class="text-gray-600 text-sm mt-1">All feedback items</p>
+            </div>
+          </div>
+          <div class="mt-4">
+            <div class="w-full bg-gray-700 rounded-full h-1.5">
+              <div class="bg-blue-500 h-1.5 rounded-full" style="width:100%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pending -->
+      <div class="card bg-white shadow-xl overflow-hidden">
+        <div class="card-body p-6">
+          <div class="flex items-center">
+            <div class="rounded-full p-3 bg-amber-900 mr-4">
+              <i class="fas fa-clock text-amber-400 text-xl"></i>
+            </div>
+            <div>
+              <h2 class="card-title text-lg text-gray-800">Pending</h2>
+              <div class="text-3xl font-bold text-amber-400 mt-1">{{ stats.pending }}</div>
+              <p class="text-gray-600 text-sm mt-1">Awaiting response</p>
+            </div>
+          </div>
+          <div class="mt-4">
+            <div class="w-full bg-gray-700 rounded-full h-1.5">
+              <div class="bg-amber-500 h-1.5 rounded-full" ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resolved -->
+      <div class="card bg-white shadow-xl overflow-hidden">
+        <div class="card-body p-6">
+          <div class="flex items-center">
+            <div class="rounded-full p-3 bg-green-900 mr-4">
+              <i class="fas fa-check-circle text-green-400 text-xl"></i>
+            </div>
+            <div>
+              <h2 class="card-title text-lg text-gray-800">Resolved</h2>
+              <div class="text-3xl font-bold text-green-400 mt-1">{{ stats.resolved }}</div>
+              <p class="text-gray-600 text-sm mt-1">Completed items</p>
+            </div>
+          </div>
+          <div class="mt-4">
+            <div class="w-full bg-gray-700 rounded-full h-1.5">
+              <div class="bg-green-500 h-1.5 rounded-full" ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Response Rate -->
+      <div class="card bg-white shadow-xl overflow-hidden">
+        <div class="card-body p-6">
+          <div class="flex items-center">
+            <div class="rounded-full p-3 bg-purple-900 mr-4">
+              <i class="fas fa-chart-pie text-purple-400 text-xl"></i>
+            </div>
+            <div>
+              <h2 class="card-title text-lg text-gray-800">Response Rate</h2>
+              <div class="text-3xl font-bold text-purple-400 mt-1">{{ stats.response_rate }}</div>
+              <p class="text-gray-600 text-sm mt-1">Feedback addressed</p>
+            </div>
+          </div>
+          <div class="mt-4">
+            <div class="w-full bg-gray-700 rounded-full h-1.5">
+              <div class="bg-purple-500 h-1.5 rounded-full"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feedback Table -->
+    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="table w-full">
+          <thead>
+            <tr class="bg-gray-50 text-gray-700">
+              <th>User</th>
+              <th>Feedback</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="feedback-table">
+            {% for fb in feedbacks %}
+            <tr class="feedback-item border-b border-gray-200" data-status="{{ fb.status }}" data-id="{{ fb.id }}">
+              <td class="py-4">
+                <div class="flex items-center space-x-3">
+                  <div class="avatar">
+                    <div class="mask mask-squircle w-12 h-12">
+                      <img src="{{ fb.user.profile_pic.url|default:'https://i.pravatar.cc/150' }}" alt="Avatar" />
+                    </div>
+                  </div>
+                  <div>
+                    <div class="font-semibold text-gray-800">{{ fb.user.get_full_name|default:fb.user.username }}</div>
+                    <div class="text-sm text-gray-600">{{ fb.user.email }}</div>
+                  </div>
+                </div>
+              </td>
+              <td class="max-w-md py-4">
+                <div class="line-clamp-2 text-gray-700">{{ fb.message }}</div>
+              </td>
+              <td class="whitespace-nowrap py-4">
+                <div class="flex items-center text-gray-700">
+                  <i class="fas fa-calendar-alt text-gray-400 mr-2"></i>
+                  <span>{{ fb.created_at|date:"Y-m-d" }}</span>
+                </div>
+              </td>
+              <td class="py-4">
+                {% if fb.status == 'pending' %}
+                <div class="badge badge-warning gap-1 py-3 px-4">
+                  <i class="fas fa-clock mr-1"></i>
+                  {{ fb.get_status_display }}
+                </div>
+                {% elif fb.status == 'resolved' %}
+                <div class="badge badge-success gap-1 py-3 px-4">
+                  <i class="fas fa-check-circle mr-1"></i>
+                  {{ fb.get_status_display }}
+                </div>
+                {% else %}
+                <div class="badge badge-info gap-1 py-3 px-4">
+                  <i class="fas fa-info-circle mr-1"></i>
+                  {{ fb.get_status_display }}
+                </div>
+                {% endif %}
+              </td>
+              <td class="py-4">
+                <div class="flex gap-2">
+                  <button class="btn btn-sm btn-primary respond-btn" data-id="{{ fb.id }}" onclick="document.getElementById('response-modal-{{ fb.id }}').showModal()">
+                    <i class="fas fa-reply mr-1"></i> Respond
+                  </button>
+                  {% if fb.status == 'pending' %}
+                  <button class="btn btn-sm btn-outline btn-success resolve-btn" data-id="{{ fb.id }}">
+                    <i class="fas fa-check mr-1"></i> Resolve
+                  </button>
+                  {% else %}
+                  <button class="btn btn-sm btn-outline btn-warning pending-btn" data-id="{{ fb.id }}">
+                    <i class="fas fa-undo mr-1"></i> Reopen
+                  </button>
+                  {% endif %}
+                </div>
+              </td>
+            </tr>
+            
+            <!-- Response Modal for each feedback item -->
+            <dialog id="response-modal-{{ fb.id }}" class="modal">
+              <div class="modal-box bg-white">
+                <h3 class="font-bold text-lg text-gray-800">Respond to Feedback</h3>
+                <div class="py-4">
+                  <div class="mb-4 p-4 bg-gray-50 rounded-lg">
+                    <p class="text-sm text-gray-600">Original feedback:</p>
+                    <p class="text-gray-800 mt-1">{{ fb.message }}</p>
+                  </div>
+                  <form method="post" action="{% url 'reply_feedback' fb.id %}" class="space-y-4">
+                    {% csrf_token %}
+                    <textarea
+                      name="reply"
+                      rows="4"
+                      class="w-full p-2 bg-gray-100 text-gray-900 rounded"
+                      placeholder="Type your response…"
+                      required>{{ fb.reply|default_if_none:'' }}</textarea>
+                    <div class="text-right">
+                      <button
+                        type="submit"
+                        class="btn btn-primary btn-sm">
+                        Send Reply
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </dialog>
+            {% empty %}
+            <tr>
+              <td colspan="5" class="text-center py-4 text-gray-600">No feedback available.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JavaScript for handling feedback actions -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Handle resolve buttons
+      document.querySelectorAll('.resolve-btn').forEach(button => {
+        button.addEventListener('click', function() {
+          const feedbackId = this.getAttribute('data-id');
+          // Add your AJAX call to update status
+          console.log('Resolving feedback:', feedbackId);
+          // After successful update, you can update the UI or reload the page
+        });
+      });
+
+      // Handle pending/reopen buttons
+      document.querySelectorAll('.pending-btn').forEach(button => {
+        button.addEventListener('click', function() {
+          const feedbackId = this.getAttribute('data-id');
+          // Add your AJAX call to update status
+          console.log('Reopening feedback:', feedbackId);
+          // After successful update, you can update the UI or reload the page
+        });
+      });
+    });
+  </script>
+</body>
+</html>

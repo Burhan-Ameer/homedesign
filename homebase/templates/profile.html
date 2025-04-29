@@ -47,26 +47,34 @@
     <div class="border-t border-gray-200 my-6"></div>
     
     <!-- Stats -->
-    <div class="grid grid-cols-3 gap-12 mb-6 justify-items-center">
-      <div class="text-center">
-        <p class="text-2xl font-bold text-gray-900">89</p>
+  
+      <div class="grid i {% if request.user.is_business %}
+      grid-cols-3
+      {% else %}
+      grid-cols-1
+      {% endif %}  gap-12 mb-6 justify-items-center">
+     {% if request.user.is_business %}
+     <div class="text-center">
+      <p class="text-2xl font-bold text-gray-900">89</p>
 
-        <p class="text-gray-600 text-sm">Posts</p>
+      <p class="text-gray-600 text-sm">Posts</p>
 
-      </div>
-      <div class="text-center">
-        <p class="text-xl font-bold text-gray-900">Website</p>
+    </div>
+    <div class="text-center">
+      <p class="text-xl font-bold text-gray-900">Website</p>
 
-        <p class="text-gray-600 text-sm">{{request.user.website}}</p>
-      </div>
+      <p class="text-gray-600 text-sm">{{request.user.website}}</p>
+    </div>
+     {% endif %}
     
       <div class="text-center">
-        <p class="text-xl font-bold text-gray-900">HQ</p>
+        <p class="text-xl font-bold text-gray-900">Location</p>
 
         <p class="text-gray-600 text-sm">{{request.user.location}}</p>
       </div>
 
     </div>
+   
     
     <!-- Action Buttons -->
     <div class="flex gap-4">
@@ -75,7 +83,11 @@
         Edit Profile
      
      </a>
-      <a href="{% url 'adminpage' %}" class="bg-white text-gray-900 btn  py-2 px-4 rounded-full font-medium flex-1  hover:bg-gray-50">
+      <a href=" {% if request.user.is_business %}
+      {% url 'adminpage' %}
+      {% else %}
+      {% url 'home' %}
+      {% endif %}  " class="bg-white text-gray-900 btn  py-2 px-4 rounded-full font-medium flex-1  hover:bg-gray-50">
         Go Back
       </a>
     </div>

@@ -6,6 +6,15 @@ from homebase.models import Products,images as Images
 from django.contrib import messages
 from .models import Collections
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required, user_passes_test
+
+def is_customer(user):
+    return user.is_authenticated and user.role == "customer"
+
+def is_business(user):
+    return user.is_authenticated and user.role == "business"
+@login_required(login_url='login')
+@user_passes_test(is_customer, login_url='login')
 def brands(request):
     query = request.GET.get("search")
     if query:
@@ -18,7 +27,8 @@ def brands(request):
         'business_users': business_users,
     }
     return render(request, "brands.html", context)
-
+@login_required(login_url='login')
+@user_passes_test(is_customer, login_url='login')
 def brand_details(request, username):
     # Get business user and their products
     business_user = get_object_or_404(CustomUser, username=username, role="business")
@@ -43,9 +53,13 @@ def brand_details(request, username):
     return render(request, "brand_product_details.html", context)
 
 # canvas view
+@login_required(login_url='login')
+@user_passes_test(is_customer, login_url='login')
 def canvas(request):
     return render(request, "canvas.html")
 # COLLECTION VIEW
+@login_required(login_url='login')
+@user_passes_test(is_customer, login_url='login')
 def add_to_collection(request,product_id):
     product = get_object_or_404(Products, id=product_id)
     existing_collection = Collections.objects.filter(user=request.user, product=product).first()
@@ -55,6 +69,9 @@ def add_to_collection(request,product_id):
         Collections.objects.create(user=request.user, product=product)
         messages.success(request, "Product added to your collection.")
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    
+@login_required(login_url='login')
+@user_passes_test(is_customer, login_url='login')
 def collections(request):
     collections_qs = Collections.objects.filter(user=request.user)
     products = Products.objects.filter(collections__in=collections_qs).distinct()
@@ -75,7 +92,8 @@ def collections(request):
         'product_images': product_images,
     }
     return render(request, "collections.html", context)
-
+@login_required(login_url='login')
+@user_passes_test(is_customer, login_url='login')
 def products(request):
     query = request.GET.get("search")
     if query:
@@ -101,13 +119,15 @@ def products(request):
         'images': images,
     }
     return render(request, "products.html", context)
-
+@login_required(login_url='login')
+@user_passes_test(is_customer, login_url='login')
 def remove_from_collection(request, product_id):
     """Remove one product from user’s collection."""
     Collections.objects.filter(user=request.user, product_id=product_id).delete()
     messages.success(request, "Item removed from your collection.")
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/collections/'))
-
+@login_required(login_url='login')
+@user_passes_test(is_customer, login_url='login')   
 def clear_collection(request):
     """Clear all items from user’s collection."""
     Collections.objects.filter(user=request.user).delete()

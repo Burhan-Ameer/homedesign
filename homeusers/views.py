@@ -66,5 +66,3 @@ def logout_page(request):
     logout(request)
     messages.success(request, "Logged out successfully")
     return redirect('login')    
-def Profile(request):
-    return render(request,"profile.html")

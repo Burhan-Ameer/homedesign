@@ -1,9 +1,10 @@
-
 {% extends "base.html" %}
+{% load static %}
+
 {% block content %}
   
-    <div class=" px-4 p-3   bg-white">
-     
+    <div class="px-4 p-3 bg-white">
+        <!-- Your existing content -->
         
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
             <!-- Left Sidebar -->
@@ -149,4 +150,10 @@
             </div>
         </div>
     </div>
-    {% endblock content %}
+
+    <!-- Add Konva.js CDN -->
+    <script src="https://unpkg.com/konva@9/konva.min.js"></script>
+    
+    <!-- Add your custom JavaScript file -->
+    <script src="{% static 'js/canvas-logic.js' %}"></script>
+{% endblock content %}

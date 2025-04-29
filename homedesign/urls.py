@@ -35,7 +35,7 @@ urlpatterns = [
     # about us page
     path("aboutus/",views.aboutus,name="about"),
     # admin Profile
-    path("admin_profile/",homeviews.Profile,name="admin_profile"),
+    path("profile/",homeviews.Profile,name="profile"),
     # edit admin Profile
     path("edit_profile/",homeviews.edit_profile,name="edit_profile"),
 
@@ -64,7 +64,11 @@ urlpatterns = [
 
     path('collections/remove/<int:product_id>/', dusers.remove_from_collection, name='remove_collection_item'),
     path('collections/clear/', dusers.clear_collection,name='clear_collection'),
+    path("superuserdashboard/",views.dashboard_superuser,name="dashboard_superuser"),
+    path('superuser/feedback/<int:feedback_id>/reply/',views.reply_feedback,name='reply_feedback'),
+     path('feedback/edit/<int:feedback_id>/', views.edit_feedback, name='edit_feedback'),
 
+    
 ]
 
 # Add static/media URLs for development

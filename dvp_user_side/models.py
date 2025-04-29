@@ -33,3 +33,10 @@ class Feedback(models.Model):
 
     def __str__(self):
         return f"{self.get_feedback_type_display()} – {self.subject}"
+class feedbackReply(models.Model):
+    feedback = models.OneToOneField(Feedback, on_delete=models.CASCADE, related_name='replies')
+    reply = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Reply to {self.feedback.subject}"

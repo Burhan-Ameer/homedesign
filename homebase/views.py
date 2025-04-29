@@ -9,6 +9,19 @@ from PIL import Image
 from homebase.models import Colors
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required, user_passes_test
+
+def is_customer(user):
+    return user.is_authenticated and user.role == "customer"
+
+def is_business(user):
+    return user.is_authenticated and user.role == "business"
+
+
+
+
+@login_required(login_url='login')
+@user_passes_test(is_business, login_url='login')
 def createpost(request):
     if request.method == "POST":
         title = request.POST.get("title")
@@ -95,16 +108,17 @@ def createpost(request):
         return redirect("adminpage")
     
     return render(request, "createpost.html")
-
+@login_required(login_url='login')
+@user_passes_test(is_business, login_url='login')
 def deletepost(request, pk):
     product = get_object_or_404(Products, pk=pk)
     product.delete()
     messages.success(request, "Product deleted successfully!")
     return redirect("adminpage")
-
+@login_required(login_url='login')
 def Profile(request):
-    return render(request, "admin_profile.html")
-
+    return render(request, "profile.html")
+@login_required(login_url='login')
 def edit_profile(request):
     user = request.user
     if request.method == "POST":
@@ -127,10 +141,11 @@ def edit_profile(request):
 
         user.save()
         messages.success(request, "Profile updated successfully!")
-        return redirect("admin_profile")
+        return redirect("profile")
 
     return render(request, "Edit_profile.html", {"user": user})
-
+@login_required(login_url='login')
+@user_passes_test(is_business, login_url='login')
 def explore(request):
     # Get the search query from the request
     query = request.GET.get("search", "")
@@ -160,7 +175,7 @@ def explore(request):
     }
 
     return render(request, "Explore.html", context)
-
+@login_required(login_url='login')
 def product_detail(request, pk):
     product = get_object_or_404(Products, pk=pk)
     product_images = Images.objects.filter(product=product)
@@ -171,7 +186,8 @@ def product_detail(request, pk):
         "colors":color
     })
 
-
+@login_required(login_url='login')
+@user_passes_test(is_business, login_url='login')
 def update_post(request, pk):
     # Fetch the product, images, and colors
     product = get_object_or_404(Products, pk=pk)

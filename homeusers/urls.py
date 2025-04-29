@@ -3,6 +3,5 @@ from homeusers.views import *
 urlpatterns = [
    path("login/",Login_page,name="login"),
    path("register/",Register,name="register"),
-   path("logout/",logout_page,name="logout"),
-   path("profile/",Profile,name="profile")
+   path("logout/",logout_page,name="logout")
 ]
