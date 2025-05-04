@@ -1,4 +1,4 @@
-# DVIP (Design Visualization Platform)
+# DVP (Design Visualization Platform)
 
 ## 📌 Overview
 DVIP (Design Visualization Platform) is an interactive web-based tool that allows users to visualize, customize, and arrange furniture, room decor, and kitchen items in a digital environment. The platform provides a user-friendly interface to experiment with different layouts, colors, and arrangements before implementing them in real spaces.
