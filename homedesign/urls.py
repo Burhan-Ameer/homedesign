@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 from . import views
 from homebase import views as homeviews
 from dvp_user_side import views as dusers
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),  # Homepage
@@ -66,9 +67,8 @@ urlpatterns = [
     path('collections/clear/', dusers.clear_collection,name='clear_collection'),
     path("superuserdashboard/",views.dashboard_superuser,name="dashboard_superuser"),
     path('superuser/feedback/<int:feedback_id>/reply/',views.reply_feedback,name='reply_feedback'),
-     path('feedback/edit/<int:feedback_id>/', views.edit_feedback, name='edit_feedback'),
-
-    
+    path('feedback/edit/<int:feedback_id>/', views.edit_feedback, name='edit_feedback'),
+    path('like/<int:product_id>/', dusers.toggle_like, name='toggle_like'),
 ]
 
 # Add static/media URLs for development

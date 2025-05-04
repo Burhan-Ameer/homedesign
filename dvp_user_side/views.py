@@ -5,8 +5,9 @@ from django.db.models import Q
 from homebase.models import Products,images as Images
 from django.contrib import messages
 from .models import Collections
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required, user_passes_test
+ # Adjust import to match your actual model names
 
 def is_customer(user):
     return user.is_authenticated and user.role == "customer"
@@ -56,7 +57,63 @@ def brand_details(request, username):
 @login_required(login_url='login')
 @user_passes_test(is_customer, login_url='login')
 def canvas(request):
-    return render(request, "canvas.html")
+    """
+    View for rendering the canvas page with products from either user's collection or all products
+    """
+    # Check if we should show all products or just collection
+    show_all = request.GET.get('show_all', '0') == '1'
+    
+    # Get search query from request
+    search_query = request.GET.get('search', '')
+    
+    products_with_images = []
+    
+    if show_all:
+        # Show all products logic
+        if search_query:
+            # If search query provided, filter all products
+            products_list = Products.objects.filter(
+                Q(name__icontains=search_query) | 
+                Q(description__icontains=search_query)
+            ).order_by("name")
+        else:
+            products_list = Products.objects.all().order_by("name")
+    else:
+        # Show collection only logic
+        user_collections = Collections.objects.filter(user=request.user)
+        collection_products = [collection.product for collection in user_collections]
+        
+        if search_query:
+            # Filter collection products
+            filtered_products = []
+            for product in collection_products:
+                if (search_query.lower() in product.name.lower() or 
+                    (product.description and search_query.lower() in product.description.lower())):
+                    filtered_products.append(product)
+            products_list = filtered_products
+        else:
+            products_list = collection_products
+    
+    # For each product, get its first image
+    for product in products_list:
+        # Get first image for this product
+        images = Images.objects.filter(product=product)
+        if images.exists():
+            # Add product and its image to our list
+            products_with_images.append({
+                'product': product,
+                'image': images.first()
+            })
+    
+    # Pass data to template
+    context = {
+        'products_with_images': products_with_images,
+        'search_query': search_query,  # Pass search query back to template
+        'show_all': show_all,  # Flag to indicate what we're showing
+    }
+    
+    return render(request, 'canvas.html', context)
+
 # COLLECTION VIEW
 @login_required(login_url='login')
 @user_passes_test(is_customer, login_url='login')
@@ -133,3 +190,29 @@ def clear_collection(request):
     Collections.objects.filter(user=request.user).delete()
     messages.success(request, "All items cleared from your collection.")
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/collections/'))
+
+@login_required(login_url='login')
+@user_passes_test(is_customer, login_url='login')
+def toggle_like(request, product_id):
+    """Toggle like status for a product"""
+    product = get_object_or_404(Products, id=product_id)
+    
+    # Check if user already liked this product
+    if request.user in product.likes.all():
+        # Unlike
+        product.likes.remove(request.user)
+        liked = False
+    else:
+        # Like
+        product.likes.add(request.user)
+        liked = True
+    
+    # For AJAX requests, return JSON response
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        return JsonResponse({
+            'liked': liked,
+            'count': product.likes.count()
+        })
+    
+    # For regular requests, redirect back to referring page
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
