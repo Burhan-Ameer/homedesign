@@ -19,6 +19,11 @@ class Products(models.Model):
     description=models.TextField(blank=True,null=True)
     created_date=models.DateTimeField(default=timezone.now)
     likes=models.ManyToManyField(CustomUser,related_name="likes",blank=True)
+    
+    @property
+    def likes_count(self):
+        return self.likes.count()
+        
     def __str__(self):
         return self.name
     class  Meta:

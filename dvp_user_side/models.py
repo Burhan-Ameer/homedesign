@@ -2,6 +2,8 @@ from django.db import models
 from homeusers.models import CustomUser
 from homebase.models import Products 
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
+
 # Create your models here.
 class Collections(models.Model):
     user= models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -33,6 +35,7 @@ class Feedback(models.Model):
 
     def __str__(self):
         return f"{self.get_feedback_type_display()} – {self.subject}"
+
 class feedbackReply(models.Model):
     feedback = models.OneToOneField(Feedback, on_delete=models.CASCADE, related_name='replies')
     reply = models.TextField()
@@ -40,3 +43,15 @@ class feedbackReply(models.Model):
 
     def __str__(self):
         return f"Reply to {self.feedback.subject}"
+
+class RoomDesign(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='room_designs')
+    name = models.CharField(max_length=100, default="Untitled Design")
+    stage_data = models.JSONField()  # Store the Konva stage JSON
+    thumbnail = models.TextField()    # Store as base64 data URL
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    item_count = models.IntegerField(default=0)
+    
+    def __str__(self):
+        return f"{self.name} by {self.user.username}"

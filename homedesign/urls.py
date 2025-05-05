@@ -22,6 +22,7 @@ from . import views
 from homebase import views as homeviews
 from dvp_user_side import views as dusers
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),  # Homepage
@@ -69,6 +70,9 @@ urlpatterns = [
     path('superuser/feedback/<int:feedback_id>/reply/',views.reply_feedback,name='reply_feedback'),
     path('feedback/edit/<int:feedback_id>/', views.edit_feedback, name='edit_feedback'),
     path('like/<int:product_id>/', dusers.toggle_like, name='toggle_like'),
+    path("saved/",dusers.saved_designs,name="saved"),
+    path('api/save-design/', dusers.save_design, name='save_design'),
+    path('api/get-design/<str:design_id>/', dusers.get_design, name='get_design'),
 ]
 
 # Add static/media URLs for development

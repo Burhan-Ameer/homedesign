@@ -56,7 +56,7 @@
               <a href="{% url 'home' %}" class="rounded-lg hover:bg-gray-50 p-3">Home</a>
               <a href="{% url 'brands' %}" class="rounded-lg hover:bg-gray-50 p-3">Brands</a>
               <a href="{% url 'collection' %}" class="rounded-lg hover:bg-gray-50 p-3">Collections</a>
-              <a href="" class="rounded-lg hover:bg-gray-50 p-3">Saved</a>
+              <a href="{% url 'saved' %}" class="rounded-lg hover:bg-gray-50 p-3">Saved</a>
               <a href="{% url 'products' %}" class="rounded-lg hover:bg-gray-50 p-3">Products</a>
 
             </div>
@@ -100,14 +100,15 @@
               </div>
               <!-- Dropdown Menu -->
               <ul tabindex="0" class="menu menu-sm dropdown-content bg-gray-900 text-white rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                {% if request.user.is_authenticated %}
                 <li>
                     <a href="{% url 'profile' %}" class="justify-between">
                         Profile
                         <span class="badge">New</span>
                     </a>
                 </li>
-                <li><a href="" class="justify-between">Settings</a></li>
-                {% if request.user.is_authenticated %}
+              
+              
                 <li>
                     <button class="justify-between w-full text-left" onclick="logout_modal.showModal()">
                         Logout
@@ -150,7 +151,7 @@
                 Brands
             </a>
         </li>
-          <li class="text-white"><a class="p-4 hover:bg-gray-900"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z"/></svg> Saved</a></li>
+          <li class="text-white"><a href="{% url 'saved' %}" class="p-4 hover:bg-gray-900"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z"/></svg> Saved</a></li>
         </ul>
       </div>
 

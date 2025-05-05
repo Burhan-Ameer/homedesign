@@ -9,66 +9,16 @@
       href="{% static 'media/favicon.png' %}"
       type="image/png"
     />
-    <title>DVIP-ADMIN</title>
+    <title>DVP-ADMIN</title>
     <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}" />
+    <link rel="stylesheet" href="../static/css/main.css">
+    <!-- Add Toastify CSS and JS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.js"></script>
     <!-- <script src="{% static 'static/js/konva.min.js' %}"></script> -->
     <script src="https://unpkg.com/konva@9/konva.min.js"></script>
-    <style>
-      #container {
-          height: 600px;
-          background-color: #4b94dd; /* Light gray background */
-          border: 1px solid #e5e7eb; /* Light border */
-          border-radius: 0.5rem; /* Rounded corners */
-          box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06); /* Inner shadow effect */
-          overflow: hidden; /* Prevent content overflow */
-          position: relative; /* For positioning child elements */
-          transition: all 0.2s ease-in-out; /* Smooth transitions */
-      }
-      
-      #container:focus-within {
-          border-color: #3b82f6; /* Blue border when focused */
-          box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06), 
-                      0 0 0 3px rgba(59, 130, 246, 0.1); /* Focus ring */
-      }
-          
-      /* Loading state */
-      #container.is-loading::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-color: rgba(255, 255, 255, 0.7);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 10;
-      }
-      
-      #container.is-loading::after {
-          content: '';
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 40px;
-          height: 40px;
-          border: 4px solid rgba(59, 130, 246, 0.3);
-          border-radius: 50%;
-          border-top-color: #3b82f6;
-          animation: spin 1s linear infinite;
-          z-index: 11;
-      }
-      
-      @keyframes spin {
-          to { transform: translate(-50%, -50%) rotate(360deg); }
-      }
-      </style>
-  
-  
-  
-  
+    <!-- Add Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body class="bg-white h-screen">
     <div class="drawer lg:drawer-open">
@@ -78,13 +28,7 @@
       <div class="drawer-content flex flex-col">
         <!-- Navbar -->
         <div class="navbar w-full shadow-xl border-b-2">
-          <div class="h-12  flex items-center justify-center">
-            <img 0
-              src="{% static 'media/DVP.png' %}" 
-              class="h-16 object-contain" 
-              alt="Home Design Interactive Logo"
-            >
-          </div>
+         
           <div class="flex-none lg:hidden">
             <label for="my-drawer-2" class="btn btn-square btn-ghost">
               <svg
@@ -102,13 +46,16 @@
               </svg>
             </label>
           </div>
+          <div class="h-9  flex items-center justify-center">
+            <img 0
+              src="{% static 'media/DVP.png' %}" 
+              class="h-10 object-contain" 
+              alt="Home Design Interactive Logo"
+            >
+          </div>
           <div class="flex-1"></div>
           <div class="flex gap-3">
-            <button
-              class="btn rounded-full bg-gray-900 border-2 border-white text-white"
-            >
-              <a href="{% url 'createpost' %}">New Post</a>
-            </button>
+         
             <div class="dropdown dropdown-end">
               <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                 <div class="w-10 rounded-full">
@@ -129,9 +76,25 @@
                 tabindex="0"
                 class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
               >
-                <li><a href="{% url 'profile' %}">Profile</a></li>
-                <li><a href="">Settings</a></li>
-                <li><a href="{% url 'logout' %}">Logout</a></li>
+              {% if request.user.is_authenticated %}
+              <li>
+                  <a href="{% url 'profile' %}" class="justify-between">
+                      Profile
+                      <span class="badge">New</span>
+                  </a>
+              </li>
+            
+            
+              <li>
+                  <button class="justify-between w-full text-left" onclick="logout_modal.showModal()">
+                      Logout
+                  </button>
+              </li>
+              {% else %}
+              <li>
+                  <a href="{% url 'login' %}" class="justify-between">Login</a>
+              </li>
+              {% endif %}
               </ul>
             </div>
           </div>
@@ -139,7 +102,7 @@
 
         <!-- Page Content -->
         <div class="p-4 bg-white h-full">
-          {% block admincontent %}`
+          {% block admincontent %}
           
           <!-- Improved Filters and search -->
           <div class="flex flex-col sm:flex-row gap-4 mb-8">
@@ -179,40 +142,7 @@
             </div>
 
             <!-- Filter Button -->
-            <div class="dropdown dropdown-end">
-                <div tabindex="0" role="button" class="btn bg-gray-900 text-white hover:bg-gray-800 border-0 w-full sm:w-auto">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                    </svg>
-                    Sort By
-                </div>
-                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-52">
-                    <li><a href="?sort=price_low" class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
-                        </svg>
-                        Price: Low to High
-                    </a></li>
-                    <li><a href="?sort=price_high" class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4" />
-                        </svg>
-                        Price: High to Low
-                    </a></li>
-                    <li><a href="?sort=newest" class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        Newest First
-                    </a></li>
-                    <li><a href="?sort=popular" class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                        </svg>
-                        Most Popular
-                    </a></li>
-                </ul>
-            </div>
+            
         </div>
 
           <!-- Posts Grid -->
@@ -329,54 +259,62 @@
       </div>
 
       <!-- Sidebar -->
-      <div class="drawer-side ">
+      <div class="drawer-side">
         <label for="my-drawer-2" class="drawer-overlay"></label>
-        <ul class="menu p-4 w-64 shadow-inner min-h-full bg-gray-900 hover:bg-gray-800 hover:text-white text-white ">
-          <li class="mb-4">
-            <div  class="text-2xl p-4 font-bold hover:bg-base-100">
-           
+        <ul class="menu  w-64 min-h-full bg-gray-900 text-white">
+          <!-- Header -->
+          <li class="mb-6 bg-gray-800">
+            <div class="text-2xl p-6 font-bold flex  items-center gap-3">
+              <i class="fa-solid fa-user-shield text-gray-300"></i>
               Admin Panel
             </div>
           </li>
-          <li class="py-3">
-            <a href="{% url 'adminpage' %}" class="font-bold p-4 hover:bg-gray-50  hover:text-gray-900">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-              Dashboard
-            </a>
+          
+          <!-- Menu Items -->
+          <div class="px-3  space-y-1">
+            <!-- New Post -->
+            <li>
+              <a href="{% url 'createpost' %}" class="flex items-center gap-3 mb-2 p-4 rounded-lg hover:bg-gray-800 transition-all duration-200">
+                <i class="fa-solid fa-plus text-gray-400 w-5"></i>
+                <span>New Post</span>
+              </a>
+            </li>
+            
+            <!-- Dashboard -->
+            <li>
+              <a href="{% url 'adminpage' %}" class="flex items-center gap-3 mb-2 p-4 rounded-lg bg-gray-800 font-medium transition-all duration-200">
+                <i class="fa-solid fa-gauge-high text-gray-300 w-5"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            
+            <!-- Explore -->
+            <li>
+              <a href="{% url 'explore' %}" class="flex items-center gap-3 p-4 mb-2 rounded-lg hover:bg-gray-800 transition-all duration-200">
+                <i class="fa-solid fa-compass text-gray-400 w-5"></i>
+                <span>Explore</span>
+              </a>
+            </li>
+            
+            <!-- Add a divider -->
+            <div class="border-t border-gray-700 my-4"></div>
+            
+            <!-- Settings -->
+           
+          </div>
+          
+          <!-- Footer with user info -->
+          <li class="mt-auto bg-gray-800 p-4">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center overflow-hidden">
+                <i class="fa-solid fa-user text-sm text-gray-300"></i>
+              </div>
+              <div>
+                <p class="text-sm font-medium">{{ request.user.username }}</p>
+                <p class="text-xs text-gray-400">Business</p>
+              </div>
+            </div>
           </li>
-          <li class="py-3">
-            <a href="{% url 'explore' %}" class="p-4  font-bold hover:bg-gray-50 hover:text-gray-900">
-                <svg 
-                    class="w-5 h-5 stroke-current"
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor"
-                >
-                    <path 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round" 
-                        stroke-width="2" 
-                        d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                </svg>
-                Explore
-            </a>
-        </li>
-         
-        
         </ul>
       </div>
     </div>
@@ -396,6 +334,7 @@
 </dialog>
 
 <script>
+container = document.getElementById('container');
 function showDeleteModal(productId) {
     // Set the delete URL
     document.getElementById('delete-confirm-button').href = `/deletepost/${productId}/`;
@@ -438,6 +377,26 @@ function showDeleteModal(productId) {
 
 
 
+</script>
+<script>
+  // Display Django messages with Toastify
+  document.addEventListener('DOMContentLoaded', function() {
+    "{% if messages %}"
+        "{% for message in messages %}"
+            Toastify({
+                text: "{{ message }}",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "center",
+                stopOnFocus: true,
+                style: {
+                    background: "{% if message.tags == 'success' %}linear-gradient(to right, #00b09b, #96c93d){% elif message.tags == 'error' %}linear-gradient(to right, #ff5f6d, #ffc371){% elif message.tags == 'warning' %}linear-gradient(to right, #f7b733, #fc4a1a){% elif message.tags == 'info' %}linear-gradient(to right, #2193b0, #6dd5ed){% else %}linear-gradient(to right, #00b09b, #96c93d){% endif %}",
+                },
+            }).showToast();
+        "{% endfor %}"
+    "{% endif %}"
+  });
 </script>
 
 </body>

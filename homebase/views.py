@@ -117,7 +117,13 @@ def deletepost(request, pk):
     return redirect("adminpage")
 @login_required(login_url='login')
 def Profile(request):
-    return render(request, "profile.html")
+    context = {}
+    # If the user is a business account, get their post count
+    if request.user.role == 'business':
+        post_count = Products.objects.filter(admin=request.user).count()
+        context['post_count'] = post_count
+    
+    return render(request, 'profile.html', context)
 @login_required(login_url='login')
 def edit_profile(request):
     user = request.user
@@ -154,10 +160,10 @@ def explore(request):
     if query:
         products = Products.objects.filter(
             Q(name__icontains=query) | Q(description__icontains=query)  
-        ).order_by("name")  # Ensure consistent ordering
+        )  # Prefetch likes
     else:
         # Otherwise, fetch all products for the logged-in admin
-        products = Products.objects.all().order_by("name")
+        products = Products.objects.all().order_by("name").prefetch_related('likes')  # Prefetch likes
 
     # Add pagination
     paginator = Paginator(products, 10)  # Show 10 products per page

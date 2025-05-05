@@ -2,219 +2,167 @@
 {% load static %}
 
 {% block content %}
-  
-    <div class="px-2 sm:px-4 py-3 bg-white">
-        <!-- Responsive grid layout -->
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6">
-            <!-- Left Sidebar - Full width on mobile, 1/4 on large screens -->
-            <div class="lg:col-span-1 sidebar p-3 sm:p-5 bg-white rounded-lg shadow-sm">
-                <!-- Room Background Section -->
-                <div class="mb-5 sm:mb-6">
-                    <h2 class="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 section-title">Room Background</h2>
-                    <div class="flex flex-col space-y-2 sm:space-y-3">
-                        <label class="block text-sm font-medium text-gray-700">Upload Room Image</label>
-                        <div class="relative">
-                            <input type="file" id="background-upload" accept="image/*" class="hidden">
-                            <label for="background-upload" class="flex items-center justify-center w-full py-2 sm:py-3 px-3 sm:px-4 bg-gray-900 text-white rounded-lg cursor-pointer hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 shadow-md">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
-                                Choose Image
-                            </label>
-                        </div>
-                        <p id="file-name" class="text-xs text-gray-500 text-center mt-1">No file chosen</p>
+<div class="px-2 sm:px-4 py-3 bg-white">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6">
+        <!-- Sidebar -->
+        <div class="lg:col-span-1 sidebar p-3 sm:p-5 bg-white rounded-lg shadow-sm">
+            <!-- Room Background Section -->
+            <div class="mb-5 sm:mb-6">
+                <h2 class="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 section-title">Room Background</h2>
+                <div class="flex flex-col space-y-2 sm:space-y-3">
+                    <label class="block text-sm font-medium text-gray-700">Upload Room Image</label>
+                    <div class="relative">
+                        <input type="file" id="background-upload" accept="image/*" class="hidden">
+                        <label for="background-upload" class="flex items-center justify-center w-full py-2 sm:py-3 px-3 sm:px-4 bg-gray-900 text-white rounded-lg cursor-pointer hover:bg-gray-800 transition-all duration-300 shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            Choose Image
+                        </label>
                     </div>
-                </div>
-                
-                <!-- Furniture Gallery Section -->
-                <div class="mb-5 sm:mb-6">
-                    <div class="flex justify-between items-center mb-3">
-                        <h2 class="text-lg sm:text-xl font-semibold section-title">Furniture Gallery</h2>
-                        
-                        <!-- Toggle between Collections and All Products -->
-                        <div class="flex space-x-1 sm:space-x-2 text-xs sm:text-sm">
-                            <a href="{% url 'canvas' %}" class="px-2 py-1 rounded-md {% if is_collection_view %}bg-blue-600 text-white{% else %}bg-gray-100 text-gray-700{% endif %}">
-                                My Items
-                            </a>
-                            <a href="" class="px-2 py-1 rounded-md {% if not is_collection_view %}bg-blue-600 text-white{% else %}bg-gray-100 text-gray-700{% endif %}">
-                                All Items
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Search Form -->
-                    <div class="relative mb-3 sm:mb-4">
-                        <form method="GET" action="{% if is_collection_view %}{% url 'canvas' %}    {% endif %}">
-                            <input type="text" name="search" id="furniture-search" placeholder="Search furniture..." 
-                                value="{{ search_query }}"
-                                class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 pl-9 sm:pl-10 search-input text-sm">
-                            <div class="absolute left-2 sm:left-3 top-2.5 sm:top-3.5 text-gray-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
-                            </div>
-                            <button type="submit" class="absolute right-2 sm:right-3 top-2.5 sm:top-3 text-gray-400 hover:text-gray-600">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Search Results Info -->
-                    {% if search_query %}
-                        <div class="mb-3 text-xs sm:text-sm text-gray-600">
-                            <div class="flex justify-between items-center">
-                                <p class="truncate max-w-[70%]">
-                                    Results for: <span class="font-medium">{{ search_query }}</span>
-                                    {% if products_with_images %}
-                                        ({{ products_with_images|length }})
-                                    {% endif %}
-                                </p>
-                                <a href="{% if is_collection_view %}{% url 'canvas' %}{% endif %}" class="text-blue-600 hover:underline">Clear</a>
-                            </div>
-                        </div>
-                    {% endif %}
-
-                    <!-- Furniture Items Grid - Adjust height based on screen -->
-                    <div id="furniture-gallery" class="grid grid-cols-2 gap-2 sm:gap-3 max-h-60 sm:max-h-80 md:max-h-96 overflow-y-auto pr-1">
-                        {% if products_with_images %}
-                            {% for item in products_with_images %}
-                                <div class="furniture-item bg-white border border-gray-100 hover:border-gray-300 transition-colors shadow-sm rounded-md cursor-pointer relative" 
-                                     data-src="{{ item.image.bg_removed_image.url }}" 
-                                     data-product-id="{{ item.product.id }}"
-                                     data-name="{{ item.product.name }}">
-                                    <div class="p-2">
-                                        <img src="{{ item.image.bg_removed_image.url }}" 
-                                             alt="{{ item.product.name }}" 
-                                             class="w-full h-24 sm:h-32 object-contain rounded-t-md">
-                                        <p class="text-xs sm:text-sm font-medium text-center py-1 sm:py-2 text-gray-700 truncate">{{ item.product.name }}</p>
-                                        
-                                        {% if not is_collection_view %}
-                                            <div class="absolute top-1 right-1 sm:top-2 sm:right-2">
-                                                <a href="{% url 'add_to_collection' item.product.id %}" class="p-1 sm:p-1.5 bg-white rounded-full shadow hover:bg-blue-50">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                                                    </svg>
-                                                </a>
-                                            </div>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            <div class="col-span-2 p-3 sm:p-4 text-center text-gray-500 text-xs sm:text-sm">
-                                {% if search_query %}
-                                    <p>No furniture found matching "{{ search_query }}"</p>
-                                    <p class="mt-2"><a href="{% if is_collection_view %}{% url 'canvas' %}{% endif %}" class="text-blue-600 hover:underline">Clear search</a></p>
-                                {% elif is_collection_view %}
-                                    <p>No items in your collection</p>
-                                    <p class="mt-2"><a href="{% url 'products' %}" class="text-blue-600 hover:underline">Browse products to add</a></p>
-                                {% else %}
-                                    <p>No furniture products available</p>
-                                {% endif %}
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-                
-                <!-- Tips Section - Hide on small screens when space is limited -->
-                <div class="text-xs text-gray-500 mt-4 sm:mt-6 bg-blue-50 p-2 sm:p-3 rounded-lg hidden sm:block">
-                    <p class="font-medium text-blue-700 mb-1">Tips:</p>
-                    <ul class="list-disc pl-4 space-y-0.5 sm:space-y-1 text-blue-600">
-                        <li>Click on furniture to add it to canvas</li>
-                        <li>Drag to position furniture</li>
-                        <li>Click on furniture to resize or rotate</li>
-                        <li>Use Undo/Redo for mistakes</li>
-                    </ul>
+                    <p id="file-name" class="text-xs text-gray-500 text-center mt-1">No file chosen</p>
                 </div>
             </div>
             
-            <!-- Main Canvas Area - Full width on mobile, 3/4 on large screens -->
-            <div class="lg:col-span-3">
-                <div class="bg-white p-3 sm:p-5 rounded-lg shadow-sm">
-                    <!-- Canvas Controls - Scroll horizontally on small screens -->
-                    <div class="flex flex-wrap sm:flex-nowrap justify-between items-center mb-3 sm:mb-5 overflow-x-auto pb-2">
-                        <div class="flex space-x-1 sm:space-x-2 mb-2 sm:mb-0 whitespace-nowrap">
-                            <button id="undo-btn" class="btn px-2 sm:px-4 py-1 sm:py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 tooltip text-xs sm:text-sm" data-tooltip="Undo last action">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-5 sm:w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                                </svg>
-                                <span class="sm:inline hidden">Undo</span>
-                            </button>
-                            <button id="redo-btn" class="btn px-2 sm:px-4 py-1 sm:py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 tooltip text-xs sm:text-sm" data-tooltip="Redo last action">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-5 sm:w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
-                                <span class="sm:inline hidden">Redo</span>
-                            </button>
-                            <button id="clear-btn" class="btn px-2 sm:px-4 py-1 sm:py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 tooltip text-xs sm:text-sm" data-tooltip="Clear all furniture">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-5 sm:w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                </svg>
-                                <span class="sm:inline hidden">Clear</span>
-                            </button>
-                            <button id="save-state-btn" class="btn px-2 sm:px-4 py-1 sm:py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 tooltip text-xs sm:text-sm" data-tooltip="Save current design">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-5 sm:w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
-                                </svg>
-                                <span class="sm:inline hidden">Save</span>
-                            </button>
-                            <button id="clear-saved-btn" class="btn px-2 sm:px-4 py-1 sm:py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 tooltip text-xs sm:text-sm" data-tooltip="Delete saved design">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-5 sm:w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                                <span class="sm:inline hidden">Clear Saved</span>
-                            </button>
-                        </div>
-                        <div class="flex space-x-1 sm:space-x-2 whitespace-nowrap">
-                            <button id="export-btn" class="btn px-3 sm:px-5 py-1 sm:py-2 bg-gradient-to-r bg-gray-900 text-white rounded-lg hover:from-blue-600 hover:to-indigo-700 shadow-md tooltip text-xs sm:text-sm" data-tooltip="Download as PNG">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-5 sm:w-5 mr-1 sm:mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                                </svg>
-                                <span class="sm:inline hidden">Export</span>
-                            </button>
-                            <button id="view-ar-btn" class="btn px-3 sm:px-5 py-1 sm:py-2 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-lg hover:from-purple-600 hover:to-indigo-700 shadow-md tooltip text-xs sm:text-sm" data-tooltip="View in AR">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-5 sm:w-5 mr-1 sm:mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                </svg>
-                                <span class="sm:inline hidden">View in AR</span>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Canvas Container - Responsive Height -->
-                    <div id="container" class="bg-gray-50 border border-gray-200 rounded-lg shadow-inner relative w-full" style="height: 550px; min-height: 400px; max-height: 70vh;">
-                        <!-- Konva canvas will be inserted here -->
-                    </div>
-                    
-                    <!-- Canvas Info Footer -->
-                    <div class="flex justify-between items-center mt-3 sm:mt-4">
-                        <div class="text-xs sm:text-sm text-gray-500">
-                            <span id="canvas-info">No background image loaded</span>
-                        </div>
-                        <div class="text-xs sm:text-sm text-gray-500">
-                            <span id="furniture-count">0 items</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Mobile Tips - Only show on small screens -->
-                    <div class="text-xs text-gray-500 mt-3 bg-blue-50 p-2 rounded-lg sm:hidden">
-                        <p class="font-medium text-blue-700">Tips:</p>
-                        <div class="flex justify-between mt-1 text-blue-600">
-                            <span>• Click to add</span>
-                            <span>• Drag to position</span>
-                            <span>• Tap to resize</span>
+            <!-- Furniture Gallery Section -->
+            <div class="mb-5 sm:mb-6">
+                <div class="flex justify-between items-center mb-3">
+                    <h2 class="text-lg sm:text-xl font-semibold section-title">Furniture Gallery</h2>
+                </div>
+                
+                <!-- Search Form -->
+                <div class="mb-6 bg-white p-4 rounded-lg shadow">
+                    <div class="flex flex-wrap items-center justify-between gap-4">
+                        <!-- Search Form -->
+                        <form method="get" class="flex-1 min-w-[300px]">
+                            <div class="relative">
+                                <input 
+                                    type="text" 
+                                    name="search" 
+                                    placeholder="Search for products..." 
+                                    value="{{ search_query }}"
+                                    class="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-700 focus:border-transparent"
+                                />
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                    </svg>
+                                </div>
+
+                                <!-- Hidden input to ensure show_all parameter is maintained -->
+                                <input type="hidden" name="show_all" value="1">
+                                
+                                <button type="submit" class="absolute inset-y-0 right-0 px-4 py-2 bg-gray-900 text-white rounded-r-lg hover:bg-gray-800">
+                                    Search
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Source Toggle -->
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-700 mr-2">Search in:</span>
+                            <div class="flex bg-gray-200 rounded-lg p-1">
+                                <a href="?show_all=0{% if search_query %}&search={{ search_query }}{% endif %}" 
+                                   class="px-3 py-1 text-sm rounded-md {% if not show_all %}bg-white shadow-sm{% endif %}">
+                                    My Collection
+                                </a>
+                                <a href="?show_all=1{% if search_query %}&search={{ search_query }}{% endif %}" 
+                                   class="px-3 py-1 text-sm rounded-md {% if show_all %}bg-white shadow-sm{% endif %}">
+                                    All Products
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Search Results Info -->
+                {% if search_query %}
+                    <div class="mb-3 text-xs sm:text-sm text-gray-600">
+                        <div class="flex justify-between items-center">
+                            <p class="truncate max-w-[70%]">
+                                Results for: <span class="font-medium">{{ search_query }}</span>
+                                {% if products_with_images %}
+                                    ({{ products_with_images|length }})
+                                {% endif %}
+                            </p>
+                            <a href="{% url 'canvas' %}" class="text-blue-600 hover:underline">Clear</a>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <!-- Product Selection Area -->
+                <div class="mb-5">
+                    <h2 class="text-xl font-semibold mb-3">
+                        {% if show_all %}
+                            All Products {% if search_query %}matching "{{ search_query }}"{% endif %}
+                        {% else %}
+                            My Collection {% if search_query %}matching "{{ search_query }}"{% endif %}
+                        {% endif %}
+                    </h2>
+                    
+                    <!-- Product grid goes here -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                        {% for product_item in products_with_images %}
+                            <div class="furniture-item cursor-pointer bg-gray-100 hover:bg-gray-200 rounded-lg p-2 flex flex-col items-center shadow transition"
+                                 data-src="{{ product_item.image_url }}"
+                                 data-name="{{ product_item.product.name|escape }}">
+                                <img src="{{ product_item.image_url }}" alt="{{ product_item.product.name|escape }}"
+                                     class="w-full h-24 object-contain mb-2 rounded" loading="lazy" />
+                                <div class="text-xs text-gray-700 font-medium text-center truncate w-full">{{ product_item.product.name }}</div>
+                            </div>
+                        {% empty %}
+                            <div class="col-span-full text-center py-10 bg-gray-50 rounded-lg">
+                                <p class="text-gray-500">No products found. Try adjusting your search criteria.</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tips Section -->
+            <div class="text-xs text-gray-500 mt-4 sm:mt-6 bg-blue-50 p-2 sm:p-3 rounded-lg hidden sm:block">
+                <p class="font-medium text-blue-700 mb-1">Tips:</p>
+                <ul class="list-disc pl-4 space-y-0.5 sm:space-y-1 text-blue-600">
+                    <li>Click on furniture to add it to canvas</li>
+                    <li>Drag to position furniture</li>
+                    <li>Click on furniture to resize or rotate</li>
+                    <li>Use Undo/Redo for mistakes</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Main Canvas Area -->
+        <div class="lg:col-span-3">
+            <div class="bg-white p-3 sm:p-5 rounded-lg shadow-sm">
+                <div id="container" class="relative border border-gray-200 rounded-lg overflow-hidden" style="width: 100%; height: 600px;">
+                    <!-- Canvas will be created here -->
+                </div>
+                
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <button id="undo-btn" class="btn px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50" disabled>
+                        <i class="fas fa-undo mr-1"></i> Undo
+                    </button>
+                    <button id="redo-btn" class="btn px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50" disabled>
+                        <i class="fas fa-redo mr-1"></i> Redo
+                    </button>
+                    <button id="clear-btn" class="btn px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                        <i class="fas fa-trash-alt mr-1"></i> Clear
+                    </button>
+                    <button id="export-btn" class="btn px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-download mr-1"></i> Export
+                    </button>
+                    <button id="save-to-database-btn" class="btn px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                        <i class="fas fa-save mr-1"></i> Save Design
+                    </button>
+                </div>
+                
+                <div id="canvas-info" class="text-sm text-gray-500 mt-2">Ready to design</div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Add Konva.js -->
-    <script src="{% static 'vendor/konva.min.js' %}"></script>
-    
-    <!-- Add our external JS file -->
-    <script src="{% static 'js/canvas.js' %}"></script>
+<!-- Add Konva.js -->
+<script src="{% static 'vendor/konva.min.js' %}"></script>
+<script src="{% static 'js/canvas.js' %}"></script>
 {% endblock content %}

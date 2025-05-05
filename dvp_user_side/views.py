@@ -4,10 +4,11 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from homebase.models import Products,images as Images
 from django.contrib import messages
-from .models import Collections
+from .models import Collections, RoomDesign
 from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required, user_passes_test
- # Adjust import to match your actual model names
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 def is_customer(user):
     return user.is_authenticated and user.role == "customer"
@@ -58,60 +59,44 @@ def brand_details(request, username):
 @user_passes_test(is_customer, login_url='login')
 def canvas(request):
     """
-    View for rendering the canvas page with products from either user's collection or all products
+    - When searching: Show ALL matching products (not just collection)
+    - When not searching: Show only the user's collection
     """
-    # Check if we should show all products or just collection
-    show_all = request.GET.get('show_all', '0') == '1'
-    
-    # Get search query from request
-    search_query = request.GET.get('search', '')
-    
+    search_query = request.GET.get('search', '').strip()
+    design_id = request.GET.get('designId', '')
+
     products_with_images = []
-    
-    if show_all:
-        # Show all products logic
-        if search_query:
-            # If search query provided, filter all products
-            products_list = Products.objects.filter(
-                Q(name__icontains=search_query) | 
-                Q(description__icontains=search_query)
-            ).order_by("name")
-        else:
-            products_list = Products.objects.all().order_by("name")
+
+    if search_query:
+        # Search all products
+        products_list = Products.objects.filter(
+            Q(name__icontains=search_query) | 
+            Q(description__icontains=search_query)
+        ).order_by("name")
     else:
-        # Show collection only logic
+        # Only show products from user's collection
         user_collections = Collections.objects.filter(user=request.user)
-        collection_products = [collection.product for collection in user_collections]
-        
-        if search_query:
-            # Filter collection products
-            filtered_products = []
-            for product in collection_products:
-                if (search_query.lower() in product.name.lower() or 
-                    (product.description and search_query.lower() in product.description.lower())):
-                    filtered_products.append(product)
-            products_list = filtered_products
-        else:
-            products_list = collection_products
-    
-    # For each product, get its first image
+        products_list = Products.objects.filter(collections__in=user_collections).distinct().order_by("name")
+
+    # Attach first image with background removal for each product
+    images_map = {
+        img.product_id: img
+        for img in Images.objects.filter(product__in=products_list).order_by('product_id', 'id')
+    }
     for product in products_list:
-        # Get first image for this product
-        images = Images.objects.filter(product=product)
-        if images.exists():
-            # Add product and its image to our list
+        img = images_map.get(product.id)
+        if img:
             products_with_images.append({
                 'product': product,
-                'image': images.first()
+                'image': img,
+                'image_url': img.bg_removed_image.url
             })
-    
-    # Pass data to template
+
     context = {
         'products_with_images': products_with_images,
-        'search_query': search_query,  # Pass search query back to template
-        'show_all': show_all,  # Flag to indicate what we're showing
+        'search_query': search_query,
+        'design_id': design_id,
     }
-    
     return render(request, 'canvas.html', context)
 
 # COLLECTION VIEW
@@ -216,3 +201,87 @@ def toggle_like(request, product_id):
     
     # For regular requests, redirect back to referring page
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+@login_required(login_url='login')
+@user_passes_test(is_customer, login_url='login')
+def saved_designs(request):
+    designs = RoomDesign.objects.filter(user=request.user).order_by('-updated_at')
+    return render(request, 'saved_designs.html', {'designs': designs})
+
+@login_required(login_url='login')
+def load_design(request, design_id):
+    design = get_object_or_404(RoomDesign, id=design_id, user=request.user)
+    return render(request, 'canvas.html', {'design': design})
+
+@csrf_exempt  # Note: Better to use proper CSRF protection in production
+@login_required(login_url='login')
+def save_design(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            
+            # Create or update design
+            design_id = data.get('designId')
+            if design_id and design_id.isdigit():
+                # Update existing design
+                design = RoomDesign.objects.filter(id=design_id, user=request.user).first()
+                if not design:
+                    return JsonResponse({'success': False, 'error': 'Design not found'}, status=404)
+            else:
+                # Create new design
+                design = RoomDesign(user=request.user)
+            
+            # Update fields
+            design.name = data.get('name', 'Untitled Design')
+            design.stage_data = data.get('stageData')
+            design.thumbnail = data.get('thumbnailUrl', '')
+            design.item_count = data.get('itemCount', 0)
+            design.save()
+            
+            return JsonResponse({
+                'success': True, 
+                'designId': design.id,
+                'message': 'Design saved successfully'
+            })
+            
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=500)
+    
+    return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=405)
+
+@login_required
+def get_design(request, design_id):
+    """API endpoint to get a specific design"""
+    try:
+        # Handle both numeric IDs and "canvas_design_X" format
+        if isinstance(design_id, str) and design_id.startswith('canvas_design_'):
+            # Extract the numeric part
+            numeric_id = design_id.replace('canvas_design_', '')
+            try:
+                numeric_id = int(numeric_id)
+            except ValueError:
+                return JsonResponse({
+                    'success': False,
+                    'error': 'Invalid design ID format'
+                }, status=400)
+        else:
+            numeric_id = design_id
+        
+        design = get_object_or_404(RoomDesign, id=numeric_id, user=request.user)
+        
+        return JsonResponse({
+            'success': True,
+            'design': {
+                'id': design.id,
+                'name': design.name,
+                'stageData': design.stage_data,
+                'thumbnailUrl': design.thumbnail,
+                'timestamp': design.created_at.isoformat(),
+                'itemCount': design.item_count
+            }
+        })
+    except Exception as e:
+        return JsonResponse({
+            'success': False,
+            'error': str(e)
+        }, status=500)
