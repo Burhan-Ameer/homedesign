@@ -59,26 +59,33 @@ def brand_details(request, username):
 @user_passes_test(is_customer, login_url='login')
 def canvas(request):
     """
-    - When searching: Show ALL matching products (not just collection)
-    - When not searching: Show only the user's collection
+    - When show_all=1: Show ALL products (optionally filtered by search)
+    - When show_all=0: Show only the user's collection (optionally filtered by search)
     """
     search_query = request.GET.get('search', '').strip()
+    show_all = request.GET.get('show_all', '1') == '1'
     design_id = request.GET.get('designId', '')
 
     products_with_images = []
 
-    if search_query:
-        # Search all products
-        products_list = Products.objects.filter(
-            Q(name__icontains=search_query) | 
-            Q(description__icontains=search_query)
-        ).order_by("name")
+    if show_all:
+        products_list = Products.objects.all()
+        if search_query:
+            products_list = products_list.filter(
+                Q(name__icontains=search_query) | 
+                Q(description__icontains=search_query)
+            )
+        products_list = products_list.order_by("name")
     else:
-        # Only show products from user's collection
         user_collections = Collections.objects.filter(user=request.user)
-        products_list = Products.objects.filter(collections__in=user_collections).distinct().order_by("name")
+        products_list = Products.objects.filter(collections__in=user_collections)
+        if search_query:
+            products_list = products_list.filter(
+                Q(name__icontains=search_query) | 
+                Q(description__icontains=search_query)
+            )
+        products_list = products_list.distinct().order_by("name")
 
-    # Attach first image with background removal for each product
     images_map = {
         img.product_id: img
         for img in Images.objects.filter(product__in=products_list).order_by('product_id', 'id')
@@ -95,6 +102,7 @@ def canvas(request):
     context = {
         'products_with_images': products_with_images,
         'search_query': search_query,
+        'show_all': show_all,
         'design_id': design_id,
     }
     return render(request, 'canvas.html', context)
