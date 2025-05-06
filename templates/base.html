@@ -41,10 +41,10 @@
                 </svg>
                 </label>
               <!-- Logo with proper dimensions -->
-              <div class="h-12  flex items-center justify-center">
+              <div class="h-10  flex items-center justify-center">
                 <img 0
                   src="{% static 'media/DVP.png' %}" 
-                  class="h-16 object-contain" 
+                  class="h-12 object-contain" 
                   alt="Home Design Interactive Logo"
                 >
               </div>
@@ -125,33 +125,49 @@
         </div>
         <!-- mobile menu  -->
 
-        <!-- Page content here -->
-      </div>
+              </div>
       <div class="drawer-side z-20">
         <label
           for="my-drawer"
           aria-label="close sidebar"
           class="drawer-overlay"
         ></label>
-        <ul
-          class="menu bg-gray-900   min-h-full w-52 p-2 pt-10 flex flex-col gap-y-3"
-        >
-          <!-- Sidebar content here -->
-          <li class="text-white"><a href="{% url 'home' %}" class="p-4 hover:bg-gray-900"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg> Home </a></li>
-          <li class="text-white"><a href="{% url 'collection' %}" class="p-4 hover:bg-gray-900"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M320-320h480v-480h-80v280l-100-60-100 60v-280H320v480Zm0 80q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm360-720h200-200Zm-200 0h480-480Z"/></svg> Collections</a></li>
-          <li class="text-white">
-            <a href="{% url 'brands' %}" class="p-4 hover:bg-gray-900">
-                <svg xmlns="http://www.w3.org/2000/svg" 
-                     height="24px" 
-                     viewBox="0 -960 960 960" 
-                     width="24px" 
-                     fill="#ffff">
-                    <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H160v400Zm160-40-92-92 92-92 56 56-36 36 36 36-56 56Zm320 0-56-56 36-36-36-36 56-56 92 92-92 92ZM160-640h640-640Z"/>
-                </svg> 
-                Brands
+        <ul class="menu bg-gray-900 min-h-full w-56 p-4 pt-10 flex flex-col gap-y-4 rounded-r-2xl shadow-lg">
+          <!-- Home -->
+          <li>
+            <a href="{% url 'home' %}" class="flex mb-2 items-center gap-3 text-white px-4 py-3 rounded-lg hover:bg-gray-800 transition-all duration-200">
+              <i class="fas fa-home text-lg"></i>
+              <span class="font-medium">Home</span>
             </a>
-        </li>
-          <li class="text-white"><a href="{% url 'saved' %}" class="p-4 hover:bg-gray-900"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffff"><path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z"/></svg> Saved</a></li>
+          </li>
+          <!-- Collections -->
+          <li>
+            <a href="{% url 'collection' %}" class="flex mb-2 items-center gap-3 text-white px-4 py-3 rounded-lg hover:bg-gray-800 transition-all duration-200">
+              <i class="fas fa-th-large text-lg"></i>
+              <span class="font-medium">Collections</span>
+            </a>
+          </li>
+          <!-- Brands -->
+          <li>
+            <a href="{% url 'brands' %}" class="flex  mb-2 items-center gap-3 text-white px-4 py-3 rounded-lg hover:bg-gray-800 transition-all duration-200">
+              <i class="fas fa-gem text-lg"></i>
+              <span class="font-medium">Brands</span>
+            </a>
+          </li>
+          <!-- Saved -->
+          <li>
+            <a href="{% url 'saved' %}" class="flex items-center mb-2 gap-3 text-white px-4 py-3 rounded-lg hover:bg-gray-800 transition-all duration-200">
+              <i class="fas fa-bookmark text-lg"></i>
+              <span class="font-medium">Saved</span>
+            </a>
+          </li>
+          <!-- Products -->
+          <li>
+            <a href="{% url 'products' %}" class="flex items-center gap-3 text-white px-4 py-3 rounded-lg hover:bg-gray-800 transition-all duration-200">
+              <i class="fas fa-couch text-lg"></i>
+              <span class="font-medium">Products</span>
+            </a>
+          </li>
         </ul>
       </div>
 
