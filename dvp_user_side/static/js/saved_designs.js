@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
-    
+        
     // Load saved designs when page loads
     loadSavedDesigns();
 });
