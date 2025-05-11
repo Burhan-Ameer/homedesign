@@ -333,6 +333,20 @@
   </div>
 </dialog>
 
+<!-- Logout Confirmation Modal -->
+<dialog id="logout_modal" class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">Confirm Logout</h3>
+    <p class="py-4">Are you sure you want to log out?</p>
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn btn-outline">Cancel</button>
+      </form>
+      <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>
+    </div>
+  </div>
+</dialog>
+
 <script>
 container = document.getElementById('container');
 function showDeleteModal(productId) {

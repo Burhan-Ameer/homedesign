@@ -106,9 +106,8 @@ WSGI_APPLICATION = 'homedesign.wsgi.application'
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
-if DATABASE_URL:
-    url = urlparse(DATABASE_URL)
-    DATABASES = {
+url = urlparse(DATABASE_URL)
+DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': url.path[1:],  # Remove leading slash
@@ -119,13 +118,6 @@ if DATABASE_URL:
             'OPTIONS': {
                 'sslmode': 'require',
             },
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
 

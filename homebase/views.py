@@ -10,6 +10,8 @@ from homebase.models import Colors
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required, user_passes_test
+from cloudinary.models import CloudinaryField
+import cloudinary.uploader
 
 def is_customer(user):
     return user.is_authenticated and user.role == "customer"
@@ -64,40 +66,32 @@ def createpost(request):
                                 color=color_name
                             )
 
-                # Background removal API call
-                url = "https://remove-background18.p.rapidapi.com/public/remove-background"
-                headers = {
-                    "x-rapidapi-key": "3fcc31d69fmshb83cffade800382p1b301ejsne2771f99ccbc",
-                    "x-rapidapi-host": "remove-background18.p.rapidapi.com",
-                    "accept": "application/json"
-                }
-                files = {"file": image_file}
-
-                # Make API request
-                response = requests.post(url, headers=headers, files=files)
-
-                if response.status_code == 200:
-                    # Parse the JSON response to get the image URL
-                    response_json = response.json()
-                    image_url = response_json.get("url")
-
-                    if image_url:
-                        # Download the background-removed image
-                        image_response = requests.get(image_url)
-                        if (image_response.status_code == 200):
-                            # Save background-removed image
-                            image_instance.bg_removed_image.save(
-                                f"nobg_{image_file.name}",
-                                ContentFile(image_response.content),
-                                save=True
-                            )
-                            print(f"Background removed image saved: nobg_{image_file.name}")
-                        else:
-                            print(f"Failed to download the background-removed image. Status code: {image_response.status_code}")
-                    else:
-                        print("No image URL found in the response.")
-                else:
-                    print(f"Error: {response.status_code}, {response.text}")
+                # Instead of the remove.bg API code, use this Cloudinary implementation
+                try:
+                    # Reset file pointer before upload
+                    image_file.seek(0)
+                    
+                    # Upload the image with background removal transformation
+                    upload_result = cloudinary.uploader.upload(
+                        image_file,
+                        folder="product_images/original_product",
+                        background_removal="cloudinary_ai"
+                    )
+                    
+                    # Save original image
+                    image_instance.image = upload_result['public_id']
+                    
+                    # For background-removed version, save the same ID
+                    # (The background removal will be applied via transformation when accessed)
+                    image_instance.bg_removed_image = upload_result['public_id']
+                    image_instance.save()
+                    
+                    print(f"DEBUG: Cloudinary upload successful - image ID: {upload_result['public_id']}")
+                    
+                except Exception as e:
+                    print(f"DEBUG: Cloudinary upload failed: {str(e)}")
+                    import traceback
+                    print(f"DEBUG: Full traceback: {traceback.format_exc()}")
 
             except Exception as e:
                 print(f"Error processing image {image_file.name}: {str(e)}")
@@ -232,40 +226,32 @@ def update_post(request, pk):
                     image=image_file  # Save original image
                 )
 
-                # Background removal API call
-                url = "https://remove-background18.p.rapidapi.com/public/remove-background"
-                headers = {
-                    "x-rapidapi-key": "3fcc31d69fmshb83cffade800382p1b301ejsne2771f99ccbc",
-                    "x-rapidapi-host": "remove-background18.p.rapidapi.com",
-                    "accept": "application/json"
-                }
-                files = {"file": image_file}
-
-                # Make API request
-                response = requests.post(url, headers=headers, files=files)
-
-                if response.status_code == 200:
-                    # Parse the JSON response to get the image URL
-                    response_json = response.json()
-                    image_url = response_json.get("url")
-
-                    if image_url:
-                        # Download the background-removed image
-                        image_response = requests.get(image_url)
-                        if image_response.status_code == 200:
-                            # Save background-removed image
-                            image_instance.bg_removed_image.save(
-                                f"nobg_{image_file.name}",
-                                ContentFile(image_response.content),
-                                save=True
-                            )
-                            print(f"Background removed image saved: nobg_{image_file.name}")
-                        else:
-                            print(f"Failed to download the background-removed image. Status code: {image_response.status_code}")
-                    else:
-                        print("No image URL found in the response.")
-                else:
-                    print(f"Error: {response.status_code}, {response.text}")
+                # Instead of the remove.bg API code, use this Cloudinary implementation
+                try:
+                    # Reset file pointer before upload
+                    image_file.seek(0)
+                    
+                    # Upload the image with background removal transformation
+                    upload_result = cloudinary.uploader.upload(
+                        image_file,
+                        folder="product_images/original_product",
+                        background_removal="cloudinary_ai"
+                    )
+                    
+                    # Save original image
+                    image_instance.image = upload_result['public_id']
+                    
+                    # For background-removed version, save the same ID
+                    # (The background removal will be applied via transformation when accessed)
+                    image_instance.bg_removed_image = upload_result['public_id']
+                    image_instance.save()
+                    
+                    print(f"DEBUG: Cloudinary upload successful - image ID: {upload_result['public_id']}")
+                    
+                except Exception as e:
+                    print(f"DEBUG: Cloudinary upload failed: {str(e)}")
+                    import traceback
+                    print(f"DEBUG: Full traceback: {traceback.format_exc()}")
 
             except Exception as e:
                 print(f"Error processing image {image_file.name}: {str(e)}")
