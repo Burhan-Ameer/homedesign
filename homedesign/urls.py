@@ -73,6 +73,7 @@ urlpatterns = [
     path("saved/",dusers.saved_designs,name="saved"),
     path('api/save-design/', dusers.save_design, name='save_design'),
     path('api/get-design/<str:design_id>/', dusers.get_design, name='get_design'),
+    path('silk/', include('silk.urls', namespace='silk'))
 ]
 
 # Add static/media URLs for development

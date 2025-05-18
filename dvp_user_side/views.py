@@ -146,28 +146,29 @@ def collections(request):
 @user_passes_test(is_customer, login_url='login')
 def products(request):
     query = request.GET.get("search")
+    
+    # Apply search filters if provided
     if query:
-        products_list = Products.objects.filter(
+        products_list = Products.objects.prefetch_related('likes', 'images').filter(
             Q(name__icontains=query) | Q(description__icontains=query)
         ).order_by("name")
     else:
-        products_list = Products.objects.all()
+        products_list = Products.objects.prefetch_related('likes', 'images').all().order_by("name")
     
     # Paginate products
     paginator = Paginator(products_list, 8)
-    page_number = request.GET.get('page', 1)  # Added default page
+    page_number = request.GET.get('page', 1)
     products = paginator.get_page(page_number)
     
-    # Get images for current page products only
-    current_products = list(products)
-    images = Images.objects.filter(
-        product__in=current_products
-    ).select_related('product')  # Added select_related for optimization
+    # Enhance products with their first image for convenient template access
+    for product in products:
+        product.first_image = product.images.first() if product.images.exists() else None
+        product.like_count = product.likes.count()  # Add like count for each product
     
     context = {
         'products': products,
-        'images': images,
     }
+    
     return render(request, "products.html", context)
 @login_required(login_url='login')
 @user_passes_test(is_customer, login_url='login')

@@ -43,7 +43,7 @@ class Colors(models.Model):
         # for multiple images because we dont want to show single image that's why
            
 class images(models.Model):
-    product = models.ForeignKey(Products, on_delete=models.CASCADE)
+    product = models.ForeignKey(Products, on_delete=models.CASCADE,related_name="images")
 
     # Original image
     image = CloudinaryField(

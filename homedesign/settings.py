@@ -14,7 +14,6 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 import cloudinary
-import cloudinary.uploader
 import cloudinary.api
 from urllib.parse import urlparse
 
@@ -59,7 +58,7 @@ INSTALLED_APPS = [
     "homebase",
     'cloudinary_storage',
     'cloudinary',
-
+    "silk",
     'dvp_user_side',
  
 
@@ -73,11 +72,12 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',  # Ensure this is present
+    'django.middleware.csrf.CsrfViewMiddleware',  
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "django_browser_reload.middleware.BrowserReloadMiddleware",
+    'silk.middleware.SilkyMiddleware',
 ]
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 ROOT_URLCONF = 'homedesign.urls'
@@ -104,23 +104,30 @@ WSGI_APPLICATION = 'homedesign.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASE_URL = os.environ.get("DATABASE_URL")
+# DATABASE_URL = os.environ.get("DATABASE_URL")
 
-url = urlparse(DATABASE_URL)
+# url = urlparse(DATABASE_URL)
+# DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': url.path[1:],  # Remove leading slash
+#             'USER': url.username,
+#             'PASSWORD': url.password,
+#             'HOST': url.hostname,
+#             'PORT': url.port or 5432,
+#             'OPTIONS': {
+#                 'sslmode': 'require',
+#             },
+#         }
+#     }
+
+# In settings.py, find the DATABASES dictionary and replace it with:
 DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': url.path[1:],  # Remove leading slash
-            'USER': url.username,
-            'PASSWORD': url.password,
-            'HOST': url.hostname,
-            'PORT': url.port or 5432,
-            'OPTIONS': {
-                'sslmode': 'require',
-            },
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-
+}
 
 
 # Password validation

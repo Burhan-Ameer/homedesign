@@ -42,16 +42,17 @@
             <div class="product-card bg-white rounded-xl shadow-md text-gray-900 overflow-hidden">
                 <!-- Image Container -->
                 <div class="h-72 overflow-hidden relative group">
-                    {% for image in images %}
-                    {% if image.product.id == product.id %}
-                    <img 
-                        loading="lazy"
-                        src="{{image.image.url}}" 
-                        alt="{{product.name}}" 
-                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />    
+                    {% if product.first_image and product.first_image.image %}
+                        <img 
+                            loading="lazy"
+                            src="{{ product.first_image.image.url }}" 
+                            alt="{{ product.name }}" 
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                    {% else %}
+                        <!-- Optional: Placeholder if no image is available -->
+                        <img src="" alt="No image available" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     {% endif %}
-                    {% endfor %}
                     
                     <!-- Overlay with quick actions -->
                         <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
