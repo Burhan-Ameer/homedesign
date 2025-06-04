@@ -20,6 +20,7 @@
                             Choose Image
                         </label>
                     </div>
+                    <button type="button" class="text-sm text-blue-600 hover:underline" onclick="openModal()">What types of images are allowed?</button>
                     <p id="file-name" class="text-xs text-gray-500 text-center mt-1">No file chosen</p>
                 </div>
             </div>
@@ -161,6 +162,37 @@
         </div>
     </div>
 </div>
+
+<!-- Allowed Image Types Modal -->
+<dialog id="allowed-images-modal" class="modal">
+    <div class="modal-box">
+        <h3 class="font-bold text-lg">Allowed Image Types</h3>
+        <p class="py-4">
+            You can upload the following types of images:
+            <ul class="list-disc pl-5 mt-2">
+                <li>A complete room Image</li>
+                <li>Empty spaces in your room</li>
+                <!-- <li></li> -->
+                <!-- <li></li> -->
+            </ul>
+        </p>
+        <div class="modal-action">
+            <button class="btn btn-outline" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+</dialog>
+
+<script>
+    // Open the modal
+    function openModal() {
+        document.getElementById('allowed-images-modal').showModal();
+    }
+
+    // Close the modal
+    function closeModal() {
+        document.getElementById('allowed-images-modal').close();
+    }
+</script>
 
 <!-- Add Konva.js -->
 <script src="{% static 'vendor/konva.min.js' %}"></script>
